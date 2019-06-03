@@ -1,4 +1,7 @@
-# Makefile for building Tsyganeko and compliling it with f2py
+#!/bin/bash
+MODULE := tsygFort
+
+# Makefile for building Tsyganenko and compliling it with f2py
 
 # Declare default compilers
 LOCAL_F2PY = f2py

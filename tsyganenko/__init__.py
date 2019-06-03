@@ -56,7 +56,7 @@ class tsygTrace(object):
     rmin : Optional[float]
         lower trace boundary in Re
     dsmax : Optional[float]
-        maximum tracing step size
+        maximum tracing step np.size
     err : Optional[float]
         tracing step tolerance
 
@@ -95,12 +95,12 @@ class tsygTrace(object):
 
     Examples
     --------
-        from numpy import arange, zeros, ones
+        import numpy as np
         import tsyganenko
         # trace a series of points
-        lats = arange(10, 90, 10)
-        lons = zeros(len(lats))
-        rhos = 6372.*ones(len(lats))
+        lats = np.arange(10, 90, 10)
+        lons = np.zeros(len(lats))
+        rhos = 6372.*np.ones(len(lats))
         trace = tsyganenko.tsygTrace(lats, lons, rhos)
         # Print the results nicely
         print trace
@@ -122,7 +122,7 @@ class tsygTrace(object):
     Written by Sebastien 2012-10
 
     """
-    def __init__(self, lat=None, lon=None, rho=None, filename=None, 
+    def __init__(self, lat=None, lon=None, rho=None, filename=None,
         coords='geo', datetime=None,
         vswgse=[-400.,0.,0.], pdyn=2., dst=-5., byimf=0., bzimf=-5.,
         lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
@@ -130,7 +130,7 @@ class tsygTrace(object):
 
         assert (None not in [lat, lon, rho]) or filename, 'You must provide either (lat, lon, rho) or a filename to read from'
 
-        if None not in [lat, lon, rho]: 
+        if None not in [lat, lon, rho]:
             self.lat = lat
             self.lon = lon
             self.rho = rho
@@ -180,7 +180,7 @@ class tsygTrace(object):
         # Make sure they're all the sam elength
         assert (len(self.lat) == len(self.lon) == len(self.rho) == len(self.datetime)), \
             'lat, lon, rho and datetime must me the same length'
-        
+
         return True
 
 
@@ -220,7 +220,7 @@ class tsygTrace(object):
         rmin : Optional[float]
             lower trace boundary in Re
         dsmax : Optional[float]
-            maximum tracing step size
+            maximum tracing step np.size
         err : Optional[float]
             tracing step tolerance
 
@@ -228,7 +228,7 @@ class tsygTrace(object):
 
         """
 
-        from numpy import radians, degrees, zeros
+        import numpy as np
 
         # Store existing values of class attributes in case something is wrong
         # and we need to revert back to them
@@ -267,20 +267,20 @@ class tsygTrace(object):
 
         # Test that everything is in order, if not revert to existing values
         iTest = self.__test_valid__()
-        if not iTest: 
+        if not iTest:
             if lat: self.lat = _lat
             if lon: _self.lon = lon
             if rho: self.rho = _rho
-            if coords: self.coords = _coords 
+            if coords: self.coords = _coords
             if vswgse: self.vswgse = _vswgse
             if not datetime is None: self.datetime = _datetime
 
         # Declare the same Re as used in Tsyganenko models [km]
         Re = 6371.2
-        
+
         # Initialize trace array
-        self.l = zeros(len(lat))
-        self.xTrace = zeros((len(lat),2*lmax))
+        self.l = np.zeros(len(lat))
+        self.xTrace = np.zeros((len(lat),2*lmax))
         self.yTrace = self.xTrace.copy()
         self.zTrace = self.xTrace.copy()
         self.xGsw = self.l.copy()
@@ -294,7 +294,7 @@ class tsygTrace(object):
         self.rhoSH = self.l.copy()
 
         # And now iterate through the desired points
-        for ip in xrange(len(lat)):
+        for ip in range(len(lat)):
             # This has to be called first
             tsygFort.recalc_08(datetime[ip].year,datetime[ip].timetuple().tm_yday,
                                 datetime[ip].hour,datetime[ip].minute,datetime[ip].second,
@@ -302,7 +302,7 @@ class tsygTrace(object):
 
             # Convert lat,lon to geographic cartesian and then gsw
             r, theta, phi, xgeo, ygeo, zgeo = tsygFort.sphcar_08(
-                                                    rho[ip]/Re, radians(90.-lat[ip]), radians(lon[ip]),
+                                                    rho[ip]/Re, np.radians(90.-lat[ip]), np.radians(lon[ip]),
                                                     0., 0., 0.,
                                                     1)
             if coords.lower() == 'geo':
@@ -338,29 +338,31 @@ class tsygTrace(object):
 
                 # Get coordinates of traced point
                 if mapto == 1:
-                    self.latSH[ip] = 90. - degrees(geoColat)
-                    self.lonSH[ip] = degrees(geoLon)
+                    self.latSH[ip] = 90. - np.degrees(geoColat)
+                    self.lonSH[ip] = np.degrees(geoLon)
                     self.rhoSH[ip] = geoR*Re
                 elif mapto == -1:
-                    self.latNH[ip] = 90. - degrees(geoColat)
-                    self.lonNH[ip] = degrees(geoLon)
+                    self.latNH[ip] = 90. - np.degrees(geoColat)
+                    self.lonNH[ip] = np.degrees(geoLon)
                     self.rhoNH[ip] = geoR*Re
-                    
+
                 # Store trace
                 if mapto == -1:
                     self.xTrace[ip,0:l] = xarr[l-1::-1]
                     self.yTrace[ip,0:l] = yarr[l-1::-1]
                     self.zTrace[ip,0:l] = zarr[l-1::-1]
                 elif mapto == 1:
-                    self.xTrace[ip,self.l[ip]:self.l[ip]+l] = xarr[0:l]
-                    self.yTrace[ip,self.l[ip]:self.l[ip]+l] = yarr[0:l]
-                    self.zTrace[ip,self.l[ip]:self.l[ip]+l] = zarr[0:l]
+                    mapto_index = int(np.round(self.l[ip]))
+                    self.xTrace[ip,mapto_index:mapto_index+l] = xarr[0:l]
+                    self.yTrace[ip,mapto_index:mapto_index+l] = yarr[0:l]
+                    self.zTrace[ip,mapto_index:mapto_index+l] = zarr[0:l]
                 self.l[ip] += l
 
-        # Resize trace output to more minimum possible length
-        self.xTrace = self.xTrace[:,0:self.l.max()]
-        self.yTrace = self.yTrace[:,0:self.l.max()]
-        self.zTrace = self.zTrace[:,0:self.l.max()]
+        # Renp.size trace output to more minimum possible length
+        max_index = int(np.round(self.l.max()))
+        self.xTrace = self.xTrace[:,0:max_index]
+        self.yTrace = self.yTrace[:,0:max_index]
+        self.zTrace = self.zTrace[:,0:max_index]
 
 
     def __str__(self):
@@ -386,14 +388,14 @@ bzimf={:3.0f}                       [nT]
         outstr += '(latitude [degrees], longitude [degrees], distance from center of the Earth [km])\n'
 
         # Print stuff
-        for ip in xrange(len(self.lat)):
+        for ip in range(len(self.lat)):
             outstr +=   '''
 ({:6.3f}, {:6.3f}, {:6.3f}) @ {}
     --> NH({:6.3f}, {:6.3f}, {:6.3f})
-    --> SH({:6.3f}, {:6.3f}, {:6.3f}) 
-                        '''.format(self.lat[ip], self.lon[ip], self.rho[ip], 
-                                   self.datetime[ip].strftime('%H:%M UT (%d-%b-%y)'), 
-                                   self.latNH[ip], self.lonNH[ip], self.rhoNH[ip], 
+    --> SH({:6.3f}, {:6.3f}, {:6.3f})
+                        '''.format(self.lat[ip], self.lon[ip], self.rho[ip],
+                                   self.datetime[ip].strftime('%H:%M UT (%d-%b-%y)'),
+                                   self.latNH[ip], self.lonNH[ip], self.rhoNH[ip],
                                    self.latSH[ip], self.lonSH[ip], self.rhoSH[ip])
 
         return outstr
@@ -432,7 +434,7 @@ bzimf={:3.0f}                       [nT]
                 self.__dict__[k] = v
 
 
-    def plot(self, proj='xz', color='b', onlyPts=None, showPts=False, 
+    def plot(self, proj='xz', color='b', onlyPts=None, showPts=False,
         showEarth=True, disp=True, **kwargs):
         """Generate a 2D plot of the trace projected onto a given plane
         Graphic keywords apply to the plot method for the field lines
@@ -450,7 +452,7 @@ bzimf={:3.0f}                       [nT]
         showPts : Optional[bool]
             Toggle start points visibility on/off
         disp : Optional[bool]
-            invoke pylab.show()
+            invoke plt.show()
         **kwargs :
             see matplotlib.axes.Axes.plot
 
@@ -461,16 +463,16 @@ bzimf={:3.0f}                       [nT]
         Written by Sebastien 2012-10
 
         """
-        from pylab import gcf, gca, show
+        from matplotlib import pyplot as plt
         from matplotlib.patches import Circle
-        from numpy import pi, linspace, outer, ones, size, cos, sin, radians, cross
-        from numpy.ma import masked_array
+        import numpy as np
+        from numpy import ma
 
         assert (len(proj) == 2) or \
             (proj[0] in ['x','y','z'] and proj[1] in ['x','y','z']) or \
             (proj[0] != proj[1]), 'Invalid projection plane'
 
-        fig = gcf()
+        fig = plt.gcf()
         ax = fig.gca()
         ax.set_aspect('equal')
 
@@ -481,7 +483,7 @@ bzimf={:3.0f}                       [nT]
 
         # Select indices to show
         if onlyPts is None:
-            inds = xrange(len(self.lat))
+            inds = range(len(self.lat))
         else:
             try:
                 inds = [ip for ip in onlyPts]
@@ -490,63 +492,64 @@ bzimf={:3.0f}                       [nT]
 
         # Then plot the traced field line
         for ip in inds:
+            ip_index = int(np.round(self.l[ip]))
             # Select projection plane
             if proj[0] == 'x':
-                xx = self.xTrace[ip,0:self.l[ip]]
+                xx = self.xTrace[ip,0:ip_index]
                 xpt = self.xGsw[ip]
                 ax.set_xlabel(r'$X_{GSW}$')
                 xdir = [1,0,0]
             elif proj[0] == 'y':
-                xx = self.yTrace[ip,0:self.l[ip]]
+                xx = self.yTrace[ip,0:ip_index]
                 xpt = self.yGsw[ip]
                 ax.set_xlabel(r'$Y_{GSW}$')
                 xdir = [0,1,0]
             elif proj[0] == 'z':
-                xx = self.zTrace[ip,0:self.l[ip]]
+                xx = self.zTrace[ip,0:ip_index]
                 xpt = self.zGsw[ip]
                 ax.set_xlabel(r'$Z_{GSW}$')
                 xdir = [0,0,1]
             if proj[1] == 'x':
-                yy = self.xTrace[ip,0:self.l[ip]]
+                yy = self.xTrace[ip,0:ip_index]
                 ypt = self.xGsw[ip]
                 ax.set_ylabel(r'$X_{GSW}$')
                 ydir = [1,0,0]
             elif proj[1] == 'y':
-                yy = self.yTrace[ip,0:self.l[ip]]
+                yy = self.yTrace[ip,0:ip_index]
                 ypt = self.yGsw[ip]
                 ax.set_ylabel(r'$Y_{GSW}$')
                 ydir = [0,1,0]
             elif proj[1] == 'z':
-                yy = self.zTrace[ip,0:self.l[ip]]
+                yy = self.zTrace[ip,0:ip_index]
                 ypt = self.zGsw[ip]
                 ax.set_ylabel(r'$Z_{GSW}$')
                 ydir = [0,0,1]
-            sign = 1 if -1 not in cross(xdir,ydir) else -1
-            if 'x' not in proj: 
+            sign = 1 if -1 not in np.cross(xdir,ydir) else -1
+            if 'x' not in proj:
                 zz = sign*self.xGsw[ip]
-                indMask = sign*self.xTrace[ip,0:self.l[ip]] < 0
-            if 'y' not in proj: 
+                indMask = sign*self.xTrace[ip,0:ip_index] < 0
+            if 'y' not in proj:
                 zz = sign*self.yGsw[ip]
-                indMask = sign*self.yTrace[ip,0:self.l[ip]] < 0
-            if 'z' not in proj: 
+                indMask = sign*self.yTrace[ip,0:ip_index] < 0
+            if 'z' not in proj:
                 zz = sign*self.zGsw[ip]
-                indMask = sign*self.zTrace[ip,0:self.l[ip]] < 0
+                indMask = sign*self.zTrace[ip,0:ip_index] < 0
             # Plot
-            ax.plot(masked_array(xx, mask=~indMask), 
-                    masked_array(yy, mask=~indMask), 
+            ax.plot(ma.masked_array(xx, mask=~indMask),
+                    ma.masked_array(yy, mask=~indMask),
                     zorder=-1, color=color, **kwargs)
-            ax.plot(masked_array(xx, mask=indMask), 
-                    masked_array(yy, mask=indMask), 
+            ax.plot(ma.masked_array(xx, mask=indMask),
+                    ma.masked_array(yy, mask=indMask),
                     zorder=1, color=color, **kwargs)
             if showPts:
                 ax.scatter(xpt, ypt, c='k', s=40, zorder=zz)
 
-        if disp: show()
+        if disp: plt.show()
 
         return ax
 
 
-    def plot3d(self, onlyPts=None, showEarth=True, showPts=False, disp=True, 
+    def plot3d(self, onlyPts=None, showEarth=True, showPts=False, disp=True,
         xyzlim=None, zorder=1, linewidth=2, color='b', **kwargs):
         """Generate a 3D plot of the trace
         Graphic keywords apply to the plot3d method for the field lines
@@ -560,7 +563,7 @@ bzimf={:3.0f}                       [nT]
         showPts : Optional[bool]
             Toggle start points visibility on/off
         disp : Optional[bool]
-            invoke pylab.show()
+            invoke plt.show()
         xyzlim : Optional[ ]
             3D axis limits
         zorder : Optional[int]
@@ -581,25 +584,25 @@ bzimf={:3.0f}                       [nT]
 
         """
         from mpl_toolkits.mplot3d import proj3d
-        from numpy import pi, linspace, outer, ones, size, cos, sin, radians
-        from pylab import gca, gcf, show
+        import numpy as np
+        from matplotlib import pyplot as plt
 
-        fig = gcf()
+        fig = plt.gcf()
         ax = fig.gca(projection='3d')
 
         # First plot a nice sphere for the Earth
         if showEarth:
-            u = linspace(0, 2 * pi, 179)
-            v = linspace(0, pi, 179)
-            tx = outer(cos(u), sin(v))
-            ty = outer(sin(u), sin(v))
-            tz = outer(ones(size(u)), cos(v))
+            u = np.linspace(0, 2 * np.pi, 179)
+            v = np.linspace(0, np.pi, 179)
+            tx = np.outer(np.cos(u), np.sin(v))
+            ty = np.outer(np.sin(u), np.sin(v))
+            tz = np.outer(np.ones(np.size(u)), np.cos(v))
             ax.plot_surface(tx,ty,tz,rstride=10, cstride=10, color='grey', alpha=.5, zorder=0, linewidth=0.5)
 
 
         # Select indices to show
         if onlyPts is None:
-            inds = xrange(len(self.lat))
+            inds = range(len(self.lat))
         else:
             try:
                 inds = [ip for ip in onlyPts]
@@ -608,9 +611,10 @@ bzimf={:3.0f}                       [nT]
 
         # Then plot the traced field line
         for ip in inds:
-            ax.plot3D(  self.xTrace[ip,0:self.l[ip]],
-                        self.yTrace[ip,0:self.l[ip]],
-                        self.zTrace[ip,0:self.l[ip]], 
+            plot_index = int(np.round(self.l[ip]))
+            ax.plot3D(  self.xTrace[ip,0:plot_index],
+                        self.yTrace[ip,0:plot_index],
+                        self.zTrace[ip,0:plot_index],
                         zorder=zorder, linewidth=linewidth, color=color, **kwargs)
             if showPts:
                 ax.scatter3D(self.xGsw[ip], self.yGsw[ip], self.zGsw[ip], c='k')
@@ -624,6 +628,6 @@ bzimf={:3.0f}                       [nT]
         ax.set_ylim3d([-xyzlim,xyzlim])
         ax.set_zlim3d([-xyzlim,xyzlim])
 
-        if disp: show()
+        if disp: plt.show()
 
         return ax

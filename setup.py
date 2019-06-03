@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 from numpy.distutils.core import setup, Extension
 
-ext = Extension('tsyganenko.tsygFort',
+ext = Extension('tsygFort',
   sources=['tsyganenko/geopack08.pyf','tsyganenko/geopack08.for','tsyganenko/T96.f','tsyganenko/T02.f'])
 
 setup (name = "Tsyganenko",
@@ -12,7 +12,7 @@ setup (name = "Tsyganenko",
        url = "",
        long_description =
         """
-For more information on the Tsyganenko gemagnetic field models, go to 
+For more information on the Tsyganenko gemagnetic field models, go to
 http://ccmc.gsfc.nasa.gov/models/modelinfo.php?model=Tsyganenko%20Model
         """,
        packages = ['tsyganenko'],
@@ -22,4 +22,3 @@ http://ccmc.gsfc.nasa.gov/models/modelinfo.php?model=Tsyganenko%20Model
                    "Programming Language :: Python/Fortran"
                    ]
         )
-
