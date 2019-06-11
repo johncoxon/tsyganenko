@@ -87,11 +87,11 @@ class tsygTrace(object):
     -------
     Elements of this object:
     lat[N/S]H :
-        latitude of the trace footpoint in Northern/Southern hemispher
+        latitude of the trace footpoint in Northern/Southern hemisphere
     lon[N/S]H :
-        longitude of the trace footpoint in Northern/Southern hemispher
+        longitude of the trace footpoint in Northern/Southern hemisphere
     rho[N/S]H :
-        distance of the trace footpoint in Northern/Southern hemispher
+        distance of the trace footpoint in Northern/Southern hemisphere
 
     Examples
     --------
@@ -128,9 +128,13 @@ class tsygTrace(object):
         lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
         from datetime import datetime as pydt
 
-        assert (None not in [lat, lon, rho]) or filename, 'You must provide either (lat, lon, rho) or a filename to read from'
+        assert ((lat is not None) and (lon is not None) and (rho is not None)) or filename,\
+            'You must provide either (lat, lon, rho) or a filename to read from'
 
-        if None not in [lat, lon, rho]:
+        if filename:
+            self.load(filename)
+
+        else:
             self.lat = lat
             self.lon = lon
             self.rho = rho
@@ -148,9 +152,6 @@ class tsygTrace(object):
             if not iTest: self.__del__()
 
             self.trace()
-
-        elif filename:
-            self.load(filename)
 
 
     def __test_valid__(self):
@@ -279,7 +280,7 @@ class tsygTrace(object):
         Re = 6371.2
 
         # Initialize trace array
-        self.l = np.zeros(len(lat))
+        self.l = np.zeros_like(lat)
         self.xTrace = np.zeros((len(lat),2*lmax))
         self.yTrace = self.xTrace.copy()
         self.zTrace = self.xTrace.copy()
@@ -621,9 +622,9 @@ bzimf={:3.0f}                       [nT]
 
         # Set plot limits
         if not xyzlim:
-            xyzlim = max( [ ax.get_xlim3d().max(),
-                         ax.get_ylim3d().max(),
-                         ax.get_zlim3d().max(), ] )
+            xyzlim = np.max([np.max(ax.get_xlim3d()),
+                             np.max(ax.get_ylim3d()),
+                             np.max(ax.get_zlim3d())])
         ax.set_xlim3d([-xyzlim,xyzlim])
         ax.set_ylim3d([-xyzlim,xyzlim])
         ax.set_zlim3d([-xyzlim,xyzlim])
