@@ -435,13 +435,15 @@ bzimf={:3.0f}                       [nT]
                 self.__dict__[k] = v
 
 
-    def plot(self, proj='xz', color='b', onlyPts=None, showPts=False,
-        showEarth=True, disp=True, **kwargs):
+    def plot(self, ax, proj='xz', onlyPts=None, showPts=False,
+        showEarth=True,  **kwargs):
         """Generate a 2D plot of the trace projected onto a given plane
         Graphic keywords apply to the plot method for the field lines
 
         Parameters
         ----------
+        ax : matplotlib axes object
+            the object on which to plot
         proj : Optional[str]
             the projection plane in GSW coordinates
         color : Optional[char]
@@ -452,17 +454,8 @@ bzimf={:3.0f}                       [nT]
             Toggle Earth disk visibility on/off
         showPts : Optional[bool]
             Toggle start points visibility on/off
-        disp : Optional[bool]
-            invoke plt.show()
         **kwargs :
             see matplotlib.axes.Axes.plot
-
-        Returns
-        -------
-        ax : matplotlib axes object
-
-        Written by Sebastien 2012-10
-
         """
         from matplotlib import pyplot as plt
         from matplotlib.patches import Circle
@@ -473,82 +466,72 @@ bzimf={:3.0f}                       [nT]
             (proj[0] in ['x','y','z'] and proj[1] in ['x','y','z']) or \
             (proj[0] != proj[1]), 'Invalid projection plane'
 
-        fig = plt.gcf()
-        ax = fig.gca()
-        ax.set_aspect('equal')
-
         # First plot a nice disk for the Earth
         if showEarth:
             circ = Circle(xy=(0,0), radius=1, facecolor='0.8', edgecolor='k', alpha=.5, zorder=0)
             ax.add_patch(circ)
 
         # Select indices to show
-        if onlyPts is None:
-            inds = range(len(self.lat))
-        else:
+        if onlyPts is not None:
             try:
                 inds = [ip for ip in onlyPts]
             except:
                 inds = [onlyPts]
 
         # Then plot the traced field line
-        for ip in inds:
-            ip_index = int(np.round(self.l[ip]))
+        for ip, _ in enumerate(self.lat):
             # Select projection plane
             if proj[0] == 'x':
-                xx = self.xTrace[ip,0:ip_index]
+                xx = self.xTrace[ip,:]
                 xpt = self.xGsw[ip]
                 ax.set_xlabel(r'$X_{GSW}$')
                 xdir = [1,0,0]
             elif proj[0] == 'y':
-                xx = self.yTrace[ip,0:ip_index]
+                xx = self.yTrace[ip,:]
                 xpt = self.yGsw[ip]
                 ax.set_xlabel(r'$Y_{GSW}$')
                 xdir = [0,1,0]
             elif proj[0] == 'z':
-                xx = self.zTrace[ip,0:ip_index]
+                xx = self.zTrace[ip,:]
                 xpt = self.zGsw[ip]
                 ax.set_xlabel(r'$Z_{GSW}$')
                 xdir = [0,0,1]
             if proj[1] == 'x':
-                yy = self.xTrace[ip,0:ip_index]
+                yy = self.xTrace[ip,:]
                 ypt = self.xGsw[ip]
                 ax.set_ylabel(r'$X_{GSW}$')
                 ydir = [1,0,0]
             elif proj[1] == 'y':
-                yy = self.yTrace[ip,0:ip_index]
+                yy = self.yTrace[ip,:]
                 ypt = self.yGsw[ip]
                 ax.set_ylabel(r'$Y_{GSW}$')
                 ydir = [0,1,0]
             elif proj[1] == 'z':
-                yy = self.zTrace[ip,0:ip_index]
+                yy = self.zTrace[ip,:]
                 ypt = self.zGsw[ip]
                 ax.set_ylabel(r'$Z_{GSW}$')
                 ydir = [0,0,1]
+                
             sign = 1 if -1 not in np.cross(xdir,ydir) else -1
             if 'x' not in proj:
                 zz = sign*self.xGsw[ip]
-                indMask = sign*self.xTrace[ip,0:ip_index] < 0
+                indMask = sign*self.xTrace[ip,:] < 0
             if 'y' not in proj:
                 zz = sign*self.yGsw[ip]
-                indMask = sign*self.yTrace[ip,0:ip_index] < 0
+                indMask = sign*self.yTrace[ip,:] < 0
             if 'z' not in proj:
                 zz = sign*self.zGsw[ip]
-                indMask = sign*self.zTrace[ip,0:ip_index] < 0
+                indMask = sign*self.zTrace[ip,:] < 0
+                
             # Plot
             ax.plot(ma.masked_array(xx, mask=~indMask),
                     ma.masked_array(yy, mask=~indMask),
-                    zorder=-1, color=color, **kwargs)
+                    zorder=-1, **kwargs)
             ax.plot(ma.masked_array(xx, mask=indMask),
                     ma.masked_array(yy, mask=indMask),
-                    zorder=1, color=color, **kwargs)
+                    zorder=1, **kwargs)
             if showPts:
                 ax.scatter(xpt, ypt, c='k', s=40, zorder=zz)
-
-        if disp: plt.show()
-
-        return ax
-
 
     def plot3d(self, onlyPts=None, showEarth=True, showPts=False, disp=True,
         xyzlim=None, zorder=1, linewidth=2, color='b', **kwargs):
