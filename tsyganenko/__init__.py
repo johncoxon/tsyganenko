@@ -19,6 +19,7 @@ tsygFort    Fortran subroutines
 
 import tsygFort
 import logging
+import numpy as np
 
 class tsygTrace(object):
     """models.tsyganenko.trace
@@ -128,8 +129,11 @@ class tsygTrace(object):
         lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
         from datetime import datetime as pydt
 
-        assert ((lat is not None) and (lon is not None) and (rho is not None)) or filename,\
-            'You must provide either (lat, lon, rho) or a filename to read from'
+        if not (((lat is not None) and (lon is not None) and (rho is not None)) or filename):
+            raise ValueError('You must provide either (lat, lon, rho) or a filename to read from')
+
+        if np.isnan(pdyn) | np.isnan(dst) | np.isnan(byimf) | np.isnan(bzimf):
+            raise ValueError("Input parameters are not numbers")
 
         if filename:
             self.load(filename)
@@ -228,8 +232,6 @@ class tsygTrace(object):
         Written by Sebastien 2012-10
 
         """
-
-        import numpy as np
 
         # Store existing values of class attributes in case something is wrong
         # and we need to revert back to them
@@ -435,36 +437,42 @@ bzimf={:3.0f}                       [nT]
                 self.__dict__[k] = v
 
 
-    def plot(self, ax, proj='xz', onlyPts=None, showPts=False,
+    def plot(self, ax = None, proj='xz', onlyPts=None, showPts=False,
         showEarth=True,  **kwargs):
         """Generate a 2D plot of the trace projected onto a given plane
         Graphic keywords apply to the plot method for the field lines
 
         Parameters
         ----------
-        ax : matplotlib axes object
+        ax : matplotlib axes object, optional
             the object on which to plot
-        proj : Optional[str]
+        proj : str, optional
             the projection plane in GSW coordinates
-        color : Optional[char]
-            field line color
-        onlyPts : Optional[ ]
+        onlyPts : list, optional
             if the trace countains multiple point, only show the specified indices (list)
-        showEarth : Optional[bool]
+        showEarth : bool, optional
             Toggle Earth disk visibility on/off
-        showPts : Optional[bool]
+        showPts : bool, optional
             Toggle start points visibility on/off
         **kwargs :
             see matplotlib.axes.Axes.plot
+            
+        Returns
+        -------
+        ax : matplotlib axes object
         """
         from matplotlib import pyplot as plt
         from matplotlib.patches import Circle
-        import numpy as np
         from numpy import ma
 
         assert (len(proj) == 2) or \
             (proj[0] in ['x','y','z'] and proj[1] in ['x','y','z']) or \
             (proj[0] != proj[1]), 'Invalid projection plane'
+        
+        if ax is None:
+            fig = plt.gcf()
+            ax = fig.gca()
+            ax.set_aspect('equal')
 
         # First plot a nice disk for the Earth
         if showEarth:
@@ -568,7 +576,6 @@ bzimf={:3.0f}                       [nT]
 
         """
         from mpl_toolkits.mplot3d import proj3d
-        import numpy as np
         from matplotlib import pyplot as plt
 
         fig = plt.gcf()
