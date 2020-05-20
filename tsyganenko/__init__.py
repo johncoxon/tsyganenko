@@ -3,20 +3,18 @@
 # Full license can be found in LICENSE.txt
 """tsyganenko module
 
-This modules containes the following object(s):
+This module contains the following objects:
 
 Classes
 -------------------------------------------------------------
 tsygTrace   Wraps fortran subroutines in one convenient class
 -------------------------------------------------------------
 
-Module
+Modules
 -------------------------------
 tsygFort    Fortran subroutines
 -------------------------------
-
 """
-
 import tsygFort
 import logging
 import numpy as np
