@@ -64,12 +64,12 @@ class tsygTraceTestCase(unittest.TestCase):
                           rho = np.ones_like(dates, dtype=float) * rho,
                           coords = 'geo', datetime = dates)
                           
-        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005, atol = 0.1)
+        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005)
 
 
     def test_30N_0_60000(self):
@@ -92,12 +92,12 @@ class tsygTraceTestCase(unittest.TestCase):
                           rho = np.ones_like(dates, dtype=float) * rho,
                           coords = 'geo', datetime = dates)
                           
-        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005, atol = 0.1)
+        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005)
 
 
     def test_60N_0_60000(self):
@@ -120,12 +120,12 @@ class tsygTraceTestCase(unittest.TestCase):
                           rho = np.ones_like(dates, dtype=float) * rho,
                           coords = 'geo', datetime = dates)
                           
-        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005, atol = 0.1)
+        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005)
 
     def test_90N_0_60000(self):
         """Test for latitude = 90, longitude = 0, rho = 60000"""
@@ -147,12 +147,12 @@ class tsygTraceTestCase(unittest.TestCase):
                           rho = np.ones_like(dates, dtype=float) * rho,
                           coords = 'geo', datetime = dates)
                           
-        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005, atol = 0.1)
+        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005)
 
 
     def test_30S_0_60000(self):
@@ -175,12 +175,12 @@ class tsygTraceTestCase(unittest.TestCase):
                           rho = np.ones_like(dates, dtype=float) * rho,
                           coords = 'geo', datetime = dates)
                           
-        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005, atol = 0.1)
+        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005)
 
 
     def test_60S_0_60000(self):
@@ -203,12 +203,12 @@ class tsygTraceTestCase(unittest.TestCase):
                           rho = np.ones_like(dates, dtype=float) * rho,
                           coords = 'geo', datetime = dates)
                           
-        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005, atol = 0.1)
+        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005)
 
     def test_90S_0_60000(self):
         """Test for latitude = -90, longitude = 0, rho = 60000"""
@@ -230,9 +230,9 @@ class tsygTraceTestCase(unittest.TestCase):
                           rho = np.ones_like(dates, dtype=float) * rho,
                           coords = 'geo', datetime = dates)
                           
-        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005, atol = 0.1)
-        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005, atol = 0.1)
+        np.testing.assert_allclose(trace.latNH, expected_latNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonNH, expected_lonNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoNH, expected_rhoNH, rtol = 0.005)
+        np.testing.assert_allclose(trace.latSH, expected_latSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.lonSH, expected_lonSH, rtol = 0.005)
+        np.testing.assert_allclose(trace.rhoSH, expected_rhoSH, rtol = 0.005)
