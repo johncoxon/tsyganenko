@@ -322,6 +322,7 @@ class tsygTrace(object):
             # First towards southern hemisphere
             maptoL = [-1, 1]
             for mapto in maptoL:
+                print(xgsw, ygsw, zgsw, mapto, dsmax, err, rmax, rmin, parmod, exmod, inmod, lmax)
                 xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l = tsygFort.trace_08( xgsw, ygsw, zgsw,
                                                                 mapto, dsmax, err, rmax, rmin, 0,
                                                                 parmod, exmod, inmod,
