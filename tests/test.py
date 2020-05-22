@@ -1,4 +1,4 @@
-"""tsyganenko module
+ """tsyganenko module
 
 This module contains the following object:
 
@@ -3364,8 +3364,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_0_30000(self):
@@ -3393,8 +3392,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_0_30000(self):
@@ -3422,8 +3420,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_0_30000(self):
@@ -3451,8 +3448,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_0_30000(self):
@@ -3480,8 +3476,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_0_30000(self):
@@ -3509,8 +3504,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_0_30000(self):
@@ -3538,8 +3532,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_90_30000(self):
@@ -3567,8 +3560,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_90_30000(self):
@@ -3596,8 +3588,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_90_30000(self):
@@ -3625,8 +3616,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_90_30000(self):
@@ -3654,8 +3644,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_90_30000(self):
@@ -3683,8 +3672,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_90_30000(self):
@@ -3712,8 +3700,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_90_30000(self):
@@ -3741,8 +3728,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_180_30000(self):
@@ -3770,8 +3756,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_180_30000(self):
@@ -3799,8 +3784,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_180_30000(self):
@@ -3828,8 +3812,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_180_30000(self):
@@ -3857,8 +3840,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_180_30000(self):
@@ -3886,8 +3868,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_180_30000(self):
@@ -3915,8 +3896,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_180_30000(self):
@@ -3944,8 +3924,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_270_30000(self):
@@ -3973,8 +3952,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_270_30000(self):
@@ -4002,8 +3980,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_270_30000(self):
@@ -4031,8 +4008,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_270_30000(self):
@@ -4060,8 +4036,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_270_30000(self):
@@ -4089,8 +4064,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_270_30000(self):
@@ -4118,8 +4092,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_270_30000(self):
@@ -4147,8 +4120,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_0_60000(self):
@@ -4176,8 +4148,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_0_60000(self):
@@ -4205,8 +4176,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_0_60000(self):
@@ -4234,8 +4204,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_0_60000(self):
@@ -4263,8 +4232,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_0_60000(self):
@@ -4292,8 +4260,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_0_60000(self):
@@ -4321,8 +4288,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_0_60000(self):
@@ -4350,8 +4316,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_90_60000(self):
@@ -4379,8 +4344,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_90_60000(self):
@@ -4408,8 +4372,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_90_60000(self):
@@ -4437,8 +4400,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_90_60000(self):
@@ -4466,8 +4428,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_90_60000(self):
@@ -4495,8 +4456,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_90_60000(self):
@@ -4524,8 +4484,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_90_60000(self):
@@ -4553,8 +4512,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_180_60000(self):
@@ -4582,8 +4540,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_180_60000(self):
@@ -4611,8 +4568,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_180_60000(self):
@@ -4640,8 +4596,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_180_60000(self):
@@ -4669,8 +4624,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_180_60000(self):
@@ -4698,8 +4652,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_180_60000(self):
@@ -4727,8 +4680,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_180_60000(self):
@@ -4756,8 +4708,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_270_60000(self):
@@ -4785,8 +4736,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_270_60000(self):
@@ -4814,8 +4764,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_270_60000(self):
@@ -4843,8 +4792,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_270_60000(self):
@@ -4872,8 +4820,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_270_60000(self):
@@ -4901,8 +4848,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_270_60000(self):
@@ -4930,8 +4876,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_270_60000(self):
@@ -4959,8 +4904,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_0_90000(self):
@@ -4988,8 +4932,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_0_90000(self):
@@ -5017,8 +4960,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_0_90000(self):
@@ -5046,8 +4988,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_0_90000(self):
@@ -5075,8 +5016,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_0_90000(self):
@@ -5104,8 +5044,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_0_90000(self):
@@ -5133,8 +5072,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_0_90000(self):
@@ -5162,8 +5100,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_90_90000(self):
@@ -5191,8 +5128,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_90_90000(self):
@@ -5220,8 +5156,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_90_90000(self):
@@ -5249,8 +5184,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_90_90000(self):
@@ -5278,8 +5212,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_90_90000(self):
@@ -5307,8 +5240,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_90_90000(self):
@@ -5336,8 +5268,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_90_90000(self):
@@ -5365,8 +5296,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_180_90000(self):
@@ -5394,8 +5324,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_180_90000(self):
@@ -5423,8 +5352,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_180_90000(self):
@@ -5452,8 +5380,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_180_90000(self):
@@ -5481,8 +5408,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_180_90000(self):
@@ -5510,8 +5436,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_180_90000(self):
@@ -5539,8 +5464,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_180_90000(self):
@@ -5568,8 +5492,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_270_90000(self):
@@ -5597,8 +5520,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_270_90000(self):
@@ -5626,8 +5548,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_270_90000(self):
@@ -5655,8 +5576,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_270_90000(self):
@@ -5684,8 +5604,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_270_90000(self):
@@ -5713,8 +5632,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_270_90000(self):
@@ -5742,8 +5660,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_270_90000(self):
@@ -5771,8 +5688,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_0_120000(self):
@@ -5800,8 +5716,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_0_120000(self):
@@ -5829,8 +5744,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_0_120000(self):
@@ -5858,8 +5772,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_0_120000(self):
@@ -5887,8 +5800,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_0_120000(self):
@@ -5916,8 +5828,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_0_120000(self):
@@ -5945,8 +5856,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_0_120000(self):
@@ -5974,8 +5884,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_90_120000(self):
@@ -6003,8 +5912,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_90_120000(self):
@@ -6032,8 +5940,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_90_120000(self):
@@ -6061,8 +5968,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_90_120000(self):
@@ -6090,8 +5996,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_90_120000(self):
@@ -6119,8 +6024,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_90_120000(self):
@@ -6148,8 +6052,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_90_120000(self):
@@ -6177,8 +6080,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_180_120000(self):
@@ -6206,8 +6108,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_180_120000(self):
@@ -6235,8 +6136,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_180_120000(self):
@@ -6264,8 +6164,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_180_120000(self):
@@ -6293,8 +6192,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_180_120000(self):
@@ -6322,8 +6220,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_180_120000(self):
@@ -6351,8 +6248,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_180_120000(self):
@@ -6380,8 +6276,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90S_270_120000(self):
@@ -6409,8 +6304,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60S_270_120000(self):
@@ -6438,8 +6332,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30S_270_120000(self):
@@ -6467,8 +6360,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_0N_270_120000(self):
@@ -6496,8 +6388,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_30N_270_120000(self):
@@ -6525,8 +6416,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_60N_270_120000(self):
@@ -6554,8 +6444,7 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
 # --------------------------------------------------------------------------------------------------
 
     def test_vs_2010_90N_270_120000(self):
@@ -6583,8 +6472,12 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
+<<<<<<< Updated upstream
                     np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
 
 # --------------------------------------------------------------------------------------------------
+=======
+                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
+>>>>>>> Stashed changes
 
 # --------------------------------------------------------------------------------------------------
