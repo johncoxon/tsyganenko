@@ -1,4 +1,4 @@
- """tsyganenko module
+"""tsyganenko module
 
 This module contains the following object:
 
@@ -6472,12 +6472,6 @@ class Trace2006to2015(unittest.TestCase):
         for cnt, year in enumerate(years):
             for coord in expected:
                 with self.subTest(coord = coord, year = year):
-<<<<<<< Updated upstream
-                    np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.01)
-
-# --------------------------------------------------------------------------------------------------
-=======
                     np.testing.assert_allclose(getattr(trace, coord)[cnt], expected[coord][cnt], rtol = 0.05, atol = 0.1)
->>>>>>> Stashed changes
 
 # --------------------------------------------------------------------------------------------------
