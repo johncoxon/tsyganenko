@@ -1,6 +1,4 @@
-"""tsyganenko module
-
-This module contains the following object:
+"""tsyganenko unit tests
 
 Functions
 --------------------------------------------------
@@ -8,9 +6,23 @@ generate_test       Generate new unit tests easily
 --------------------------------------------------
 
 Classes
---------------------------------------------------------------
-tsygTraceTestCase   Tests whether NH/SH traces are as expected
---------------------------------------------------------------
+------------------------------------------------------------------------------------------------
+Trace1965to2005     Tests whether NH/SH traces are as expected for dates in the 1965--2005 range
+Trace2006to2015     Tests whether NH/SH traces are as expected for dates in the 2006--2015 range
+------------------------------------------------------------------------------------------------
+
+The original version of this module was based on the version of Geopack-2008.for released on
+2010-11-30 which contained IGRF-11 coefficients. Because the IGRF-11 coefficients were definitive up
+to 2005, the returns from the program should be identical for 1965--2005 even with versions using
+later releases of IGRF. Trace1965to2005 tests to see whether the outputs are identical between IGRF
+update releases of Geopack-2008.for.
+
+The returns from 2006--2015 should be similar but not identical, since the coefficients will change
+in more recent releases of IGRF. As such, , whereas Trace2006to2015 tests to see whether the outputs
+are equal to a a tolerance of 5% (relative) or 0.1 (absolute) given the bump from IGRF-11 to 13.
+
+When IGRF-14 is released, a new class called Trace2011to2020 will be introduced to check the
+correspondence between the IGRF-13 and 14 implementations.
 """
 import unittest
 import datetime as dt
