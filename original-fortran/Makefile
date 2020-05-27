@@ -1,12 +1,9 @@
 #!/bin/bash
-MODULE := tsygFort
-
-# Makefile for building Tsyganenko and compliling it with f2py
+# Makefile for building Tsyganenko and Fortran code to run it
 
 # Declare default compilers
 LOCAL_F77  = gfortran
 # Use default compilers unless specified by command line input
-#echo 'Use F2PY and F77 to specify the fortran-to-python and fortran complilers'
 F77  = $(LOCAL_F77)
 
 # Declare optional and required compilation flags
@@ -18,6 +15,8 @@ SOURCES = T96.f \
 	  T02.f
 SRC = Geopack-2008_2020-01-01.for
 SRC_2010 = Geopack-2008_2010-11-30.for
+SRC_PY = ../tsyganenko/geopack08.for
+TEST_SRC = test_geopack.f90
 OBJ = $(SOURCES:.f=.o) $(SRC:.for=.o)
 
 PYF = $(SRC:.for=.pyf)
@@ -26,11 +25,15 @@ PYO = $(PYF:.pyf=.so)
 # Define operations
 all:
 	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) -c $(SRC) $(SOURCES)
-	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) $(SRC) $(SOURCES) test_geopack.f90 -o test_geopack
+	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) $(SRC) $(SOURCES) $(TEST_SRC) -o test_geopack
 
 2010:
 	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) -c $(SRC_2010) $(SOURCES)
-	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) $(SRC_2010) $(SOURCES) test_geopack.f90 -o test_geopack
+	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) $(SRC_2010) $(SOURCES) $(TEST_SRC) -o test_geopack_2010
+
+py:
+	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) -c $(SRC_PY) $(SOURCES)
+	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) $(SRC_PY) $(SOURCES) test_geopack_py2f.f90 -o test_geopack_f2py
 
 clean:
 	rm -f $(OBJ) $(PYO)
