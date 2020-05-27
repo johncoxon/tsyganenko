@@ -17,7 +17,7 @@ REQ_FLAGS = -w
 SOURCES = T96.f \
 	  T02.f
 SRC = Geopack-2008_2020-01-01.for
-SRC_OLD = Geopack-2008_2010-11-30.for
+SRC_2010 = Geopack-2008_2010-11-30.for
 OBJ = $(SOURCES:.f=.o) $(SRC:.for=.o)
 
 PYF = $(SRC:.for=.pyf)
@@ -28,9 +28,9 @@ all:
 	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) -c $(SRC) $(SOURCES)
 	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) $(SRC) $(SOURCES) test_geopack.f90 -o test_geopack
 
-old:
-	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) -c $(SRC_OLD) $(SOURCES)
-	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) $(SRC_OLD) $(SOURCES) test_geopack.f90 -o test_geopack
+2010:
+	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) -c $(SRC_2010) $(SOURCES)
+	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) $(SRC_2010) $(SOURCES) test_geopack.f90 -o test_geopack
 
 clean:
 	rm -f $(OBJ) $(PYO)
