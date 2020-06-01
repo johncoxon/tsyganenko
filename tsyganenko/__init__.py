@@ -12,7 +12,7 @@ Copyright (C) 2012 VT SuperDARN Lab
 """
 import Geopack
 import logging
-import numpy as np
+import numpy as _np
 
 
 class Trace(object):
@@ -113,8 +113,8 @@ class Trace(object):
         if self.coords.lower() != 'geo':
             raise ValueError('{}: this coordinate system is not supported')\
                 .format(self.coords.lower())
-        if np.isnan(self.pdyn) | np.isnan(self.dst) | \
-                np.isnan(self.byimf) | np.isnan(self.bzimf):
+        if _np.isnan(self.pdyn) | _np.isnan(self.dst) | \
+                _np.isnan(self.byimf) | _np.isnan(self.bzimf):
             raise ValueError("Input parameters are not numbers")
 
         # A provision for those who want to batch trace
@@ -230,8 +230,8 @@ class Trace(object):
         Re = 6371.2
 
         # Initialize trace array
-        self.l_cnt = np.zeros_like(lat)
-        self.xTrace = np.zeros((len(lat), 2*l_max))
+        self.l_cnt = _np.zeros_like(lat)
+        self.xTrace = _np.zeros((len(lat), 2*l_max))
         self.yTrace = self.xTrace.copy()
         self.zTrace = self.xTrace.copy()
         self.xGsw = self.l_cnt.copy()
@@ -254,7 +254,7 @@ class Trace(object):
 
             # Convert spherical to cartesian
             r, theta, phi, xgeo, ygeo, zgeo = Geopack.sphcar_08(
-                rho[ip]/Re, np.radians(90.-lat[ip]), np.radians(lon[ip]),
+                rho[ip]/Re, _np.radians(90.-lat[ip]), _np.radians(lon[ip]),
                 0., 0., 0., 1)
 
             # Convert to GSW.
@@ -288,12 +288,12 @@ class Trace(object):
 
                 # Get coordinates of traced point
                 if mapto == 1:
-                    self.latSH[ip] = 90. - np.degrees(colatf)
-                    self.lonSH[ip] = np.degrees(lonf)
+                    self.latSH[ip] = 90. - _np.degrees(colatf)
+                    self.lonSH[ip] = _np.degrees(lonf)
                     self.rhoSH[ip] = rhof*Re
                 elif mapto == -1:
-                    self.latNH[ip] = 90. - np.degrees(colatf)
-                    self.lonNH[ip] = np.degrees(lonf)
+                    self.latNH[ip] = 90. - _np.degrees(colatf)
+                    self.lonNH[ip] = _np.degrees(lonf)
                     self.rhoNH[ip] = rhof*Re
 
                 # Store trace
@@ -302,14 +302,14 @@ class Trace(object):
                     self.yTrace[ip, 0:l_cnt] = yarr[l_cnt-1::-1]
                     self.zTrace[ip, 0:l_cnt] = zarr[l_cnt-1::-1]
                 elif mapto == 1:
-                    l_0 = int(np.round(self.l_cnt[ip]))
+                    l_0 = int(_np.round(self.l_cnt[ip]))
                     self.xTrace[ip, l_0:l_0+l_cnt] = xarr[0:l_cnt]
                     self.yTrace[ip, l_0:l_0+l_cnt] = yarr[0:l_cnt]
                     self.zTrace[ip, l_0:l_0+l_cnt] = zarr[0:l_cnt]
                 self.l_cnt[ip] += l_cnt
 
         # Resize trace output to more minimum possible length
-        max_index = int(np.round(self.l_cnt.max()))
+        max_index = int(_np.round(self.l_cnt.max()))
         self.xTrace = self.xTrace[:, 0:max_index]
         self.yTrace = self.yTrace[:, 0:max_index]
         self.zTrace = self.zTrace[:, 0:max_index]
@@ -377,7 +377,6 @@ bzimf={:3.0f}                       [nT]
         """
         from matplotlib import pyplot as plt
         from matplotlib.patches import Circle
-        from numpy import ma
 
         assert (len(proj) == 2) or \
             (proj[0] in ['x', 'y', 'z'] and proj[1] in ['x', 'y', 'z']) or \
@@ -396,8 +395,8 @@ bzimf={:3.0f}                       [nT]
 
         # Select indices to show
         if onlyPts is None:
-            inds = np.arange(len(self.lat))
-        elif not np.isinstance(onlyPts, list):
+            inds = _np.arange(len(self.lat))
+        elif not isinstance(onlyPts, list):
             inds = [onlyPts]
         else:
             inds = onlyPts
@@ -436,7 +435,7 @@ bzimf={:3.0f}                       [nT]
                 ax.set_ylabel(r'$Z_{GSW}$')
                 ydir = [0, 0, 1]
 
-            sign = 1 if -1 not in np.cross(xdir, ydir) else -1
+            sign = 1 if -1 not in _np.cross(xdir, ydir) else -1
             if 'x' not in proj:
                 zz = sign*self.xGsw[ip]
                 indMask = sign*self.xTrace[ip, :] < 0
@@ -448,11 +447,11 @@ bzimf={:3.0f}                       [nT]
                 indMask = sign*self.zTrace[ip, :] < 0
 
             # Plot
-            ax.plot(ma.masked_array(xx, mask=~indMask),
-                    ma.masked_array(yy, mask=~indMask),
+            ax.plot(_np.ma.masked_array(xx, mask=~indMask),
+                    _np.ma.masked_array(yy, mask=~indMask),
                     zorder=-1, **kwargs)
-            ax.plot(ma.masked_array(xx, mask=indMask),
-                    ma.masked_array(yy, mask=indMask),
+            ax.plot(_np.ma.masked_array(xx, mask=indMask),
+                    _np.ma.masked_array(yy, mask=indMask),
                     zorder=1, **kwargs)
             if showPts:
                 ax.scatter(xpt, ypt, c='k', s=40, zorder=zz)
@@ -500,25 +499,25 @@ bzimf={:3.0f}                       [nT]
 
         # First plot a nice sphere for the Earth
         if showEarth:
-            u = np.linspace(0, 2 * np.pi, 179)
-            v = np.linspace(0, np.pi, 179)
-            tx = np.outer(np.cos(u), np.sin(v))
-            ty = np.outer(np.sin(u), np.sin(v))
-            tz = np.outer(np.ones(np.size(u)), np.cos(v))
+            u = _np.linspace(0, 2 * _np.pi, 179)
+            v = _np.linspace(0, _np.pi, 179)
+            tx = _np.outer(_np.cos(u), _np.sin(v))
+            ty = _np.outer(_np.sin(u), _np.sin(v))
+            tz = _np.outer(_np.ones(_np.size(u)), _np.cos(v))
             ax.plot_surface(tx, ty, tz, rstride=10, cstride=10, color='grey',
                             alpha=.5, zorder=0, linewidth=0.5)
 
         # Select indices to show
         if onlyPts is None:
-            inds = np.arange(len(self.lat))
-        elif not np.isinstance(onlyPts, list):
+            inds = _np.arange(len(self.lat))
+        elif not isinstance(onlyPts, list):
             inds = [onlyPts]
         else:
             inds = onlyPts
 
         # Then plot the traced field line
         for ip in inds:
-            plot_index = int(np.round(self.l_cnt[ip]))
+            plot_index = int(_np.round(self.l_cnt[ip]))
             ax.plot3D(self.xTrace[ip, 0:plot_index],
                       self.yTrace[ip, 0:plot_index],
                       self.zTrace[ip, 0:plot_index], zorder=zorder,
@@ -529,9 +528,9 @@ bzimf={:3.0f}                       [nT]
 
         # Set plot limits
         if not xyzlim:
-            xyzlim = np.max([np.max(ax.get_xlim3d()),
-                             np.max(ax.get_ylim3d()),
-                             np.max(ax.get_zlim3d())])
+            xyzlim = _np.max([_np.max(ax.get_xlim3d()),
+                             _np.max(ax.get_ylim3d()),
+                             _np.max(ax.get_zlim3d())])
         ax.set_xlim3d([-xyzlim, xyzlim])
         ax.set_ylim3d([-xyzlim, xyzlim])
         ax.set_zlim3d([-xyzlim, xyzlim])
