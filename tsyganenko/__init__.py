@@ -42,14 +42,14 @@ class Trace(object):
         IMF By (nT). Default is 0.0.
     bzimf : float, optional
         IMF Bz (nT). Default is -5.0.
-    lmax : int, optional
+    l_max : int, optional
         The maximum number of points to trace before stopping. Default is 5000.
     rmax : float, optional
         Upper trace boundary in Earth radii. Default is 60.0.
     rmin : float, optional
         Lower trace boundary in Earth radii. Default is 1.0.
     dsmax : float, optional
-        Maximum tracing step np.size. Default is 0.01.
+        Maximum tracing step size. Default is 0.01.
     err : float, optional
         Tracing step tolerance. Default is 0.000001.
 
@@ -83,7 +83,7 @@ class Trace(object):
     """
     def __init__(self, lat, lon, rho, coords='geo', datetime=None,
                  vswgse=[-400., 0., 0.], pdyn=2., dst=-5., byimf=0., bzimf=-5.,
-                 lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
+                 l_max=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
         from datetime import datetime as pydt
 
         self.lat = lat
@@ -113,7 +113,8 @@ class Trace(object):
         if self.coords.lower() != 'geo':
             raise ValueError('{}: this coordinate system is not supported')\
                 .format(self.coords.lower())
-        if np.isnan(pdyn) | np.isnan(dst) | np.isnan(byimf) | np.isnan(bzimf):
+        if np.isnan(self.pdyn) | np.isnan(self.dst) | \
+                np.isnan(self.byimf) | np.isnan(self.bzimf):
             raise ValueError("Input parameters are not numbers")
 
         # A provision for those who want to batch trace
@@ -143,7 +144,7 @@ class Trace(object):
 
     def trace(self, lat=None, lon=None, rho=None, coords=None, datetime=None,
               vswgse=None, pdyn=None, dst=None, byimf=None, bzimf=None,
-              lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
+              l_max=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
         """Trace from the start point for both North/Southern Hemispheres"""
 
         # If new values are passed to this function, store existing values of
@@ -229,19 +230,19 @@ class Trace(object):
         Re = 6371.2
 
         # Initialize trace array
-        self.l = np.zeros_like(lat)
-        self.xTrace = np.zeros((len(lat),2*lmax))
+        self.l_cnt = np.zeros_like(lat)
+        self.xTrace = np.zeros((len(lat),2*l_max))
         self.yTrace = self.xTrace.copy()
         self.zTrace = self.xTrace.copy()
-        self.xGsw = self.l.copy()
-        self.yGsw = self.l.copy()
-        self.zGsw = self.l.copy()
-        self.latNH = self.l.copy()
-        self.lonNH = self.l.copy()
-        self.rhoNH = self.l.copy()
-        self.latSH = self.l.copy()
-        self.lonSH = self.l.copy()
-        self.rhoSH = self.l.copy()
+        self.xGsw = self.l_cnt.copy()
+        self.yGsw = self.l_cnt.copy()
+        self.zGsw = self.l_cnt.copy()
+        self.latNH = self.l_cnt.copy()
+        self.lonNH = self.l_cnt.copy()
+        self.rhoNH = self.l_cnt.copy()
+        self.latSH = self.l_cnt.copy()
+        self.lonSH = self.l_cnt.copy()
+        self.rhoSH = self.l_cnt.copy()
 
         # And now iterate through the desired points
         for ip in range(len(lat)):
@@ -271,10 +272,10 @@ class Trace(object):
             # First towards southern hemisphere
             maptoL = [-1, 1]
             for mapto in maptoL:
-                xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l = Geopack.trace_08( xgsw, ygsw, zgsw,
+                xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt = Geopack.trace_08( xgsw, ygsw, zgsw,
                                                                 mapto, dsmax, err, rmax, rmin, 0,
                                                                 parmod, exmod, inmod,
-                                                                lmax )
+                                                                l_max )
 
                 # Convert back to spherical geographic coords
                 xfgeo, yfgeo, zfgeo, xfgsw, yfgsw, zfgsw  = Geopack.geogsw_08(
@@ -298,18 +299,18 @@ class Trace(object):
 
                 # Store trace
                 if mapto == -1:
-                    self.xTrace[ip,0:l] = xarr[l-1::-1]
-                    self.yTrace[ip,0:l] = yarr[l-1::-1]
-                    self.zTrace[ip,0:l] = zarr[l-1::-1]
+                    self.xTrace[ip,0:l_cnt] = xarr[l_cnt-1::-1]
+                    self.yTrace[ip,0:l_cnt] = yarr[l_cnt-1::-1]
+                    self.zTrace[ip,0:l_cnt] = zarr[l_cnt-1::-1]
                 elif mapto == 1:
-                    mapto_index = int(np.round(self.l[ip]))
-                    self.xTrace[ip,mapto_index:mapto_index+l] = xarr[0:l]
-                    self.yTrace[ip,mapto_index:mapto_index+l] = yarr[0:l]
-                    self.zTrace[ip,mapto_index:mapto_index+l] = zarr[0:l]
-                self.l[ip] += l
+                    mapto_index = int(np.round(self.l_cnt[ip]))
+                    self.xTrace[ip,mapto_index:mapto_index+l_cnt] = xarr[0:l_cnt]
+                    self.yTrace[ip,mapto_index:mapto_index+l_cnt] = yarr[0:l_cnt]
+                    self.zTrace[ip,mapto_index:mapto_index+l_cnt] = zarr[0:l_cnt]
+                self.l_cnt[ip] += l_cnt
 
-        # Renp.size trace output to more minimum possible length
-        max_index = int(np.round(self.l.max()))
+        # Resize trace output to more minimum possible length
+        max_index = int(np.round(self.l_cnt.max()))
         self.xTrace = self.xTrace[:,0:max_index]
         self.yTrace = self.yTrace[:,0:max_index]
         self.zTrace = self.zTrace[:,0:max_index]
@@ -515,7 +516,7 @@ bzimf={:3.0f}                       [nT]
 
         # Then plot the traced field line
         for ip in inds:
-            plot_index = int(np.round(self.l[ip]))
+            plot_index = int(np.round(self.l_cnt[ip]))
             ax.plot3D(  self.xTrace[ip,0:plot_index],
                         self.yTrace[ip,0:plot_index],
                         self.zTrace[ip,0:plot_index],
