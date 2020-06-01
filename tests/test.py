@@ -27,13 +27,13 @@ correspondence between the IGRF-13 and 14 implementations.
 import unittest
 import datetime as dt
 import numpy as np
-from tsyganenko import tsygTrace
+from tsyganenko import Trace
 
 def generate_test(lat, lon, rho, start, end):
-    """Generate a string to paste into a new function in tsygTraceTestCase"""
+    """Generate a string to paste into a new function in the tests below."""
     dates = np.array([dt.datetime(i,1,1) for i in np.arange(start,end)])
 
-    trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+    trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                       lon = np.ones_like(dates, dtype = float) * lon,
                       rho = np.ones_like(dates, dtype = float) * rho,
                       coords = 'geo', datetime = dates)
@@ -59,7 +59,7 @@ def generate_test(lat, lon, rho, start, end):
     print("        years = np.arange({},{})".format(start,end))
     print("        dates = np.array([dt.datetime(i,1,1) for i in years])")
     print("")
-    print("        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,")
+    print("        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,")
     print("                          lon = np.ones_like(dates, dtype = float) * lon,")
     print("                          rho = np.ones_like(dates, dtype = float) * rho,")
     print("                          coords = 'geo', datetime = dates)")
@@ -92,7 +92,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -121,7 +121,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -150,7 +150,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -179,7 +179,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -208,7 +208,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -237,7 +237,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -266,7 +266,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -295,7 +295,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -324,7 +324,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -353,7 +353,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -382,7 +382,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -411,7 +411,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -440,7 +440,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -469,7 +469,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -498,7 +498,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -527,7 +527,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -556,7 +556,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -585,7 +585,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -614,7 +614,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -643,7 +643,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -672,7 +672,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -701,7 +701,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -730,7 +730,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -759,7 +759,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -788,7 +788,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -817,7 +817,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -846,7 +846,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -875,7 +875,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -904,7 +904,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -933,7 +933,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -962,7 +962,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -991,7 +991,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1020,7 +1020,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1049,7 +1049,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1078,7 +1078,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1107,7 +1107,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1136,7 +1136,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1165,7 +1165,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1194,7 +1194,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1223,7 +1223,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1252,7 +1252,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1281,7 +1281,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1310,7 +1310,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1339,7 +1339,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1368,7 +1368,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1397,7 +1397,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1426,7 +1426,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1455,7 +1455,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1484,7 +1484,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1513,7 +1513,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1542,7 +1542,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1571,7 +1571,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1600,7 +1600,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1629,7 +1629,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1658,7 +1658,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1687,7 +1687,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1716,7 +1716,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1745,7 +1745,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1774,7 +1774,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1803,7 +1803,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1832,7 +1832,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1861,7 +1861,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1890,7 +1890,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1919,7 +1919,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1948,7 +1948,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -1977,7 +1977,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2006,7 +2006,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2035,7 +2035,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2064,7 +2064,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2093,7 +2093,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2122,7 +2122,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2151,7 +2151,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2180,7 +2180,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2209,7 +2209,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2238,7 +2238,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2267,7 +2267,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2296,7 +2296,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2325,7 +2325,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2354,7 +2354,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2383,7 +2383,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2412,7 +2412,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2441,7 +2441,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2470,7 +2470,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2499,7 +2499,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2528,7 +2528,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2557,7 +2557,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2586,7 +2586,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2615,7 +2615,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2644,7 +2644,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2673,7 +2673,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2702,7 +2702,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2731,7 +2731,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2760,7 +2760,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2789,7 +2789,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2818,7 +2818,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2847,7 +2847,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2876,7 +2876,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2905,7 +2905,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2934,7 +2934,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2963,7 +2963,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -2992,7 +2992,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3021,7 +3021,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3050,7 +3050,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3079,7 +3079,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3108,7 +3108,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3137,7 +3137,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3166,7 +3166,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3195,7 +3195,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3224,7 +3224,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3253,7 +3253,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3282,7 +3282,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3311,7 +3311,7 @@ class Trace1965to2015(unittest.TestCase):
         years = np.arange(1965,2015)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3341,7 +3341,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3370,7 +3370,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3399,7 +3399,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3428,7 +3428,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3457,7 +3457,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3486,7 +3486,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3515,7 +3515,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3544,7 +3544,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3573,7 +3573,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3602,7 +3602,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3631,7 +3631,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3660,7 +3660,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3689,7 +3689,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3718,7 +3718,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3747,7 +3747,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3776,7 +3776,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3805,7 +3805,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3834,7 +3834,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3863,7 +3863,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3892,7 +3892,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3921,7 +3921,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3950,7 +3950,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -3979,7 +3979,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4008,7 +4008,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4037,7 +4037,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4066,7 +4066,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4095,7 +4095,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4124,7 +4124,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4153,7 +4153,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4182,7 +4182,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4211,7 +4211,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4240,7 +4240,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4269,7 +4269,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4298,7 +4298,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4327,7 +4327,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4356,7 +4356,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4385,7 +4385,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4414,7 +4414,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4443,7 +4443,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4472,7 +4472,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4501,7 +4501,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4530,7 +4530,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4559,7 +4559,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4588,7 +4588,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4617,7 +4617,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4646,7 +4646,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4675,7 +4675,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4704,7 +4704,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4733,7 +4733,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4762,7 +4762,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4791,7 +4791,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4820,7 +4820,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4849,7 +4849,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4878,7 +4878,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4907,7 +4907,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4936,7 +4936,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4965,7 +4965,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -4994,7 +4994,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5023,7 +5023,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5052,7 +5052,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5081,7 +5081,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5110,7 +5110,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5139,7 +5139,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5168,7 +5168,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5197,7 +5197,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5226,7 +5226,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5255,7 +5255,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5284,7 +5284,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5313,7 +5313,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5342,7 +5342,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5371,7 +5371,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5400,7 +5400,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5429,7 +5429,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5458,7 +5458,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5487,7 +5487,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5516,7 +5516,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5545,7 +5545,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5574,7 +5574,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5603,7 +5603,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5632,7 +5632,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5661,7 +5661,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5690,7 +5690,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5719,7 +5719,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5748,7 +5748,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5777,7 +5777,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5806,7 +5806,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5835,7 +5835,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5864,7 +5864,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5893,7 +5893,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5922,7 +5922,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5951,7 +5951,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -5980,7 +5980,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6009,7 +6009,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6038,7 +6038,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6067,7 +6067,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6096,7 +6096,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6125,7 +6125,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6154,7 +6154,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6183,7 +6183,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6212,7 +6212,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6241,7 +6241,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6270,7 +6270,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6299,7 +6299,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6328,7 +6328,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6357,7 +6357,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6386,7 +6386,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6415,7 +6415,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6444,7 +6444,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6473,7 +6473,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6502,7 +6502,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6531,7 +6531,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6560,7 +6560,7 @@ class Trace2006to2015(unittest.TestCase):
         years = np.arange(2006,2016)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6590,7 +6590,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6619,7 +6619,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6648,7 +6648,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6677,7 +6677,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6706,7 +6706,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6735,7 +6735,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6764,7 +6764,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6793,7 +6793,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6822,7 +6822,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6851,7 +6851,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6880,7 +6880,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6909,7 +6909,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6938,7 +6938,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6967,7 +6967,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -6996,7 +6996,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7025,7 +7025,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7054,7 +7054,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7083,7 +7083,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7112,7 +7112,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7141,7 +7141,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7170,7 +7170,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7199,7 +7199,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7228,7 +7228,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7257,7 +7257,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7286,7 +7286,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7315,7 +7315,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7344,7 +7344,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7373,7 +7373,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7402,7 +7402,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7431,7 +7431,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7460,7 +7460,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7489,7 +7489,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7518,7 +7518,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7547,7 +7547,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7576,7 +7576,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7605,7 +7605,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7634,7 +7634,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7663,7 +7663,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7692,7 +7692,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7721,7 +7721,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7750,7 +7750,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7779,7 +7779,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7808,7 +7808,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7837,7 +7837,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7866,7 +7866,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7895,7 +7895,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7924,7 +7924,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7953,7 +7953,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -7982,7 +7982,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8011,7 +8011,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8040,7 +8040,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8069,7 +8069,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8098,7 +8098,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8127,7 +8127,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8156,7 +8156,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8185,7 +8185,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8214,7 +8214,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8243,7 +8243,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8272,7 +8272,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8301,7 +8301,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8330,7 +8330,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8359,7 +8359,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8388,7 +8388,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8417,7 +8417,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8446,7 +8446,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8475,7 +8475,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8504,7 +8504,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8533,7 +8533,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8562,7 +8562,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8591,7 +8591,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8620,7 +8620,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8649,7 +8649,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8678,7 +8678,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8707,7 +8707,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8736,7 +8736,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8765,7 +8765,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8794,7 +8794,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8823,7 +8823,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8852,7 +8852,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8881,7 +8881,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8910,7 +8910,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8939,7 +8939,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8968,7 +8968,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -8997,7 +8997,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9026,7 +9026,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9055,7 +9055,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9084,7 +9084,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9113,7 +9113,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9142,7 +9142,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9171,7 +9171,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9200,7 +9200,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9229,7 +9229,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9258,7 +9258,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9287,7 +9287,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9316,7 +9316,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9345,7 +9345,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9374,7 +9374,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9403,7 +9403,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9432,7 +9432,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9461,7 +9461,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9490,7 +9490,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9519,7 +9519,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9548,7 +9548,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9577,7 +9577,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9606,7 +9606,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9635,7 +9635,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9664,7 +9664,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9693,7 +9693,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9722,7 +9722,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9751,7 +9751,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9780,7 +9780,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)
@@ -9809,7 +9809,7 @@ class Trace2016to2025(unittest.TestCase):
         years = np.arange(2016,2025)
         dates = np.array([dt.datetime(i,1,1) for i in years])
 
-        trace = tsygTrace(lat = np.ones_like(dates, dtype = float) * lat,
+        trace = Trace(lat = np.ones_like(dates, dtype = float) * lat,
                           lon = np.ones_like(dates, dtype = float) * lon,
                           rho = np.ones_like(dates, dtype = float) * rho,
                           coords = 'geo', datetime = dates)

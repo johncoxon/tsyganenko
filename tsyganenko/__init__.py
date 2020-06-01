@@ -1,96 +1,67 @@
-# -*- coding: utf-8 -*-
-# Copyright (C) 2012  VT SuperDARN Lab
-# Full license can be found in LICENSE.txt
-"""tsyganenko module
+"""
+tsyganenko : a module to trace magnetic field lines using the Tsyganenko models
 
-This module contains the following objects:
+This package was initially written by Sebastien de Larquier (Virginia Tech).
+In 2020, the package was updated by John Coxon (University of Southampton) to
+add support for the latest release of Geopack-2008.for and Python 3 support.
 
-Classes
--------------------------------------------------------------
-tsygTrace   Wraps fortran subroutines in one convenient class
--------------------------------------------------------------
+Copyright (C) 2012 VT SuperDARN Lab 
 
-Modules
--------------------------------
-Geopack    Fortran subroutines
--------------------------------
+.. moduleauthor:: John Coxon
+
 """
 import Geopack
 import logging
 import numpy as np
 
-class tsygTrace(object):
-    """models.tsyganenko.trace
-
-    Trace magnetic field line(s) from point(s)
+class Trace(object):
+    """
+    Trace magnetic field lines from a given start point.
 
     Parameters
     ----------
-    lat : Optional[ ]
-        latitude [degrees]
-    lon : Optional[ ]
-        longitude [degrees]
-    rho : Optional[ ]
-        distance from center of the Earth [km]
-    filename : Optional[ ]
-        load a trace object directly from a file
-    coords : Optional[str]
-        coordinates used for start point ['geo']
-    datetime : Optional[datetime]
-        a python datetime object
-    vswgse : Optional[list, float]
-        solar wind velocity in GSE coordinates [m/s, m/s, m/s]
-    pdyn : Optional[float]
-        solar wind dynamic pressure [nPa]
-    dst : Optional[flaot]
-        Dst index [nT]
-    byimf : Optional[float]
-        IMF By [nT]
-    bzimf : Optional[float]
-        IMF Bz [nT]
-    lmax : Optional[int]
-        maximum number of points to trace
-    rmax : Optional[float]
-        upper trace boundary in Re
-    rmin : Optional[float]
-        lower trace boundary in Re
-    dsmax : Optional[float]
-        maximum tracing step np.size
-    err : Optional[float]
-        tracing step tolerance
+    lat : array_like
+        Latitude of the start point (degrees).
+    lon : array_like
+        Longitude of the start point (degrees).
+    rho : array_like
+        Distance of the start point from the center of the Earth (km).
+    coords : str, optional
+        The coordinate system of the start point. Default is "geo".
+    datetime : datetime, optional
+        The date and time of the start point. If None, defaults to the current time.
+    vswgse : list_like, optional
+        Solar wind velocity in GSE coordinates (m/s, m/s, m/s).
+    pdyn : float, optional
+        Solar wind dynamic pressure (nPa). Default is 2.0.
+    dst : int, optional
+        Dst index (nT). Default is -5.
+    byimf : float, optional
+        IMF By (nT). Default is 0.0.
+    bzimf : float, optional
+        IMF Bz (nT). Default is -5.0.
+    lmax : int, optional
+        The maximum number of points to trace before stopping. Default is 5000.
+    rmax : float, optional
+        Upper trace boundary in Earth radii. Default is 60.0.
+    rmin : float, optional
+        Lower trace boundary in Earth radii. Default is 1.0.
+    dsmax : float, optional
+        Maximum tracing step np.size. Default is 0.01.
+    err : float, optional
+        Tracing step tolerance. Default is 0.000001.
 
     Attributes
     ----------
-    lat :
-        latitude [degrees]
-    lon :
-        longitude [degrees]
-    rho :
-        distance from center of the Earth [km]
-    coords : str
-        coordinates used for start point ['geo']
-    vswgse : list
-        solar wind velocity in GSE coordinates [m/s, m/s, m/s]
-    pdyn : float
-        solar wind dynamic pressure [nPa]
-    dst : flaot
-        Dst index [nT]
-    byimf : float
-        IMF By [nT]
-    bzimf : float
-        IMF Bz [nT]
-    datetime : Optional[datetime]
-        a python datetime object
-
-    Returns
-    -------
-    Elements of this object:
-    lat[N/S]H :
-        latitude of the trace footpoint in Northern/Southern hemisphere
-    lon[N/S]H :
-        longitude of the trace footpoint in Northern/Southern hemisphere
-    rho[N/S]H :
-        distance of the trace footpoint in Northern/Southern hemisphere
+    lat[N/S]H : array_like
+        Latitude (degrees) of the trace footpoint in the Northern/Southern
+        Hemisphere.
+    lon[N/S]H : array_like
+        Longitude (degrees) of the trace footpoint in the Northern/Southern
+        Hemisphere.
+    rho[N/S]H : array_like
+        Distance of the trace footpoint from the center of the Earth in
+        Northern/Southern Hemisphere (km).
 
     Examples
     --------
@@ -100,7 +71,7 @@ class tsygTrace(object):
         lats = np.arange(10, 90, 10)
         lons = np.zeros(len(lats))
         rhos = 6372.*np.ones(len(lats))
-        trace = tsyganenko.tsygTrace(lats, lons, rhos)
+        trace = tsyganenko.Trace(lats, lons, rhos)
         # Print the results nicely
         print trace
         # Plot the traced field lines
@@ -109,32 +80,21 @@ class tsygTrace(object):
         ax = trace.plot3d()
         # Save your trace to a file for later use
         trace.save('trace.dat')
-        # And when you want to re-use the saved trace
-        trace = tsyganenko.tsygTrace(filename='trace.dat')
 
     Notes
     -----
     **FUNCTION**: trace(lat, lon, rho, coords='geo', datetime=None,
          vswgse=[-400.,0.,0.], Pdyn=2., Dst=-5., ByIMF=0., BzIMF=-5.
          lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001)
-
-    Written by Sebastien 2012-10
-
     """
-    def __init__(self, lat=None, lon=None, rho=None, filename=None,
-        coords='geo', datetime=None,
-        vswgse=[-400.,0.,0.], pdyn=2., dst=-5., byimf=0., bzimf=-5.,
-        lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
+    def __init__(self, lat, lon, rho,
+        coords='geo', datetime=None, vswgse=[-400.,0.,0.], pdyn=2., dst=-5.,
+        byimf=0., bzimf=-5., lmax=5000, rmax=60., rmin=1., dsmax=0.01,
+        err=0.000001):
         from datetime import datetime as pydt
-
-        if not (((lat is not None) and (lon is not None) and (rho is not None)) or filename):
-            raise ValueError('You must provide either (lat, lon, rho) or a filename to read from')
 
         if np.isnan(pdyn) | np.isnan(dst) | np.isnan(byimf) | np.isnan(bzimf):
             raise ValueError("Input parameters are not numbers")
-
-        if filename:
-            self.load(filename)
 
         else:
             self.lat = lat
@@ -147,7 +107,8 @@ class tsygTrace(object):
             self.byimf = byimf
             self.bzimf = bzimf
             # If no datetime is provided, defaults to today
-            if datetime is None: datetime = pydt.utcnow()
+            if datetime is None:
+                datetime = pydt.utcnow()
             self.datetime = datetime
 
             iTest = self.__test_valid__()
@@ -157,7 +118,7 @@ class tsygTrace(object):
 
 
     def __test_valid__(self):
-        """Test the validity of input arguments to the tsygTrace class and trace method
+        """Test the validity of input arguments to the Trace class and trace method
 
         Written by Sebastien 2012-10
         """
@@ -190,7 +151,7 @@ class tsygTrace(object):
     def trace(self, lat=None, lon=None, rho=None, coords=None, datetime=None,
         vswgse=None, pdyn=None, dst=None, byimf=None, bzimf=None,
         lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
-        """See tsygTrace for a description of each parameter
+        """See Trace for a description of each parameter
         Any unspecified parameter default to the one stored in the object
         Unspecified lmax, rmax, rmin, dsmax, err has a set default value
 
@@ -400,40 +361,6 @@ bzimf={:3.0f}                       [nT]
                                    self.latSH[ip], self.lonSH[ip], self.rhoSH[ip])
 
         return outstr
-
-
-    def save(self, filename):
-        """Save trace information to a file
-
-        Parameters
-        ----------
-        filename : str
-
-        Written by Sebastien 2012-10
-
-        """
-        import cPickle as pickle
-
-        with open( filename, "wb" ) as fileObj:
-            pickle.dump(self, fileObj)
-
-
-    def load(self, filename):
-        """load trace information from a file
-
-        Parameters
-        ----------
-        filename : str
-
-        Written by Sebastien 2012-10
-        """
-        import cPickle as pickle
-
-        with open( filename, "rb" ) as fileObj:
-            obj = pickle.load(fileObj)
-            for k, v in obj.__dict__.items():
-                self.__dict__[k] = v
-
 
     def plot(self, ax = None, proj='xz', onlyPts=None, showPts=False,
         showEarth=True,  **kwargs):
