@@ -5,7 +5,7 @@ This package was initially written by Sebastien de Larquier (Virginia Tech).
 In 2020, the package was updated by John Coxon (University of Southampton) to
 add support for the latest release of Geopack-2008.for and Python 3 support.
 
-Copyright (C) 2012 VT SuperDARN Lab 
+Copyright (C) 2012 VT SuperDARN Lab
 
 .. moduleauthor:: John Coxon
 
@@ -13,6 +13,7 @@ Copyright (C) 2012 VT SuperDARN Lab
 import Geopack
 import logging
 import numpy as np
+
 
 class Trace(object):
     """
@@ -29,7 +30,8 @@ class Trace(object):
     coords : str, optional
         The coordinate system of the start point. Default is "geo".
     datetime : datetime, optional
-        The date and time of the start point. If None, defaults to the current time.
+        The date and time of the start point. If None, defaults to the
+        current date and time.
     vswgse : list_like, optional
         Solar wind velocity in GSE coordinates (m/s, m/s, m/s).
     pdyn : float, optional
@@ -78,23 +80,11 @@ class Trace(object):
         ax = trace.plot()
         # Or generate a 3d view of the traced field lines
         ax = trace.plot3d()
-        # Save your trace to a file for later use
-        trace.save('trace.dat')
-
-    Notes
-    -----
-    **FUNCTION**: trace(lat, lon, rho, coords='geo', datetime=None,
-         vswgse=[-400.,0.,0.], Pdyn=2., Dst=-5., ByIMF=0., BzIMF=-5.
-         lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001)
     """
-    def __init__(self, lat, lon, rho,
-        coords='geo', datetime=None, vswgse=[-400.,0.,0.], pdyn=2., dst=-5.,
-        byimf=0., bzimf=-5., lmax=5000, rmax=60., rmin=1., dsmax=0.01,
-        err=0.000001):
+    def __init__(self, lat, lon, rho, coords='geo', datetime=None,
+                 vswgse=[-400., 0., 0.], pdyn=2., dst=-5., byimf=0., bzimf=-5.,
+                 lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
         from datetime import datetime as pydt
-
-        if np.isnan(pdyn) | np.isnan(dst) | np.isnan(byimf) | np.isnan(bzimf):
-            raise ValueError("Input parameters are not numbers")
 
         else:
             self.lat = lat
@@ -111,127 +101,121 @@ class Trace(object):
                 datetime = pydt.utcnow()
             self.datetime = datetime
 
-            iTest = self.__test_valid__()
-            if not iTest: self.__del__()
+            test_valid = self.__test_valid__()
+            if not test_valid:
+                self.__del__()
 
             self.trace()
 
-
     def __test_valid__(self):
-        """Test the validity of input arguments to the Trace class and trace method
+        """Test the validity of inputs to the Trace class and trace method"""
+        if len(self.vswgse) != 3:
+            raise ValueError('vswgse must have 3 elements')
+        if self.coords.lower() != 'geo':
+            raise ValueError('{}: this coordinate system is not supported')\
+                .format(self.coords.lower())
+        if np.isnan(pdyn) | np.isnan(dst) | np.isnan(byimf) | np.isnan(bzimf):
+            raise ValueError("Input parameters are not numbers")
 
-        Written by Sebastien 2012-10
-        """
-        assert (len(self.vswgse) == 3), 'vswgse must have 3 elements'
-        assert (self.coords.lower() == 'geo'), '{}: this coordinae system is not supported'.format(self.coords.lower())
         # A provision for those who want to batch trace
         try:
-            [l for l in self.lat]
-        except:
-            self.lat = [self.lat]
+            len_lat = len(self.lat)
+        except TypeError:
+            len_lat = 1
         try:
-            [l for l in self.lon]
-        except:
-            self.lon = [self.lon]
+            len_lon = len(self.lon)
+        except TypeError:
+            len_lon = 1
         try:
-            [r for r in self.rho]
-        except:
-            self.rho = [self.rho]
+            len_rho = len(self.rho)
+        except TypeError:
+            len_rho = 1
         try:
-            [d for d in self.datetime]
-        except:
-            self.datetime = [self.datetime for l in self.lat]
-        # Make sure they're all the sam elength
-        assert (len(self.lat) == len(self.lon) == len(self.rho) == len(self.datetime)), \
-            'lat, lon, rho and datetime must me the same length'
+            len_dt = len(self.datetime)
+        except TypeError:
+            len_dt = 1
+
+        # Make sure they're all the same length
+        if not (len_lat == len_lon == len_rho == len_dt):
+            raise ValueError(
+                'lat, lon, rho and datetime must be the same length')
 
         return True
 
-
     def trace(self, lat=None, lon=None, rho=None, coords=None, datetime=None,
-        vswgse=None, pdyn=None, dst=None, byimf=None, bzimf=None,
-        lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
-        """See Trace for a description of each parameter
-        Any unspecified parameter default to the one stored in the object
-        Unspecified lmax, rmax, rmin, dsmax, err has a set default value
+              vswgse=None, pdyn=None, dst=None, byimf=None, bzimf=None,
+              lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
+        """Trace from the start point for both North/Southern Hemispheres"""
 
-        Parameters
-        ----------
-        lat : Optional[ ]
-            latitude [degrees]
-        lon : Optional[ ]
-            longitude [degrees]
-        rho : Optional[ ]
-            distance from center of the Earth [km]
-        coords : Optional[str]
-            coordinates used for start point ['geo']
-        datetime : Optional[datetime]
-            a python datetime object
-        vswgse : Optional[list, float]
-            solar wind velocity in GSE coordinates [m/s, m/s, m/s]
-        pdyn : Optional[float]
-            solar wind dynamic pressure [nPa]
-        dst : Optional[flaot]
-            Dst index [nT]
-        byimf : Optional[float]
-            IMF By [nT]
-        bzimf : Optional[float]
-            IMF Bz [nT]
-        lmax : Optional[int]
-            maximum number of points to trace
-        rmax : Optional[float]
-            upper trace boundary in Re
-        rmin : Optional[float]
-            lower trace boundary in Re
-        dsmax : Optional[float]
-            maximum tracing step np.size
-        err : Optional[float]
-            tracing step tolerance
+        # If new values are passed to this function, store existing values of
+        # class attributes in case something is wrong and we need to revert
+        # them, and then assign the attributes to the new values. If no values
+        # are passed, assign parameters from the class attributes.
+        if lat:
+            _lat = self.lat
+            self.lat = lat
+        else:
+            lat = self.lat
 
-        Written by Sebastien 2012-10
+        if lon:
+            _lon = self.lon
+            self.lon = lon
+        else:
+            lon = self.lon
 
-        """
+        if rho:
+            _rho = self.rho
+            self.rho = rho
+        else:
+            rho = self.rho
 
-        # Store existing values of class attributes in case something is wrong
-        # and we need to revert back to them
-        if lat: _lat = self.lat
-        if lon: _lon = self.lon
-        if rho: _rho = self.rho
-        if coords: _coords = self.coords
-        if vswgse: _vswgse = self.vswgse
-        if not datetime is None: _datetime = self.datetime
+        if coords:
+            _coords = self.coords
+            self.coords = coords
+        else:
+            coords = self.coords
 
-        # Pass position if new
-        if lat: self.lat = lat
-        lat = self.lat
-        if lon: self.lon = lon
-        lon = self.lon
-        if rho: self.rho = rho
-        rho = self.rho
-        if not datetime is None: self.datetime = datetime
-        datetime = self.datetime
+        if datetime is not None:
+            _datetime = self.datetime
+            self.datetime = datetime
+        else:
+            datetime = self.datetime
 
-        # Set necessary parameters if new
-        if coords: self.coords = coords
-        coords = self.coords
-        if not datetime is None: self.datetime = datetime
-        datetime = self.datetime
-        if vswgse: self.vswgse = vswgse
-        vswgse = self.vswgse
-        if pdyn: self.pdyn = pdyn
-        pdyn = self.pdyn
-        if dst: self.dst = dst
-        dst = self.dst
-        if byimf: self.byimf = byimf
-        byimf = self.byimf
-        if bzimf: self.bzimf = bzimf
-        bzimf = self.bzimf
+        if vswgse:
+            _vswgse = self.vswgse
+            self.vswgse = vswgse
+        else:
+            vswgse = self.vswgse
+
+        if pdyn:
+            _pdyn = self.pdyn
+            self.pdyn = pdyn
+        else:
+            pdyn = self.pdyn
+
+        if dst:
+            _dst = self.dst
+            self.dst = dst
+        else:
+            dst = self.dst
+
+        if byimf:
+            _byimf = self.byimf
+            self.byimf = byimf
+        else:
+            byimf = self.byimf
+
+        if bzimf:
+            _bzimf = self.bzimf
+            self.bzimf = bzimf
+        else:
+            bzimf = self.bzimf
 
         # Test that everything is in order, if not revert to existing values
-        iTest = self.__test_valid__()
-        if not iTest:
+        test_valid = self.__test_valid__()
+        if not test_valid:
             if lat: self.lat = _lat
-            if lon: _self.lon = lon
+            if lon: self.lon = _lon
             if rho: self.rho = _rho
             if coords: self.coords = _coords
             if vswgse: self.vswgse = _vswgse
