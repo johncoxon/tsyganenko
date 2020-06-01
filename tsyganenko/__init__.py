@@ -86,26 +86,25 @@ class Trace(object):
                  lmax=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
         from datetime import datetime as pydt
 
-        else:
-            self.lat = lat
-            self.lon = lon
-            self.rho = rho
-            self.coords = coords
-            self.vswgse = vswgse
-            self.pdyn = pdyn
-            self.dst = dst
-            self.byimf = byimf
-            self.bzimf = bzimf
-            # If no datetime is provided, defaults to today
-            if datetime is None:
-                datetime = pydt.utcnow()
-            self.datetime = datetime
+        self.lat = lat
+        self.lon = lon
+        self.rho = rho
+        self.coords = coords
+        self.vswgse = vswgse
+        self.pdyn = pdyn
+        self.dst = dst
+        self.byimf = byimf
+        self.bzimf = bzimf
+        # If no datetime is provided, defaults to today
+        if datetime is None:
+            datetime = pydt.utcnow()
+        self.datetime = datetime
 
-            test_valid = self.__test_valid__()
-            if not test_valid:
-                self.__del__()
+        test_valid = self.__test_valid__()
+        if not test_valid:
+            self.__del__()
 
-            self.trace()
+        self.trace()
 
     def __test_valid__(self):
         """Test the validity of inputs to the Trace class and trace method"""
@@ -149,77 +148,82 @@ class Trace(object):
 
         # If new values are passed to this function, store existing values of
         # class attributes in case something is wrong and we need to revert
-        # them, and then assign the attributes to the new values. If no values
-        # are passed, assign parameters from the class attributes.
+        # them, and then assign the attributes to the new values.
         if lat:
             _lat = self.lat
             self.lat = lat
-        else:
-            lat = self.lat
 
         if lon:
             _lon = self.lon
             self.lon = lon
-        else:
-            lon = self.lon
 
         if rho:
             _rho = self.rho
             self.rho = rho
-        else:
-            rho = self.rho
 
         if coords:
             _coords = self.coords
             self.coords = coords
-        else:
-            coords = self.coords
 
         if datetime is not None:
             _datetime = self.datetime
             self.datetime = datetime
-        else:
-            datetime = self.datetime
 
         if vswgse:
             _vswgse = self.vswgse
             self.vswgse = vswgse
-        else:
-            vswgse = self.vswgse
 
         if pdyn:
             _pdyn = self.pdyn
             self.pdyn = pdyn
-        else:
-            pdyn = self.pdyn
 
         if dst:
             _dst = self.dst
             self.dst = dst
-        else:
-            dst = self.dst
 
         if byimf:
             _byimf = self.byimf
             self.byimf = byimf
-        else:
-            byimf = self.byimf
 
         if bzimf:
             _bzimf = self.bzimf
             self.bzimf = bzimf
-        else:
-            bzimf = self.bzimf
 
         # Test that everything is in order, if not revert to existing values
         test_valid = self.__test_valid__()
         if not test_valid:
-            if lat: self.lat = _lat
-            if lon: self.lon = _lon
-            if rho: self.rho = _rho
-            if coords: self.coords = _coords
-            if vswgse: self.vswgse = _vswgse
-            if not datetime is None: self.datetime = _datetime
+            if lat:
+                self.lat = _lat
+            if lon:
+                self.lon = _lon
+            if rho:
+                self.rho = _rho
+            if coords:
+                self.coords = _coords
+            if datetime is not None:
+                self.datetime = _datetime
+            if vswgse:
+                self.vswgse = _vswgse
+            if pdyn:
+                self.pdyn = pdyn
+            if dst:
+                self.dst = dst
+            if byimf:
+                self.byimf = byimf
+            if bzimf:
+                self.bzimf = bzimf
+
+        # Now that we have good attributes, assign the parameters to those.
+        lat = self.lat
+        lon = self.lon
+        rho = self.rho
+        coords = self.coords
+        datetime = self.datetime
+        vswgse = self.vswgse
+        pdyn = self.pdyn
+        dst = self.dst
+        byimf = self.byimf
+        bzimf = self.bzimf
 
         # Declare the same Re as used in Tsyganenko models [km]
         Re = 6371.2
