@@ -282,18 +282,19 @@ class Trace(object):
                 xfgeo, yfgeo, zfgeo, _, _, _ = Geopack.geogsw_08(0., 0., 0.,
                                                                  xfgsw, yfgsw,
                                                                  zfgsw, -1)
-                r, colat, lon, _, _, _ = Geopack.sphcar_08(0., 0., 0., xfgeo,
-                                                           yfgeo, zfgeo, -1)
+                rhof, colatf, lonf, _, _, _ = Geopack.sphcar_08(0., 0., 0.,
+                                                                xfgeo, yfgeo,
+                                                                zfgeo, -1)
 
                 # Get coordinates of traced point
                 if mapto == 1:
-                    self.latSH[ip] = 90. - np.degrees(geoColat)
-                    self.lonSH[ip] = np.degrees(geoLon)
-                    self.rhoSH[ip] = geoR*Re
+                    self.latSH[ip] = 90. - np.degrees(colatf)
+                    self.lonSH[ip] = np.degrees(lonf)
+                    self.rhoSH[ip] = rhof*Re
                 elif mapto == -1:
-                    self.latNH[ip] = 90. - np.degrees(geoColat)
-                    self.lonNH[ip] = np.degrees(geoLon)
-                    self.rhoNH[ip] = geoR*Re
+                    self.latNH[ip] = 90. - np.degrees(colatf)
+                    self.lonNH[ip] = np.degrees(lonf)
+                    self.rhoNH[ip] = rhof*Re
 
                 # Store trace
                 if mapto == -1:
