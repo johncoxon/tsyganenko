@@ -15,6 +15,10 @@ import logging
 import numpy as _np
 
 
+# Declare the same Earth radius as used in Tsyganenko models (km)
+RE = 6371.2
+
+
 class Trace(object):
     """
     Trace magnetic field lines from a given start point.
@@ -81,7 +85,7 @@ class Trace(object):
         # Or generate a 3d view of the traced field lines
         ax = trace.plot3d()
     """
-    def __init__(self, lat, lon, rho, coords='geo', datetime=None,
+    def __init__(self, lat, lon, rho, coords="geo", datetime=None,
                  vswgse=[-400., 0., 0.], pdyn=2., dst=-5., byimf=0., bzimf=-5.,
                  l_max=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
         from datetime import datetime as pydt
@@ -100,18 +104,18 @@ class Trace(object):
             datetime = pydt.utcnow()
         self.datetime = datetime
 
-        test_valid = self.__test_valid__()
+        test_valid = self._test_valid()
         if not test_valid:
             self.__del__()
 
         self.trace()
 
-    def __test_valid__(self):
+    def _test_valid(self):
         """Test the validity of inputs to the Trace class and trace method"""
         if len(self.vswgse) != 3:
-            raise ValueError('vswgse must have 3 elements')
-        if self.coords.lower() != 'geo':
-            raise ValueError('{}: this coordinate system is not supported')\
+            raise ValueError("vswgse must have 3 elements")
+        if self.coords.lower() != "geo":
+            raise ValueError("{}: this coordinate system is not supported")\
                 .format(self.coords.lower())
         if _np.isnan(self.pdyn) | _np.isnan(self.dst) | \
                 _np.isnan(self.byimf) | _np.isnan(self.bzimf):
@@ -138,7 +142,7 @@ class Trace(object):
         # Make sure they're all the same length
         if not (len_lat == len_lon == len_rho == len_dt):
             raise ValueError(
-                'lat, lon, rho and datetime must be the same length')
+                "lat, lon, rho and datetime must be the same length")
 
         return True
 
@@ -191,7 +195,7 @@ class Trace(object):
             self.bzimf = bzimf
 
         # Test that everything is in order, if not revert to existing values
-        test_valid = self.__test_valid__()
+        test_valid = self._test_valid()
         if not test_valid:
             if lat:
                 self.lat = _lat
@@ -226,17 +230,12 @@ class Trace(object):
         byimf = self.byimf
         bzimf = self.bzimf
 
-        # Declare the same Re as used in Tsyganenko models [km]
-        Re = 6371.2
-
-        # Initialize trace array
+        # Initialize trace arrays
         self.l_cnt = _np.zeros_like(lat)
         self.xTrace = _np.zeros((len(lat), 2*l_max))
         self.yTrace = self.xTrace.copy()
         self.zTrace = self.xTrace.copy()
-        self.xGsw = self.l_cnt.copy()
-        self.yGsw = self.l_cnt.copy()
-        self.zGsw = self.l_cnt.copy()
+        self.gsw = _np.zeros((len(lat), 3))
         self.latNH = self.l_cnt.copy()
         self.lonNH = self.l_cnt.copy()
         self.rhoNH = self.l_cnt.copy()
@@ -254,21 +253,21 @@ class Trace(object):
 
             # Convert spherical to cartesian
             r, theta, phi, xgeo, ygeo, zgeo = Geopack.sphcar_08(
-                rho[ip]/Re, _np.radians(90.-lat[ip]), _np.radians(lon[ip]),
+                rho[ip]/RE, _np.radians(90.-lat[ip]), _np.radians(lon[ip]),
                 0., 0., 0., 1)
 
             # Convert to GSW.
-            if coords.lower() == 'geo':
+            if coords.lower() == "geo":
                 _, _, _, xgsw, ygsw, zgsw = Geopack.geogsw_08(xgeo, ygeo, zgeo,
                                                               0., 0., 0., 1)
 
-            self.xGsw[ip] = xgsw
-            self.yGsw[ip] = ygsw
-            self.zGsw[ip] = zgsw
+            self.gsw[ip, 0] = xgsw
+            self.gsw[ip, 1] = ygsw
+            self.gsw[ip, 2] = zgsw
 
             # Trace field line
-            inmod = 'IGRF_GSW_08'
-            exmod = 'T96_01'
+            inmod = "IGRF_GSW_08"
+            exmod = "T96_01"
             parmod = [pdyn, dst, byimf, bzimf, 0., 0., 0., 0., 0., 0.]
 
             # Towards SH and then towards NH
@@ -290,11 +289,11 @@ class Trace(object):
                 if mapto == 1:
                     self.latSH[ip] = 90. - _np.degrees(colatf)
                     self.lonSH[ip] = _np.degrees(lonf)
-                    self.rhoSH[ip] = rhof*Re
+                    self.rhoSH[ip] = rhof*RE
                 elif mapto == -1:
                     self.latNH[ip] = 90. - _np.degrees(colatf)
                     self.lonNH[ip] = _np.degrees(lonf)
-                    self.rhoNH[ip] = rhof*Re
+                    self.rhoNH[ip] = rhof*RE
 
                 # Store trace
                 if mapto == -1:
@@ -320,37 +319,37 @@ class Trace(object):
         Written by Sebastien 2012-10
         """
         # Declare print format
-        outstr = '''
+        outstr = """
 vswgse=[{:6.0f}, {:6.0f}, {:6.0f}]    [m/s]
 pdyn={:3.0f}                        [nPa]
 dst={:3.0f}                         [nT]
 byimf={:3.0f}                       [nT]
 bzimf={:3.0f}                       [nT]
-                    '''.format(self.vswgse[0],
+                    """.format(self.vswgse[0],
                                self.vswgse[1],
                                self.vswgse[2],
                                self.pdyn,
                                self.dst,
                                self.byimf,
                                self.bzimf)
-        outstr += '\nCoords: {}\n'.format(self.coords)
-        outstr += ('(latitude [degrees], longitude [degrees], '
-                   'distance from center of the Earth [km])\n')
+        outstr += "\nCoords: {}\n".format(self.coords)
+        outstr += ("(latitude [degrees], longitude [degrees], "
+                   "distance from center of the Earth [km])\n")
 
         # Print stuff
         for ip in range(len(self.lat)):
-            outstr += '''
+            outstr += """
 ({:6.3f}, {:6.3f}, {:6.3f}) @ {}
     --> NH({:6.3f}, {:6.3f}, {:6.3f})
-    --> SH({:6.3f}, {:6.3f}, {:6.3f})'''.format(
+    --> SH({:6.3f}, {:6.3f}, {:6.3f})""".format(
                 self.lat[ip], self.lon[ip], self.rho[ip],
-                self.datetime[ip].strftime('%H:%M UT (%d-%b-%y)'),
+                self.datetime[ip].strftime("%H:%M UT (%d-%b-%y)"),
                 self.latNH[ip], self.lonNH[ip], self.rhoNH[ip],
                 self.latSH[ip], self.lonSH[ip], self.rhoSH[ip])
 
         return outstr
 
-    def plot(self, ax=None, proj='xz', onlyPts=None, showPts=False,
+    def plot(self, ax=None, proj="xz", onlyPts=None, showPts=False,
              showEarth=True,  **kwargs):
         """Generate a 2D plot of the trace projected onto a given plane
         Graphic keywords apply to the plot method for the field lines
@@ -378,18 +377,18 @@ bzimf={:3.0f}                       [nT]
         from matplotlib import pyplot as plt
         from matplotlib.patches import Circle
 
-        assert (len(proj) == 2) or \
-            (proj[0] in ['x', 'y', 'z'] and proj[1] in ['x', 'y', 'z']) or \
-            (proj[0] != proj[1]), 'Invalid projection plane'
+        if (len(proj) != 2) or (proj[0] not in ["x", "y", "z"])\
+                or (proj[1] not in ["x", "y", "z"]) or (proj[0] == proj[1]):
+            raise ValueError("Invalid projection plane.")
 
         if ax is None:
             fig = plt.gcf()
             ax = fig.gca()
-            ax.set_aspect('equal')
+            ax.set_aspect("equal")
 
         # First plot a nice disk for the Earth
         if showEarth:
-            circ = Circle(xy=(0, 0), radius=1, facecolor='0.8', edgecolor='k',
+            circ = Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
                           alpha=.5, zorder=0)
             ax.add_patch(circ)
 
@@ -404,46 +403,46 @@ bzimf={:3.0f}                       [nT]
         # Then plot the traced field line
         for ip, _ in enumerate(self.lat):
             # Select projection plane
-            if proj[0] == 'x':
+            if proj[0] == "x":
                 xx = self.xTrace[ip, :]
-                xpt = self.xGsw[ip]
-                ax.set_xlabel(r'$X_{GSW}$')
+                xpt = self.gsw[ip, 0]
+                ax.set_xlabel(r"$X_{GSW}$")
                 xdir = [1, 0, 0]
-            elif proj[0] == 'y':
+            elif proj[0] == "y":
                 xx = self.yTrace[ip, :]
-                xpt = self.yGsw[ip]
-                ax.set_xlabel(r'$Y_{GSW}$')
+                xpt = self.gsw[ip, 1]
+                ax.set_xlabel(r"$Y_{GSW}$")
                 xdir = [0, 1, 0]
-            elif proj[0] == 'z':
+            elif proj[0] == "z":
                 xx = self.zTrace[ip, :]
-                xpt = self.zGsw[ip]
-                ax.set_xlabel(r'$Z_{GSW}$')
+                xpt = self.gsw[ip, 2]
+                ax.set_xlabel(r"$Z_{GSW}$")
                 xdir = [0, 0, 1]
-            if proj[1] == 'x':
+            if proj[1] == "x":
                 yy = self.xTrace[ip, :]
-                ypt = self.xGsw[ip]
-                ax.set_ylabel(r'$X_{GSW}$')
+                ypt = self.gsw[ip, 0]
+                ax.set_ylabel(r"$X_{GSW}$")
                 ydir = [1, 0, 0]
-            elif proj[1] == 'y':
+            elif proj[1] == "y":
                 yy = self.yTrace[ip, :]
-                ypt = self.yGsw[ip]
-                ax.set_ylabel(r'$Y_{GSW}$')
+                ypt = self.gsw[ip, 1]
+                ax.set_ylabel(r"$Y_{GSW}$")
                 ydir = [0, 1, 0]
-            elif proj[1] == 'z':
+            elif proj[1] == "z":
                 yy = self.zTrace[ip, :]
-                ypt = self.zGsw[ip]
-                ax.set_ylabel(r'$Z_{GSW}$')
+                ypt = self.gsw[ip, 2]
+                ax.set_ylabel(r"$Z_{GSW}$")
                 ydir = [0, 0, 1]
 
             sign = 1 if -1 not in _np.cross(xdir, ydir) else -1
-            if 'x' not in proj:
-                zz = sign*self.xGsw[ip]
+            if "x" not in proj:
+                zz = sign*self.gsw[ip, 0]
                 indMask = sign*self.xTrace[ip, :] < 0
-            if 'y' not in proj:
-                zz = sign*self.yGsw[ip]
+            if "y" not in proj:
+                zz = sign*self.gsw[ip, 1]
                 indMask = sign*self.yTrace[ip, :] < 0
-            if 'z' not in proj:
-                zz = sign*self.zGsw[ip]
+            if "z" not in proj:
+                zz = sign*self.gsw[ip, 2]
                 indMask = sign*self.zTrace[ip, :] < 0
 
             # Plot
@@ -454,10 +453,10 @@ bzimf={:3.0f}                       [nT]
                     _np.ma.masked_array(yy, mask=indMask),
                     zorder=1, **kwargs)
             if showPts:
-                ax.scatter(xpt, ypt, c='k', s=40, zorder=zz)
+                ax.scatter(xpt, ypt, c="k", s=40, zorder=zz)
 
     def plot3d(self, onlyPts=None, showEarth=True, showPts=False, disp=True,
-               xyzlim=None, zorder=1, linewidth=2, color='b', **kwargs):
+               xyzlim=None, zorder=1, linewidth=2, color="b", **kwargs):
         """Generate a 3D plot of the trace
         Graphic keywords apply to the plot3d method for the field lines
 
@@ -495,7 +494,7 @@ bzimf={:3.0f}                       [nT]
         from matplotlib import pyplot as plt
 
         fig = plt.gcf()
-        ax = fig.gca(projection='3d')
+        ax = fig.gca(projection="3d")
 
         # First plot a nice sphere for the Earth
         if showEarth:
@@ -504,7 +503,7 @@ bzimf={:3.0f}                       [nT]
             tx = _np.outer(_np.cos(u), _np.sin(v))
             ty = _np.outer(_np.sin(u), _np.sin(v))
             tz = _np.outer(_np.ones(_np.size(u)), _np.cos(v))
-            ax.plot_surface(tx, ty, tz, rstride=10, cstride=10, color='grey',
+            ax.plot_surface(tx, ty, tz, rstride=10, cstride=10, color="grey",
                             alpha=.5, zorder=0, linewidth=0.5)
 
         # Select indices to show
@@ -523,8 +522,7 @@ bzimf={:3.0f}                       [nT]
                       self.zTrace[ip, 0:plot_index], zorder=zorder,
                       linewidth=linewidth, color=color, **kwargs)
             if showPts:
-                ax.scatter3D(self.xGsw[ip], self.yGsw[ip], self.zGsw[ip],
-                             c='k')
+                ax.scatter3D(*self.gsw[ip, :], c="k")
 
         # Set plot limits
         if not xyzlim:
