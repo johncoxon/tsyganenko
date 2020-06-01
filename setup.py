@@ -1,14 +1,14 @@
 #!/usr/bin/env python
 from numpy.distutils.core import setup, Extension
 
-ext = Extension('tsygFort',
-  sources=['tsyganenko/geopack08.pyf','tsyganenko/geopack08.for','tsyganenko/T96.f','tsyganenko/T02.f'])
+ext = Extension('Geopack',
+  sources=['tsyganenko/geopack_py.pyf','tsyganenko/geopack_py.for','tsyganenko/T96.f','tsyganenko/T02.f'])
 
 setup (name = "Tsyganenko",
-       version = "0.1",
-       description = "wrapper to call fortran routines from the Tsyganenko models",
-       author = "Sebastien de Larquier",
-       author_email = "sdelarquier@vt.edu",
+       version = "14",
+       description = "A wrapper to call fortran routines from the Tsyganenko models",
+       author = "John Coxon and Sebastien de Larquier",
+       author_email = "work@johncoxon.co.uk",
        url = "",
        long_description =
         """

@@ -12,10 +12,10 @@ tsygTrace   Wraps fortran subroutines in one convenient class
 
 Modules
 -------------------------------
-tsygFort    Fortran subroutines
+Geopack    Fortran subroutines
 -------------------------------
 """
-import tsygFort
+import Geopack
 import logging
 import numpy as np
 
@@ -297,17 +297,17 @@ class tsygTrace(object):
         # And now iterate through the desired points
         for ip in range(len(lat)):
             # This has to be called first
-            tsygFort.recalc_08(datetime[ip].year,datetime[ip].timetuple().tm_yday,
+            Geopack.recalc_08(datetime[ip].year,datetime[ip].timetuple().tm_yday,
                                 datetime[ip].hour,datetime[ip].minute,datetime[ip].second,
                                 vswgse[0],vswgse[1],vswgse[2])
 
             # Convert lat,lon to geographic cartesian and then gsw
-            r, theta, phi, xgeo, ygeo, zgeo = tsygFort.sphcar_08(
+            r, theta, phi, xgeo, ygeo, zgeo = Geopack.sphcar_08(
                                                     rho[ip]/Re, np.radians(90.-lat[ip]), np.radians(lon[ip]),
                                                     0., 0., 0.,
                                                     1)
             if coords.lower() == 'geo':
-                xgeo, ygeo, zgeo, xgsw, ygsw, zgsw = tsygFort.geogsw_08(
+                xgeo, ygeo, zgeo, xgsw, ygsw, zgsw = Geopack.geogsw_08(
                                                             xgeo, ygeo, zgeo,
                                                             0. ,0. ,0. ,
                                                             1)
@@ -322,17 +322,17 @@ class tsygTrace(object):
             # First towards southern hemisphere
             maptoL = [-1, 1]
             for mapto in maptoL:
-                xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l = tsygFort.trace_08( xgsw, ygsw, zgsw,
+                xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l = Geopack.trace_08( xgsw, ygsw, zgsw,
                                                                 mapto, dsmax, err, rmax, rmin, 0,
                                                                 parmod, exmod, inmod,
                                                                 lmax )
 
                 # Convert back to spherical geographic coords
-                xfgeo, yfgeo, zfgeo, xfgsw, yfgsw, zfgsw  = tsygFort.geogsw_08(
+                xfgeo, yfgeo, zfgeo, xfgsw, yfgsw, zfgsw  = Geopack.geogsw_08(
                                                                     0. ,0. ,0. ,
                                                                     xfgsw, yfgsw, zfgsw,
                                                                     -1)
-                geoR, geoColat, geoLon, xgeo, ygeo, zgeo = tsygFort.sphcar_08(
+                geoR, geoColat, geoLon, xgeo, ygeo, zgeo = Geopack.sphcar_08(
                                                                     0., 0., 0.,
                                                                     xfgeo, yfgeo, zfgeo,
                                                                     -1)
