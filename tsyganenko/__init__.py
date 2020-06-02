@@ -99,13 +99,13 @@ class Trace(object):
         self.dst = dst
         self.byimf = byimf
         self.bzimf = bzimf
+
         # If no datetime is provided, defaults to today
         if datetime is None:
             datetime = pydt.utcnow()
         self.datetime = datetime
 
-        test_valid = self._test_valid()
-        if not test_valid:
+        if not self._test_valid():
             self.__del__()
 
         self.trace()
@@ -199,8 +199,7 @@ class Trace(object):
             self.bzimf = bzimf
 
         # Test that everything is in order, if not revert to existing values
-        test_valid = self._test_valid()
-        if not test_valid:
+        if not self._test_valid():
             if lat:
                 self.lat = _lat
             if lon:
@@ -316,11 +315,11 @@ class Trace(object):
     def __str__(self):
         """Print salient inputs alongside trace results for each trace"""
         outstr = """
-vswgse=[{:6.0f}, {:6.0f}, {:6.0f}]    [m/s]
-pdyn={:3.0f}                        [nPa]
-dst={:3.0f}                         [nT]
-byimf={:3.0f}                       [nT]
-bzimf={:3.0f}                       [nT]
+vswgse=[{:6.0f},{:6.0f},{:6.0f}]   [m/s]
+pdyn=   {:6.1f}                  [nPa]
+dst=    {:6.1f}                  [nT]
+byimf=  {:6.1f}                  [nT]
+bzimf=  {:6.1f}                  [nT]
 
 Coords: {}
 (latitude [deg], longitude [deg], distance from center of the Earth [km])
@@ -429,7 +428,7 @@ Coords: {}
                 sign = -1
             else:
                 sign = 1
-            
+
             # Work out which indices would be in front of/behind the 0 plane.
             if "x" not in proj:
                 zz = sign*self.gsw[ip, 0]
@@ -457,30 +456,25 @@ Coords: {}
             if show_pts:
                 ax.scatter(xpt, ypt, c="k", zorder=zz)
 
-    def plot3d(self, only_pts=None, show_earth=True, show_pts=False, disp=True,
-               xyzlim=None, zorder=1, linewidth=2, color="b", **kwargs):
+        ax.set_xlim(ax.get_xlim()[::-1])
+
+        return ax
+
+    def plot3d(self, only_pts=None, show_earth=True, show_pts=False,
+               xyzlim=None, **kwargs):
         """Generate a 3D plot of the trace
         Graphic keywords apply to the plot3d method for the field lines
 
         Parameters
         ----------
-        only_pts : Optional[ ]
-            if the trace contains multiple points,
-            only show the specified indices (list)
-        show_earth : Optional[bool]
-            Toggle Earth sphere visibility on/off
-        show_pts : Optional[bool]
-            Toggle start points visibility on/off
-        disp : Optional[bool]
-            invoke plt.show()
-        xyzlim : Optional[ ]
-            3D axis limits
-        zorder : Optional[int]
-            3D layers ordering
-        linewidth : Optional[int]
-            field line width
-        color : Optional[char]
-            field line color
+        only_pts : list_like, optional
+            If the trace contains multiple points, only show those specified.
+        show_earth : bool, optional
+            Toggle Earth sphere visibility. Default is True.
+        show_pts : bool, optional
+            Toggle start points visibility. Default is False.
+        xyzlim : tuple_like, optional
+            3D axis limits.
         **kwargs :
             see mpl_toolkits.mplot3d.axes3d.Axes3D.plot3D
 
@@ -488,9 +482,6 @@ Coords: {}
         -------
         ax :  matplotlib axes
             axes object
-
-        Written by Sebastien 2012-10
-
         """
         from mpl_toolkits.mplot3d import proj3d
         from matplotlib import pyplot as plt
@@ -518,24 +509,41 @@ Coords: {}
 
         # Then plot the traced field line
         for ip in inds:
-            plot_index = int(_np.round(self.l_cnt[ip]))
-            ax.plot3D(self.trace_gsw[ip][0:plot_index, 0],
-                      self.trace_gsw[ip][0:plot_index, 1],
-                      self.trace_gsw[ip][0:plot_index, 2], zorder=zorder,
-                      linewidth=linewidth, color=color, **kwargs)
+            ax.plot3D(self.trace_gsw[ip][:, 0],
+                      self.trace_gsw[ip][:, 1],
+                      self.trace_gsw[ip][:, 2], **kwargs)
             if show_pts:
                 ax.scatter3D(*self.gsw[ip, :], c="k")
 
-        # Set plot limits
-        if not xyzlim:
-            xyzlim = _np.max([_np.max(ax.get_xlim3d()),
-                             _np.max(ax.get_ylim3d()),
-                             _np.max(ax.get_zlim3d())])
-        ax.set_xlim3d([-xyzlim, xyzlim])
-        ax.set_ylim3d([-xyzlim, xyzlim])
-        ax.set_zlim3d([-xyzlim, xyzlim])
-
-        if disp:
-            plt.show()
+        # Set plot limits if none are set. This is hugely convoluted
+        # because you can't do ax.set_aspect("equal") for 3D plots
+        if xyzlim is None:
+            self._equal_aspect_3d(ax)
+        else:
+            ax.set_xlim3d(*xyzlim)
+            ax.set_ylim3d(*xyzlim)
+            ax.set_zlim3d(*xyzlim)
 
         return ax
+
+    def _equal_aspect_3d(self, ax):
+        """Set limits on a 3D axis to get equal aspect ratio on each side"""
+        lims = _np.array([ax.get_xlim3d(), ax.get_ylim3d(), ax.get_zlim3d()])
+        diffs = _np.array([-1 * _np.subtract(*i) for i in lims])
+        half_diff_max = diffs.max() / 2.
+
+        x_mid = lims[0][0] + (diffs[0] / 2.)
+        y_mid = lims[1][0] + (diffs[1] / 2.)
+        z_mid = lims[2][0] + (diffs[2] / 2.)
+
+        if _np.argmax(diffs) == 0:
+            ax.set_ylim3d(y_mid - half_diff_max, y_mid + half_diff_max)
+            ax.set_zlim3d(z_mid - half_diff_max, z_mid + half_diff_max)
+        elif _np.argmax(diffs) == 1:
+            ax.set_xlim3d(x_mid - half_diff_max, x_mid + half_diff_max)
+            ax.set_zlim3d(z_mid - half_diff_max, z_mid + half_diff_max)
+        elif _np.argmax(diffs) == 2:
+            ax.set_xlim3d(x_mid - half_diff_max, x_mid + half_diff_max)
+            ax.set_ylim3d(y_mid - half_diff_max, y_mid + half_diff_max)
+
+        return True
