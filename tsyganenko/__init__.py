@@ -125,19 +125,23 @@ class Trace(object):
         try:
             len_lat = len(self.lat)
         except TypeError:
-            len_lat = 1
+            self.lat = [self.lat]
+            len_lat = len(self.lat)
         try:
             len_lon = len(self.lon)
         except TypeError:
-            len_lon = 1
+            self.lon = [self.lon]
+            len_lon = len(self.lon)
         try:
             len_rho = len(self.rho)
         except TypeError:
-            len_rho = 1
+            self.rho = [self.rho]
+            len_rho = len(self.rho)
         try:
             len_dt = len(self.datetime)
         except TypeError:
-            len_dt = 1
+            self.datetime = [self.datetime]
+            len_dt = len(self.datetime)
 
         # Make sure they're all the same length
         if not (len_lat == len_lon == len_rho == len_dt):
@@ -231,20 +235,17 @@ class Trace(object):
         bzimf = self.bzimf
 
         # Initialize trace arrays
-        self.l_cnt = _np.zeros_like(lat)
-        self.xTrace = _np.zeros((len(lat), 2*l_max))
-        self.yTrace = self.xTrace.copy()
-        self.zTrace = self.xTrace.copy()
         self.gsw = _np.zeros((len(lat), 3))
-        self.latNH = self.l_cnt.copy()
-        self.lonNH = self.l_cnt.copy()
-        self.rhoNH = self.l_cnt.copy()
-        self.latSH = self.l_cnt.copy()
-        self.lonSH = self.l_cnt.copy()
-        self.rhoSH = self.l_cnt.copy()
+        self.latNH = _np.zeros_like(lat)
+        self.lonNH = _np.zeros_like(lat)
+        self.rhoNH = _np.zeros_like(lat)
+        self.latSH = _np.zeros_like(lat)
+        self.lonSH = _np.zeros_like(lat)
+        self.rhoSH = _np.zeros_like(lat)
+        self.trace_gsw = []
 
         # And now iterate through the desired points
-        for ip in range(len(lat)):
+        for ip in _np.arange(len(lat)):
             # This has to be called first
             Geopack.recalc_08(datetime[ip].year,
                               datetime[ip].timetuple().tm_yday,
@@ -270,7 +271,7 @@ class Trace(object):
             exmod = "T96_01"
             parmod = [pdyn, dst, byimf, bzimf, 0., 0., 0., 0., 0., 0.]
 
-            # Towards SH and then towards NH
+            # Towards NH and then towards SH
             for mapto in [-1, 1]:
                 xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt \
                     = Geopack.trace_08(xgsw, ygsw, zgsw, mapto, dsmax, err,
@@ -285,58 +286,48 @@ class Trace(object):
                                                                 xfgeo, yfgeo,
                                                                 zfgeo, -1)
 
-                # Get coordinates of traced point
+                # Get coordinates of traced point, and store traces
                 if mapto == 1:
                     self.latSH[ip] = 90. - _np.degrees(colatf)
                     self.lonSH[ip] = _np.degrees(lonf)
                     self.rhoSH[ip] = rhof*RE
+
+                    x_trace_SH = xarr[0:l_cnt]
+                    y_trace_SH = yarr[0:l_cnt]
+                    z_trace_SH = zarr[0:l_cnt]
                 elif mapto == -1:
                     self.latNH[ip] = 90. - _np.degrees(colatf)
                     self.lonNH[ip] = _np.degrees(lonf)
                     self.rhoNH[ip] = rhof*RE
 
-                # Store trace
-                if mapto == -1:
-                    self.xTrace[ip, 0:l_cnt] = xarr[l_cnt-1::-1]
-                    self.yTrace[ip, 0:l_cnt] = yarr[l_cnt-1::-1]
-                    self.zTrace[ip, 0:l_cnt] = zarr[l_cnt-1::-1]
-                elif mapto == 1:
-                    l_0 = int(_np.round(self.l_cnt[ip]))
-                    self.xTrace[ip, l_0:l_0+l_cnt] = xarr[0:l_cnt]
-                    self.yTrace[ip, l_0:l_0+l_cnt] = yarr[0:l_cnt]
-                    self.zTrace[ip, l_0:l_0+l_cnt] = zarr[0:l_cnt]
-                self.l_cnt[ip] += l_cnt
+                    x_trace_NH = xarr[l_cnt-1::-1]
+                    y_trace_NH = yarr[l_cnt-1::-1]
+                    z_trace_NH = zarr[l_cnt-1::-1]
 
-        # Resize trace output to more minimum possible length
-        max_index = int(_np.round(self.l_cnt.max()))
-        self.xTrace = self.xTrace[:, 0:max_index]
-        self.yTrace = self.yTrace[:, 0:max_index]
-        self.zTrace = self.zTrace[:, 0:max_index]
+            # Combine the NH and SH traces into x/y/z arrays of shape (l_cnt,).
+            x_trace = _np.concatenate((x_trace_NH, x_trace_SH))
+            y_trace = _np.concatenate((y_trace_NH, y_trace_SH))
+            z_trace = _np.concatenate((z_trace_NH, z_trace_SH))
+
+            # Combine the combined arrays into an array of shape (l_cnt,3),
+            # and add it to the list of traces.
+            self.trace_gsw.append(_np.array((x_trace, y_trace, z_trace)).T)
 
     def __str__(self):
-        """Print object information in a nice way
-
-        Written by Sebastien 2012-10
-        """
-        # Declare print format
+        """Print salient inputs alongside trace results for each trace"""
         outstr = """
 vswgse=[{:6.0f}, {:6.0f}, {:6.0f}]    [m/s]
 pdyn={:3.0f}                        [nPa]
 dst={:3.0f}                         [nT]
 byimf={:3.0f}                       [nT]
 bzimf={:3.0f}                       [nT]
-                    """.format(self.vswgse[0],
-                               self.vswgse[1],
-                               self.vswgse[2],
-                               self.pdyn,
-                               self.dst,
-                               self.byimf,
-                               self.bzimf)
-        outstr += "\nCoords: {}\n".format(self.coords)
-        outstr += ("(latitude [degrees], longitude [degrees], "
-                   "distance from center of the Earth [km])\n")
 
-        # Print stuff
+Coords: {}
+(latitude [deg], longitude [deg], distance from center of the Earth [km])
+""".format(self.vswgse[0], self.vswgse[1], self.vswgse[2], self.pdyn, self.dst,
+           self.byimf, self.bzimf, self.coords)
+
+        # Print the trace for each set of input coordinates.
         for ip in range(len(self.lat)):
             outstr += """
 ({:6.3f}, {:6.3f}, {:6.3f}) @ {}
@@ -357,16 +348,15 @@ bzimf={:3.0f}                       [nT]
         Parameters
         ----------
         ax : matplotlib axes object, optional
-            the object on which to plot
+            The object on which to plot.
         proj : str, optional
-            the projection plane in GSW coordinates
-        onlyPts : list, optional
-            if the trace countains multiple point,
-            only show the specified indices (list)
+            The GSW projection plane.
+        onlyPts : list_like, optional
+            If the trace contains multiple points, only show those specified.
         showEarth : bool, optional
-            Toggle Earth disk visibility on/off
+            Toggle Earth disk visibility.
         showPts : bool, optional
-            Toggle start points visibility on/off
+            Toggle start points visibility.
         **kwargs :
             see matplotlib.axes.Axes.plot
 
@@ -404,32 +394,32 @@ bzimf={:3.0f}                       [nT]
         for ip, _ in enumerate(self.lat):
             # Select projection plane
             if proj[0] == "x":
-                xx = self.xTrace[ip, :]
+                xx = self.trace_gsw[ip][:, 0]
                 xpt = self.gsw[ip, 0]
                 ax.set_xlabel(r"$X_{GSW}$")
                 xdir = [1, 0, 0]
             elif proj[0] == "y":
-                xx = self.yTrace[ip, :]
+                xx = self.trace_gsw[ip][:, 1]
                 xpt = self.gsw[ip, 1]
                 ax.set_xlabel(r"$Y_{GSW}$")
                 xdir = [0, 1, 0]
             elif proj[0] == "z":
-                xx = self.zTrace[ip, :]
+                xx = self.trace_gsw[ip][:, 2]
                 xpt = self.gsw[ip, 2]
                 ax.set_xlabel(r"$Z_{GSW}$")
                 xdir = [0, 0, 1]
             if proj[1] == "x":
-                yy = self.xTrace[ip, :]
+                yy = self.trace_gsw[ip][:, 0]
                 ypt = self.gsw[ip, 0]
                 ax.set_ylabel(r"$X_{GSW}$")
                 ydir = [1, 0, 0]
             elif proj[1] == "y":
-                yy = self.yTrace[ip, :]
+                yy = self.trace_gsw[ip][:, 1]
                 ypt = self.gsw[ip, 1]
                 ax.set_ylabel(r"$Y_{GSW}$")
                 ydir = [0, 1, 0]
             elif proj[1] == "z":
-                yy = self.zTrace[ip, :]
+                yy = self.trace_gsw[ip][:, 2]
                 ypt = self.gsw[ip, 2]
                 ax.set_ylabel(r"$Z_{GSW}$")
                 ydir = [0, 0, 1]
@@ -437,13 +427,13 @@ bzimf={:3.0f}                       [nT]
             sign = 1 if -1 not in _np.cross(xdir, ydir) else -1
             if "x" not in proj:
                 zz = sign*self.gsw[ip, 0]
-                indMask = sign*self.xTrace[ip, :] < 0
+                indMask = sign*self.trace_gsw[ip][:, 0] < 0
             if "y" not in proj:
                 zz = sign*self.gsw[ip, 1]
-                indMask = sign*self.yTrace[ip, :] < 0
+                indMask = sign*self.trace_gsw[ip][:, 1] < 0
             if "z" not in proj:
                 zz = sign*self.gsw[ip, 2]
-                indMask = sign*self.zTrace[ip, :] < 0
+                indMask = sign*self.trace_gsw[ip][:, 2] < 0
 
             # Plot
             ax.plot(_np.ma.masked_array(xx, mask=~indMask),
@@ -517,9 +507,9 @@ bzimf={:3.0f}                       [nT]
         # Then plot the traced field line
         for ip in inds:
             plot_index = int(_np.round(self.l_cnt[ip]))
-            ax.plot3D(self.xTrace[ip, 0:plot_index],
-                      self.yTrace[ip, 0:plot_index],
-                      self.zTrace[ip, 0:plot_index], zorder=zorder,
+            ax.plot3D(self.trace_gsw[ip][0:plot_index, 0],
+                      self.trace_gsw[ip][0:plot_index, 1],
+                      self.trace_gsw[ip][0:plot_index, 2], zorder=zorder,
                       linewidth=linewidth, color=color, **kwargs)
             if showPts:
                 ax.scatter3D(*self.gsw[ip, :], c="k")
