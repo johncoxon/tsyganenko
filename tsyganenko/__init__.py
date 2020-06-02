@@ -340,8 +340,8 @@ Coords: {}
 
         return outstr
 
-    def plot(self, ax=None, proj="xz", onlyPts=None, showPts=False,
-             showEarth=True,  **kwargs):
+    def plot(self, ax=None, proj="xz", only_pts=None, show_pts=False,
+             show_earth=True,  **kwargs):
         """Generate a 2D plot of the trace projected onto a given plane
         Graphic keywords apply to the plot method for the field lines
 
@@ -351,11 +351,11 @@ Coords: {}
             The object on which to plot.
         proj : str, optional
             The GSW projection plane.
-        onlyPts : list_like, optional
+        only_pts : list_like, optional
             If the trace contains multiple points, only show those specified.
-        showEarth : bool, optional
+        show_earth : bool, optional
             Toggle Earth disk visibility.
-        showPts : bool, optional
+        show_pts : bool, optional
             Toggle start points visibility.
         **kwargs :
             see matplotlib.axes.Axes.plot
@@ -377,21 +377,21 @@ Coords: {}
             ax.set_aspect("equal")
 
         # First plot a nice disk for the Earth
-        if showEarth:
+        if show_earth:
             circ = Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
                           alpha=.5, zorder=0)
             ax.add_patch(circ)
 
         # Select indices to show
-        if onlyPts is None:
+        if only_pts is None:
             inds = _np.arange(len(self.lat))
-        elif not isinstance(onlyPts, list):
-            inds = [onlyPts]
+        elif not isinstance(only_pts, list):
+            inds = [only_pts]
         else:
-            inds = onlyPts
+            inds = only_pts
 
         # Then plot the traced field line
-        for ip, _ in enumerate(self.lat):
+        for ip in inds:
             # Select projection plane
             if proj[0] == "x":
                 xx = self.trace_gsw[ip][:, 0]
@@ -424,40 +424,52 @@ Coords: {}
                 ax.set_ylabel(r"$Z_{GSW}$")
                 ydir = [0, 0, 1]
 
-            sign = 1 if -1 not in _np.cross(xdir, ydir) else -1
+            # Work out whether the cross product is into or out of the plot.
+            if -1 in _np.cross(xdir, ydir):
+                sign = -1
+            else:
+                sign = 1
+            
+            # Work out which indices would be in front of/behind the 0 plane.
             if "x" not in proj:
                 zz = sign*self.gsw[ip, 0]
-                indMask = sign*self.trace_gsw[ip][:, 0] < 0
+                ind_mask = sign*self.trace_gsw[ip][:, 0] < 0
             if "y" not in proj:
                 zz = sign*self.gsw[ip, 1]
-                indMask = sign*self.trace_gsw[ip][:, 1] < 0
+                ind_mask = sign*self.trace_gsw[ip][:, 1] < 0
             if "z" not in proj:
                 zz = sign*self.gsw[ip, 2]
-                indMask = sign*self.trace_gsw[ip][:, 2] < 0
+                ind_mask = sign*self.trace_gsw[ip][:, 2] < 0
 
-            # Plot
-            ax.plot(_np.ma.masked_array(xx, mask=~indMask),
-                    _np.ma.masked_array(yy, mask=~indMask),
-                    zorder=-1, **kwargs)
-            ax.plot(_np.ma.masked_array(xx, mask=indMask),
-                    _np.ma.masked_array(yy, mask=indMask),
-                    zorder=1, **kwargs)
-            if showPts:
-                ax.scatter(xpt, ypt, c="k", s=40, zorder=zz)
+            # If some points are in front and some behind, set alpha to half.
+            if ind_mask.any() & ~ind_mask.all():
+                alpha = 0.5
+            else:
+                alpha = 1.
 
-    def plot3d(self, onlyPts=None, showEarth=True, showPts=False, disp=True,
+            # Plot the behind points behind, and the front points in front.
+            ax.plot(_np.ma.masked_array(xx, mask=~ind_mask),
+                    _np.ma.masked_array(yy, mask=~ind_mask), zorder=-1,
+                    color='C{:1d}'.format(cnt), alpha=alpha, **kwargs)
+            ax.plot(_np.ma.masked_array(xx, mask=ind_mask),
+                    _np.ma.masked_array(yy, mask=ind_mask), zorder=1,
+                    color='C{:1d}'.format(cnt), alpha=alpha, **kwargs)
+            if show_pts:
+                ax.scatter(xpt, ypt, c="k", zorder=zz)
+
+    def plot3d(self, only_pts=None, show_earth=True, show_pts=False, disp=True,
                xyzlim=None, zorder=1, linewidth=2, color="b", **kwargs):
         """Generate a 3D plot of the trace
         Graphic keywords apply to the plot3d method for the field lines
 
         Parameters
         ----------
-        onlyPts : Optional[ ]
+        only_pts : Optional[ ]
             if the trace contains multiple points,
             only show the specified indices (list)
-        showEarth : Optional[bool]
+        show_earth : Optional[bool]
             Toggle Earth sphere visibility on/off
-        showPts : Optional[bool]
+        show_pts : Optional[bool]
             Toggle start points visibility on/off
         disp : Optional[bool]
             invoke plt.show()
@@ -487,7 +499,7 @@ Coords: {}
         ax = fig.gca(projection="3d")
 
         # First plot a nice sphere for the Earth
-        if showEarth:
+        if show_earth:
             u = _np.linspace(0, 2 * _np.pi, 179)
             v = _np.linspace(0, _np.pi, 179)
             tx = _np.outer(_np.cos(u), _np.sin(v))
@@ -497,12 +509,12 @@ Coords: {}
                             alpha=.5, zorder=0, linewidth=0.5)
 
         # Select indices to show
-        if onlyPts is None:
+        if only_pts is None:
             inds = _np.arange(len(self.lat))
-        elif not isinstance(onlyPts, list):
-            inds = [onlyPts]
+        elif not isinstance(only_pts, list):
+            inds = [only_pts]
         else:
-            inds = onlyPts
+            inds = only_pts
 
         # Then plot the traced field line
         for ip in inds:
@@ -511,7 +523,7 @@ Coords: {}
                       self.trace_gsw[ip][0:plot_index, 1],
                       self.trace_gsw[ip][0:plot_index, 2], zorder=zorder,
                       linewidth=linewidth, color=color, **kwargs)
-            if showPts:
+            if show_pts:
                 ax.scatter3D(*self.gsw[ip, :], c="k")
 
         # Set plot limits
