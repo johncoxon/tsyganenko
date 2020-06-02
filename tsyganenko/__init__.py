@@ -382,7 +382,7 @@ Coords: {}
         # First plot a nice disk for the Earth
         if show_earth:
             circ = Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
-                          alpha=.5, zorder=0)
+                          alpha=.5, zorder=4)
             ax.add_patch(circ)
 
         # Select indices to show
@@ -400,65 +400,30 @@ Coords: {}
                 xx = self.trace_gsw[ip][:, 0]
                 xpt = self.gsw[ip, 0]
                 ax.set_xlabel(r"$X_{GSW}$")
-                xdir = [1, 0, 0]
             elif proj[0] == "y":
                 xx = self.trace_gsw[ip][:, 1]
                 xpt = self.gsw[ip, 1]
                 ax.set_xlabel(r"$Y_{GSW}$")
-                xdir = [0, 1, 0]
             elif proj[0] == "z":
                 xx = self.trace_gsw[ip][:, 2]
                 xpt = self.gsw[ip, 2]
                 ax.set_xlabel(r"$Z_{GSW}$")
-                xdir = [0, 0, 1]
             if proj[1] == "x":
                 yy = self.trace_gsw[ip][:, 0]
                 ypt = self.gsw[ip, 0]
                 ax.set_ylabel(r"$X_{GSW}$")
-                ydir = [1, 0, 0]
             elif proj[1] == "y":
                 yy = self.trace_gsw[ip][:, 1]
                 ypt = self.gsw[ip, 1]
                 ax.set_ylabel(r"$Y_{GSW}$")
-                ydir = [0, 1, 0]
             elif proj[1] == "z":
                 yy = self.trace_gsw[ip][:, 2]
                 ypt = self.gsw[ip, 2]
                 ax.set_ylabel(r"$Z_{GSW}$")
-                ydir = [0, 0, 1]
 
-            # Work out whether the cross product is into or out of the plot.
-            if -1 in _np.cross(xdir, ydir):
-                sign = -1
-            else:
-                sign = 1
-
-            # Work out which indices would be in front of/behind the 0 plane.
-            if "x" not in proj:
-                zz = sign*self.gsw[ip, 0]
-                ind_mask = sign*self.trace_gsw[ip][:, 0] < 0
-            if "y" not in proj:
-                zz = sign*self.gsw[ip, 1]
-                ind_mask = sign*self.trace_gsw[ip][:, 1] < 0
-            if "z" not in proj:
-                zz = sign*self.gsw[ip, 2]
-                ind_mask = sign*self.trace_gsw[ip][:, 2] < 0
-
-            # If some points are in front and some behind, set alpha to half.
-            if ind_mask.any() & ~ind_mask.all():
-                alpha = 0.5
-            else:
-                alpha = 1.
-
-            # Plot the behind points behind, and the front points in front.
-            ax.plot(_np.ma.masked_array(xx, mask=~ind_mask),
-                    _np.ma.masked_array(yy, mask=~ind_mask), zorder=-1,
-                    color='C{:1d}'.format(cnt), alpha=alpha, **kwargs)
-            ax.plot(_np.ma.masked_array(xx, mask=ind_mask),
-                    _np.ma.masked_array(yy, mask=ind_mask), zorder=1,
-                    color='C{:1d}'.format(cnt), alpha=alpha, **kwargs)
+            ax.plot(xx, yy, **kwargs)
             if show_pts:
-                ax.scatter(xpt, ypt, c="k", zorder=zz)
+                ax.scatter(xpt, ypt, c="k", zorder=4)
 
         # Set x limits to have the Sun to the left as per convention
         ax.set_xlim(ax.get_xlim()[::-1])
