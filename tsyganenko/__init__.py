@@ -381,7 +381,7 @@ Coords: {}
         # First plot a nice disk for the Earth
         if show_earth:
             circ = Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
-                          alpha=.5, zorder=0)
+                          alpha=.5, zorder=4)
             ax.add_patch(circ)
 
         # Select indices to show
@@ -422,7 +422,7 @@ Coords: {}
 
             ax.plot(xx, yy, **kwargs)
             if show_pts:
-                ax.scatter(xpt, ypt, c="k", zorder=2)
+                ax.scatter(xpt, ypt, c="k", zorder=4)
 
         # Set x limits to have the Sun to the left as per convention
         ax.set_xlim(ax.get_xlim()[::-1])
