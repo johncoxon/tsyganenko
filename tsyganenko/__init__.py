@@ -91,9 +91,9 @@ class Trace(object):
                  err=0.000001):
         from datetime import datetime as pydt
 
-        self.lat = lat
-        self.lon = lon
-        self.rho = rho
+        self.lat = _np.array(lat, dtype=float)
+        self.lon = _np.array(lon, dtype=float)
+        self.rho = _np.array(rho, dtype=float)
         self.coords = coords
         self.vsw_gse = vsw_gse
         self.pdyn = pdyn
@@ -122,33 +122,17 @@ class Trace(object):
                 _np.isnan(self.by_imf) | _np.isnan(self.bz_imf):
             raise ValueError("Input parameters are not numbers")
 
-        # A provision for those who want to batch trace
-        try:
-            len_lat = len(self.lat)
-        except TypeError:
-            self.lat = [self.lat]
-            len_lat = len(self.lat)
-        try:
-            len_lon = len(self.lon)
-        except TypeError:
-            self.lon = [self.lon]
-            len_lon = len(self.lon)
-        try:
-            len_rho = len(self.rho)
-        except TypeError:
-            self.rho = [self.rho]
-            len_rho = len(self.rho)
         # If datetime isn't a list it might be because a single datetime was
         # passed for multiple coordinates; if that is the case, make a list the
         # same length as the coordinates which is just that datetime.
         try:
             len_dt = len(self.datetime)
         except TypeError:
-            self.datetime = [self.datetime for _ in self.lat]
+            self.datetime = _np.array([self.datetime for _ in self.lat])
             len_dt = len(self.datetime)
 
         # Make sure they're all the same length
-        if not (len_lat == len_lon == len_rho == len_dt):
+        if not (len(self.lat) == len(self.lon) == len(self.rho) == len_dt):
             raise ValueError(
                 "lat, lon, rho and datetime must be the same length")
 
@@ -164,15 +148,15 @@ class Trace(object):
         # them, and then assign the attributes to the new values.
         if lat:
             _lat = self.lat
-            self.lat = lat
+            self.lat = _np.array(lat, dtype=float)
 
         if lon:
             _lon = self.lon
-            self.lon = lon
+            self.lon = _np.array(lon, dtype=float)
 
         if rho:
             _rho = self.rho
-            self.rho = rho
+            self.rho = _np.array(rho, dtype=float)
 
         if coords:
             _coords = self.coords
