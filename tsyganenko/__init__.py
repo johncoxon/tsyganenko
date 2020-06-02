@@ -3,14 +3,14 @@ tsyganenko : a module to trace magnetic field lines using the Tsyganenko models
 
 This package was initially written by Sebastien de Larquier (Virginia Tech).
 In 2020, the package was updated by John Coxon (University of Southampton) to
-add support for the latest release of Geopack-2008.for and Python 3 support.
+add support for the latest release of geopack-2008.for and Python 3 support.
 
 Copyright (C) 2012 VT SuperDARN Lab
 
 .. moduleauthor:: John Coxon
 
 """
-import Geopack
+import geopack
 import logging
 import numpy as _np
 
@@ -249,19 +249,19 @@ class Trace(object):
         # And now iterate through the desired points
         for ip in _np.arange(len(lat)):
             # This has to be called first
-            Geopack.recalc_08(datetime[ip].year,
+            geopack.recalc_08(datetime[ip].year,
                               datetime[ip].timetuple().tm_yday,
                               datetime[ip].hour, datetime[ip].minute,
                               datetime[ip].second, *vswgse)
 
             # Convert spherical to cartesian
-            r, theta, phi, xgeo, ygeo, zgeo = Geopack.sphcar_08(
+            r, theta, phi, xgeo, ygeo, zgeo = geopack.sphcar_08(
                 rho[ip]/RE, _np.radians(90.-lat[ip]), _np.radians(lon[ip]),
                 0., 0., 0., 1)
 
             # Convert to GSW.
             if coords.lower() == "geo":
-                _, _, _, xgsw, ygsw, zgsw = Geopack.geogsw_08(xgeo, ygeo, zgeo,
+                _, _, _, xgsw, ygsw, zgsw = geopack.geogsw_08(xgeo, ygeo, zgeo,
                                                               0., 0., 0., 1)
 
             self.gsw[ip, 0] = xgsw
@@ -276,15 +276,15 @@ class Trace(object):
             # Towards NH and then towards SH
             for mapto in [-1, 1]:
                 xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt \
-                    = Geopack.trace_08(xgsw, ygsw, zgsw, mapto, dsmax, err,
+                    = geopack.trace_08(xgsw, ygsw, zgsw, mapto, dsmax, err,
                                        rmax, rmin, 0, parmod, exmod, inmod,
                                        l_max)
 
                 # Convert back to spherical geographic coords
-                xfgeo, yfgeo, zfgeo, _, _, _ = Geopack.geogsw_08(0., 0., 0.,
+                xfgeo, yfgeo, zfgeo, _, _, _ = geopack.geogsw_08(0., 0., 0.,
                                                                  xfgsw, yfgsw,
                                                                  zfgsw, -1)
-                rhof, colatf, lonf, _, _, _ = Geopack.sphcar_08(0., 0., 0.,
+                rhof, colatf, lonf, _, _, _ = geopack.sphcar_08(0., 0., 0.,
                                                                 xfgeo, yfgeo,
                                                                 zfgeo, -1)
 
