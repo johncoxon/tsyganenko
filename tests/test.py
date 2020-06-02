@@ -1,28 +1,12 @@
-"""tsyganenko unit tests
+"""
+tsyganenko.tests : tests for the tsyganenko Trace class.
 
-Functions
---------------------------------------------------
-generate_test       Generate new unit tests easily
---------------------------------------------------
+These unit tests were written by John Coxon to provide an easy way to verify
+that updates to Geopack-2008 had not resulted in bugs in the tracing. See each
+class for the rationale behind the tests within it.
 
-Classes
-------------------------------------------------------------------------------------------------
-Trace1965to2005     Tests whether NH/SH traces are as expected for dates in the 1965--2005 range
-Trace2006to2015     Tests whether NH/SH traces are as expected for dates in the 2006--2015 range
-------------------------------------------------------------------------------------------------
+.. moduleauthor:: John Coxon
 
-The original version of this module was based on the version of Geopack-2008.for released on
-2010-11-30 which contained IGRF-11 coefficients. Because the IGRF-11 coefficients were definitive up
-to 2005, the returns from the program should be identical for 1965--2005 even with versions using
-later releases of IGRF. Trace1965to2005 tests to see whether the outputs are identical between IGRF
-update releases of Geopack-2008.for.
-
-The returns from 2006--2015 should be similar but not identical, since the coefficients will change
-in more recent releases of IGRF. As such, , whereas Trace2006to2015 tests to see whether the outputs
-are equal to a a tolerance of 5% (relative) or 0.1 (absolute) given the bump from IGRF-11 to 13.
-
-When IGRF-14 is released, a new class called Trace2011to2020 will be introduced to check the
-correspondence between the IGRF-13 and 14 implementations.
 """
 import unittest
 import datetime as dt
@@ -73,6 +57,13 @@ def generate_test(lat, lon, rho, start, end):
 
 
 class Trace1965to2015(unittest.TestCase):
+    """
+    The tests herein are benchmarked against the version of Geopack-2008 from
+    2020-01-01 containing IGRF-13 coefficients. Because IGRF-13 coefficients
+    are definitive to 2015, the returns from the program should be identical
+    for 1965--2015 even with versions using later releases of IGRF.
+    """
+
     def test_90S_0_30000(self):
         """Test for latitude = -90, longitude = 0, rho = 30000"""
         lat = -90
@@ -3099,6 +3090,14 @@ class Trace1965to2015(unittest.TestCase):
 
 
 class Trace2006to2015(unittest.TestCase):
+    """
+    The returns from 2006-2015 should be similar but not identical between
+    IGRF-11 and IGRF-13 since the former had provisional versions. These tests
+    look for a relative tolerance of 5% or an absolute tolerance of 0.1 to allow
+    easy comparison of the current version of the code with the previous version
+    (2010-30-11).
+    """
+
     def test_90S_0_30000(self):
         """Test for latitude = -90, longitude = 0, rho = 30000"""
         lat = -90
@@ -6125,6 +6124,12 @@ class Trace2006to2015(unittest.TestCase):
 
 
 class Trace2016to2025(unittest.TestCase):
+    """
+    The 2020-01-01 version of Geopack-2008 is based on IGRF-13 which has
+    provisional IGRF coefficients up to 2025. These tests allow for easy
+    benchmarking of future Geopack-2008 releases with new IGRF versions.
+    """
+    
     def test_90S_0_30000(self):
         """Test for latitude = -90, longitude = 0, rho = 30000"""
         lat = -90
