@@ -391,7 +391,7 @@ Coords: {}
             inds = only_pts
 
         # Then plot the traced field line
-        for ip in inds:
+        for cnt, ip in enumerate(inds):
             # Select projection plane
             if proj[0] == "x":
                 xx = self.trace_gsw[ip][:, 0]
