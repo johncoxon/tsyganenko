@@ -456,6 +456,7 @@ Coords: {}
             if show_pts:
                 ax.scatter(xpt, ypt, c="k", zorder=zz)
 
+        # Set x limits to have the Sun to the left as per convention
         ax.set_xlim(ax.get_xlim()[::-1])
 
         return ax
@@ -520,9 +521,8 @@ Coords: {}
         if xyzlim is None:
             self._equal_aspect_3d(ax)
         else:
-            ax.set_xlim3d(*xyzlim)
-            ax.set_ylim3d(*xyzlim)
-            ax.set_zlim3d(*xyzlim)
+            ax.set(xlim3d=xyzlim, ylim3d=xyzlim, zlim3d=xyzlim)
+        ax.set(xlabel=r"$X_{GSW}$", ylabel=r"$Y_{GSW}$", zlabel=r"$Z_{GSW}$")
 
         return ax
 
