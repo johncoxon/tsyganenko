@@ -137,10 +137,13 @@ class Trace(object):
         except TypeError:
             self.rho = [self.rho]
             len_rho = len(self.rho)
+        # If datetime isn't a list it might be because a single datetime was
+        # passed for multiple coordinates; if that is the case, make a list the
+        # same length as the coordinates which is just that datetime.
         try:
             len_dt = len(self.datetime)
         except TypeError:
-            self.datetime = [self.datetime]
+            self.datetime = [self.datetime for _ in self.lat]
             len_dt = len(self.datetime)
 
         # Make sure they're all the same length
