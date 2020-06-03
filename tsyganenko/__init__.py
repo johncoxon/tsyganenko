@@ -234,13 +234,13 @@ class Trace(object):
             if vsw_gse:
                 self.vsw_gse = _vsw_gse
             if pdyn:
-                self.pdyn = pdyn
+                self.pdyn = _pdyn
             if dst:
-                self.dst = dst
+                self.dst = _dst
             if by_imf:
-                self.by_imf = by_imf
+                self.by_imf = _by_imf
             if bz_imf:
-                self.bz_imf = bz_imf
+                self.bz_imf = _bz_imf
 
         # Now that we have good attributes, assign the parameters to those.
         lat = self.lat
