@@ -91,9 +91,9 @@ class Trace(object):
                  err=0.000001):
         from datetime import datetime as pydt
 
-        self.lat = _np.array(lat, dtype=float)
-        self.lon = _np.array(lon, dtype=float)
-        self.rho = _np.array(rho, dtype=float)
+        self.lat = lat
+        self.lon = lon
+        self.rho = rho
         self.coords = coords
         self.vsw_gse = vsw_gse
         self.pdyn = pdyn
@@ -121,18 +121,51 @@ class Trace(object):
         if _np.isnan(self.pdyn) | _np.isnan(self.dst) | \
                 _np.isnan(self.by_imf) | _np.isnan(self.bz_imf):
             raise ValueError("Input parameters are not numbers")
-
-        # If datetime isn't a list it might be because a single datetime was
-        # passed for multiple coordinates; if that is the case, make a list the
-        # same length as the coordinates which is just that datetime.
+        
+        try:
+            len_lat = len(self.lat)
+        except TypeError:
+            len_lat = 1
+        try:
+            len_lon = len(self.lon)
+        except TypeError:
+            len_lon = 1
+        try:
+            len_rho = len(self.rho)
+        except TypeError:
+            len_rho = 1
         try:
             len_dt = len(self.datetime)
         except TypeError:
+            len_dt = 1
+
+        # Make the inputs into floating point arrays. Where an input is passed
+        # once, make it into an array of that input (this allows passing e.g.
+        # many latitudes for one longitude and rho).
+        lens = _np.array((len_lat, len_lon, len_rho, len_dt))
+        if len_lat == 1:
+            self.lat = _np.ones(lens.max(), dtype=float) * self.lat
+            len_lat = len(self.lat)
+        else:
+            self.lat = _np.array(self.lat, dtype=float)
+        if len_lon == 1:
+            self.lon = _np.ones(lens.max(), dtype=float) * self.lon
+            len_lon = len(self.lon)
+        else:
+            self.lon = _np.array(self.lon, dtype=float)
+        if len_rho == 1:
+            self.rho = _np.ones(lens.max(), dtype=float) * self.rho
+            len_rho = len(self.rho)
+        else:
+            self.rho = _np.array(self.rho, dtype=float)
+        if len_dt == 1:
             self.datetime = _np.array([self.datetime for _ in self.lat])
             len_dt = len(self.datetime)
+        else:
+            self.datetime = _np.array(self.datetime)
 
         # Make sure they're all the same length
-        if not (len(self.lat) == len(self.lon) == len(self.rho) == len_dt):
+        if not (len_lat == len_lon == len_rho == len_dt):
             raise ValueError(
                 "lat, lon, rho and datetime must be the same length")
 
@@ -148,15 +181,15 @@ class Trace(object):
         # them, and then assign the attributes to the new values.
         if lat:
             _lat = self.lat
-            self.lat = _np.array(lat, dtype=float)
+            self.lat = lat
 
         if lon:
             _lon = self.lon
-            self.lon = _np.array(lon, dtype=float)
+            self.lon = lon
 
         if rho:
             _rho = self.rho
-            self.rho = _np.array(rho, dtype=float)
+            self.rho = rho
 
         if coords:
             _coords = self.coords
