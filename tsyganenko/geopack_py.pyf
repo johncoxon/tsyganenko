@@ -4,36 +4,36 @@
 python module geopack ! in 
     interface  ! in :geopack
         subroutine igrf_gsw_08(xgsw,ygsw,zgsw,hxgsw,hygsw,hzgsw) ! in :geopack:geopack_py.for
-            real :: xgsw
-            real :: ygsw
-            real :: zgsw
-            real :: hxgsw
-            real :: hygsw
-            real :: hzgsw
+            real intent(in) :: xgsw
+            real intent(in) :: ygsw
+            real intent(in) :: zgsw
+            real intent(out) :: hxgsw
+            real intent(out) :: hygsw
+            real intent(out) :: hzgsw
             real dimension(105) :: g
             real dimension(105) :: h
             real dimension(105) :: rec
             common /geopack2/ g,h,rec
         end subroutine igrf_gsw_08
         subroutine igrf_geo_08(r,theta,phi,br,btheta,bphi) ! in :geopack:geopack_py.for
-            real :: r
-            real :: theta
-            real :: phi
-            real :: br
-            real :: btheta
-            real :: bphi
+            real intent(in) :: r
+            real intent(in) :: theta
+            real intent(in) :: phi
+            real intent(out) :: br
+            real intent(out) :: btheta
+            real intent(out) :: bphi
             real dimension(105) :: g
             real dimension(105) :: h
             real dimension(105) :: rec
             common /geopack2/ g,h,rec
         end subroutine igrf_geo_08
         subroutine dip_08(xgsw,ygsw,zgsw,bxgsw,bygsw,bzgsw) ! in :geopack:geopack_py.for
-            real :: xgsw
-            real :: ygsw
-            real :: zgsw
-            real :: bxgsw
-            real :: bygsw
-            real :: bzgsw
+            real intent(in) :: xgsw
+            real intent(in) :: ygsw
+            real intent(in) :: zgsw
+            real intent(out) :: bxgsw
+            real intent(out) :: bygsw
+            real intent(out) :: bzgsw
             real dimension(10) :: aa
             real :: sps
             real :: cps
@@ -45,15 +45,15 @@ python module geopack ! in
             common /geopack2/ g,h,rec
         end subroutine dip_08
         subroutine sun_08(iyear,iday,ihour,min_bn,isec,gst,slong,srasn,sdec) ! in :geopack:geopack_py.for
-            integer :: iyear
-            integer :: iday
-            integer :: ihour
-            integer :: min_bn
-            integer :: isec
-            real :: gst
-            real :: slong
-            real :: srasn
-            real :: sdec
+            integer intent(in) :: iyear
+            integer intent(in) :: iday
+            integer intent(in) :: ihour
+            integer intent(in) :: min_bn
+            integer intent(in) :: isec
+            real intent(out) :: gst
+            real intent(out) :: slong
+            real intent(out) :: srasn
+            real intent(out) :: sdec
         end subroutine sun_08
         subroutine sphcar_08(r,theta,phi,x,y,z,j) ! in :geopack:geopack_py.for
             real intent(in,out) :: r
@@ -65,35 +65,35 @@ python module geopack ! in
             integer intent(in) :: j
         end subroutine sphcar_08
         subroutine bspcar_08(theta,phi,br,btheta,bphi,bx,by,bz) ! in :geopack:geopack_py.for
-            real :: theta
-            real :: phi
-            real :: br
-            real :: btheta
-            real :: bphi
-            real :: bx
-            real :: by
-            real :: bz
+            real intent(in) :: theta
+            real intent(in) :: phi
+            real intent(in) :: br
+            real intent(in) :: btheta
+            real intent(in) :: bphi
+            real intent(out) :: bx
+            real intent(out) :: by
+            real intent(out) :: bz
         end subroutine bspcar_08
         subroutine bcarsp_08(x,y,z,bx,by,bz,br,btheta,bphi) ! in :geopack:geopack_py.for
-            real :: x
-            real :: y
-            real :: z
-            real :: bx
-            real :: by
-            real :: bz
-            real :: br
-            real :: btheta
-            real :: bphi
+            real intent(in) :: x
+            real intent(in) :: y
+            real intent(in) :: z
+            real intent(in) :: bx
+            real intent(in) :: by
+            real intent(in) :: bz
+            real intent(out) :: br
+            real intent(out) :: btheta
+            real intent(out) :: bphi
         end subroutine bcarsp_08
         subroutine recalc_08(iyear,iday,ihour,min_bn,isec,vgsex,vgsey,vgsez) ! in :geopack:geopack_py.for
-            integer :: iyear
-            integer :: iday
-            integer :: ihour
-            integer :: min_bn
-            integer :: isec
-            real :: vgsex
-            real :: vgsey
-            real :: vgsez
+            integer intent(in) :: iyear
+            integer intent(in) :: iday
+            integer intent(in) :: ihour
+            integer intent(in) :: min_bn
+            integer intent(in) :: isec
+            real intent(in) :: vgsex
+            real intent(in) :: vgsey
+            real intent(in) :: vgsez
             real :: st0
             real :: ct0
             real :: sl0
@@ -135,13 +135,13 @@ python module geopack ! in
             common /geopack2/ g,h,rec
         end subroutine recalc_08
         subroutine gswgse_08(xgsw,ygsw,zgsw,xgse,ygse,zgse,j) ! in :geopack:geopack_py.for
-            real :: xgsw
-            real :: ygsw
-            real :: zgsw
-            real :: xgse
-            real :: ygse
-            real :: zgse
-            integer :: j
+            real intent(in,out) :: xgsw
+            real intent(in,out) :: ygsw
+            real intent(in,out) :: zgsw
+            real intent(in,out) :: xgse
+            real intent(in,out) :: ygse
+            real intent(in,out) :: zgse
+            integer intent(in) :: j
             real dimension(25) :: aaa
             real :: e11
             real :: e21
@@ -155,13 +155,13 @@ python module geopack ! in
             common /geopack1/ aaa,e11,e21,e31,e12,e22,e32,e13,e23,e33
         end subroutine gswgse_08
         subroutine geomag_08(xgeo,ygeo,zgeo,xmag,ymag,zmag,j) ! in :geopack:geopack_py.for
-            real :: xgeo
-            real :: ygeo
-            real :: zgeo
-            real :: xmag
-            real :: ymag
-            real :: zmag
-            integer :: j
+            real intent(in,out) :: xgeo
+            real intent(in,out) :: ygeo
+            real intent(in,out) :: zgeo
+            real intent(in,out) :: xmag
+            real intent(in,out) :: ymag
+            real intent(in,out) :: zmag
+            integer intent(in) :: j
             real :: st0
             real :: ct0
             real :: sl0
@@ -174,13 +174,13 @@ python module geopack ! in
             common /geopack1/ st0,ct0,sl0,cl0,ctcl,stcl,ctsl,stsl,ab
         end subroutine geomag_08
         subroutine geigeo_08(xgei,ygei,zgei,xgeo,ygeo,zgeo,j) ! in :geopack:geopack_py.for
-            real :: xgei
-            real :: ygei
-            real :: zgei
-            real :: xgeo
-            real :: ygeo
-            real :: zgeo
-            integer :: j
+            real intent(in,out) :: xgei
+            real intent(in,out) :: ygei
+            real intent(in,out) :: zgei
+            real intent(in,out) :: xgeo
+            real intent(in,out) :: ygeo
+            real intent(in,out) :: zgeo
+            integer intent(in) :: j
             real dimension(13) :: a
             real :: cgst
             real :: sgst
@@ -188,13 +188,13 @@ python module geopack ! in
             common /geopack1/ a,cgst,sgst,b
         end subroutine geigeo_08
         subroutine magsm_08(xmag,ymag,zmag,xsm,ysm,zsm,j) ! in :geopack:geopack_py.for
-            real :: xmag
-            real :: ymag
-            real :: zmag
-            real :: xsm
-            real :: ysm
-            real :: zsm
-            integer :: j
+            real intent(in,out) :: xmag
+            real intent(in,out) :: ymag
+            real intent(in,out) :: zmag
+            real intent(in,out) :: xsm
+            real intent(in,out) :: ysm
+            real intent(in,out) :: zsm
+            integer intent(in) :: j
             real dimension(8) :: a
             real :: sfi
             real :: cfi
@@ -202,13 +202,13 @@ python module geopack ! in
             common /geopack1/ a,sfi,cfi,b
         end subroutine magsm_08
         subroutine smgsw_08(xsm,ysm,zsm,xgsw,ygsw,zgsw,j) ! in :geopack:geopack_py.for
-            real :: xsm
-            real :: ysm
-            real :: zsm
-            real :: xgsw
-            real :: ygsw
-            real :: zgsw
-            integer :: j
+            real intent(in,out) :: xsm
+            real intent(in,out) :: ysm
+            real intent(in,out) :: zsm
+            real intent(in,out) :: xgsw
+            real intent(in,out) :: ygsw
+            real intent(in,out) :: zgsw
+            integer intent(in) :: j
             real dimension(10) :: a
             real :: sps
             real :: cps
@@ -304,29 +304,29 @@ python module geopack ! in
             common /geopack1/ aa,dd,bb
         end subroutine trace_08
         subroutine shuetal_mgnp_08(xn_pd,vel,bzimf,xgsw,ygsw,zgsw,xmgnp,ymgnp,zmgnp,dist,id) ! in :geopack:geopack_py.for
-            real :: xn_pd
-            real :: vel
-            real :: bzimf
-            real :: xgsw
-            real :: ygsw
-            real :: zgsw
-            real :: xmgnp
-            real :: ymgnp
-            real :: zmgnp
-            real :: dist
-            integer :: id
+            real intent(in) :: xn_pd
+            real intent(in) :: vel
+            real intent(in) :: bzimf
+            real intent(in) :: xgsw
+            real intent(in) :: ygsw
+            real intent(in) :: zgsw
+            real intent(out) :: xmgnp
+            real intent(out) :: ymgnp
+            real intent(out) :: zmgnp
+            real intent(out) :: dist
+            integer intent(out) :: id
         end subroutine shuetal_mgnp_08
         subroutine t96_mgnp_08(xn_pd,vel,xgsw,ygsw,zgsw,xmgnp,ymgnp,zmgnp,dist,id) ! in :geopack:geopack_py.for
-            real :: xn_pd
-            real :: vel
-            real :: xgsw
-            real :: ygsw
-            real :: zgsw
-            real :: xmgnp
-            real :: ymgnp
-            real :: zmgnp
-            real :: dist
-            integer :: id
+            real intent(in) :: xn_pd
+            real intent(in) :: vel
+            real intent(in) :: xgsw
+            real intent(in) :: ygsw
+            real intent(in) :: zgsw
+            real intent(out) :: xmgnp
+            real intent(out) :: ymgnp
+            real intent(out) :: zmgnp
+            real intent(out) :: dist
+            integer intent(out) :: id
         end subroutine t96_mgnp_08
         subroutine t96_01(iopt,parmod,ps,x,y,z,bx,by,bz) ! in :geopack:T96.f
             integer :: iopt
