@@ -3,14 +3,14 @@ tsyganenko : a module to trace magnetic field lines using the Tsyganenko models
 
 This package was initially written by Sebastien de Larquier (Virginia Tech).
 In 2020, the package was updated by John Coxon (University of Southampton) to
-add support for the latest release of Geopack-2008.for and Python 3 support.
+add support for the latest release of geopack-2008.for and Python 3 support.
 
 Copyright (C) 2012 VT SuperDARN Lab
 
 .. moduleauthor:: John Coxon
 
 """
-import Geopack
+import geopack
 import logging
 import numpy as _np
 
@@ -36,15 +36,15 @@ class Trace(object):
     datetime : datetime, optional
         The date and time of the start point. If None, defaults to the
         current date and time.
-    vswgse : list_like, optional
+    vsw_gse : list_like, optional
         Solar wind velocity in GSE coordinates (m/s, m/s, m/s).
     pdyn : float, optional
         Solar wind dynamic pressure (nPa). Default is 2.0.
     dst : int, optional
         Dst index (nT). Default is -5.
-    byimf : float, optional
+    by_imf : float, optional
         IMF By (nT). Default is 0.0.
-    bzimf : float, optional
+    bz_imf : float, optional
         IMF Bz (nT). Default is -5.0.
     l_max : int, optional
         The maximum number of points to trace before stopping. Default is 5000.
@@ -86,19 +86,20 @@ class Trace(object):
         ax = trace.plot3d()
     """
     def __init__(self, lat, lon, rho, coords="geo", datetime=None,
-                 vswgse=[-400., 0., 0.], pdyn=2., dst=-5., byimf=0., bzimf=-5.,
-                 l_max=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
+                 vsw_gse=[-400., 0., 0.], pdyn=2., dst=-5., by_imf=0.,
+                 bz_imf=-5., l_max=5000, rmax=60., rmin=1., dsmax=0.01,
+                 err=0.000001):
         from datetime import datetime as pydt
 
         self.lat = lat
         self.lon = lon
         self.rho = rho
         self.coords = coords
-        self.vswgse = vswgse
+        self.vsw_gse = vsw_gse
         self.pdyn = pdyn
         self.dst = dst
-        self.byimf = byimf
-        self.bzimf = bzimf
+        self.by_imf = by_imf
+        self.bz_imf = bz_imf
 
         # If no datetime is provided, defaults to today
         if datetime is None:
@@ -112,39 +113,56 @@ class Trace(object):
 
     def _test_valid(self):
         """Test the validity of inputs to the Trace class and trace method"""
-        if len(self.vswgse) != 3:
-            raise ValueError("vswgse must have 3 elements")
+        if len(self.vsw_gse) != 3:
+            raise ValueError("vsw_gse must have 3 elements")
         if self.coords.lower() != "geo":
             raise ValueError("{}: this coordinate system is not supported")\
                 .format(self.coords.lower())
         if _np.isnan(self.pdyn) | _np.isnan(self.dst) | \
-                _np.isnan(self.byimf) | _np.isnan(self.bzimf):
+                _np.isnan(self.by_imf) | _np.isnan(self.bz_imf):
             raise ValueError("Input parameters are not numbers")
+        
+        try:
+            len_lat = len(self.lat)
+        except TypeError:
+            len_lat = 1
+        try:
+            len_lon = len(self.lon)
+        except TypeError:
+            len_lon = 1
+        try:
+            len_rho = len(self.rho)
+        except TypeError:
+            len_rho = 1
+        try:
+            len_dt = len(self.datetime)
+        except TypeError:
+            len_dt = 1
 
-        # A provision for those who want to batch trace
-        try:
+        # Make the inputs into floating point arrays. Where an input is passed
+        # once, make it into an array of that input (this allows passing e.g.
+        # many latitudes for one longitude and rho).
+        lens = _np.array((len_lat, len_lon, len_rho, len_dt))
+        if len_lat == 1:
+            self.lat = _np.ones(lens.max(), dtype=float) * self.lat
             len_lat = len(self.lat)
-        except TypeError:
-            self.lat = [self.lat]
-            len_lat = len(self.lat)
-        try:
+        else:
+            self.lat = _np.array(self.lat, dtype=float)
+        if len_lon == 1:
+            self.lon = _np.ones(lens.max(), dtype=float) * self.lon
             len_lon = len(self.lon)
-        except TypeError:
-            self.lon = [self.lon]
-            len_lon = len(self.lon)
-        try:
+        else:
+            self.lon = _np.array(self.lon, dtype=float)
+        if len_rho == 1:
+            self.rho = _np.ones(lens.max(), dtype=float) * self.rho
             len_rho = len(self.rho)
-        except TypeError:
-            self.rho = [self.rho]
-            len_rho = len(self.rho)
-        # If datetime isn't a list it might be because a single datetime was
-        # passed for multiple coordinates; if that is the case, make a list the
-        # same length as the coordinates which is just that datetime.
-        try:
+        else:
+            self.rho = _np.array(self.rho, dtype=float)
+        if len_dt == 1:
+            self.datetime = _np.array([self.datetime for _ in self.lat])
             len_dt = len(self.datetime)
-        except TypeError:
-            self.datetime = [self.datetime for _ in self.lat]
-            len_dt = len(self.datetime)
+        else:
+            self.datetime = _np.array(self.datetime)
 
         # Make sure they're all the same length
         if not (len_lat == len_lon == len_rho == len_dt):
@@ -154,7 +172,7 @@ class Trace(object):
         return True
 
     def trace(self, lat=None, lon=None, rho=None, coords=None, datetime=None,
-              vswgse=None, pdyn=None, dst=None, byimf=None, bzimf=None,
+              vsw_gse=None, pdyn=None, dst=None, by_imf=None, bz_imf=None,
               l_max=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
         """Trace from the start point for both North/Southern Hemispheres"""
 
@@ -181,9 +199,9 @@ class Trace(object):
             _datetime = self.datetime
             self.datetime = datetime
 
-        if vswgse:
-            _vswgse = self.vswgse
-            self.vswgse = vswgse
+        if vsw_gse:
+            _vsw_gse = self.vsw_gse
+            self.vsw_gse = vsw_gse
 
         if pdyn:
             _pdyn = self.pdyn
@@ -193,13 +211,13 @@ class Trace(object):
             _dst = self.dst
             self.dst = dst
 
-        if byimf:
-            _byimf = self.byimf
-            self.byimf = byimf
+        if by_imf:
+            _by_imf = self.by_imf
+            self.by_imf = by_imf
 
-        if bzimf:
-            _bzimf = self.bzimf
-            self.bzimf = bzimf
+        if bz_imf:
+            _bz_imf = self.bz_imf
+            self.bz_imf = bz_imf
 
         # Test that everything is in order, if not revert to existing values
         if not self._test_valid():
@@ -213,16 +231,16 @@ class Trace(object):
                 self.coords = _coords
             if datetime is not None:
                 self.datetime = _datetime
-            if vswgse:
-                self.vswgse = _vswgse
+            if vsw_gse:
+                self.vsw_gse = _vsw_gse
             if pdyn:
-                self.pdyn = pdyn
+                self.pdyn = _pdyn
             if dst:
-                self.dst = dst
-            if byimf:
-                self.byimf = byimf
-            if bzimf:
-                self.bzimf = bzimf
+                self.dst = _dst
+            if by_imf:
+                self.by_imf = _by_imf
+            if bz_imf:
+                self.bz_imf = _bz_imf
 
         # Now that we have good attributes, assign the parameters to those.
         lat = self.lat
@@ -230,38 +248,38 @@ class Trace(object):
         rho = self.rho
         coords = self.coords
         datetime = self.datetime
-        vswgse = self.vswgse
+        vsw_gse = self.vsw_gse
         pdyn = self.pdyn
         dst = self.dst
-        byimf = self.byimf
-        bzimf = self.bzimf
+        by_imf = self.by_imf
+        bz_imf = self.bz_imf
 
         # Initialize trace arrays
         self.gsw = _np.zeros((len(lat), 3))
-        self.latNH = _np.zeros_like(lat)
-        self.lonNH = _np.zeros_like(lat)
-        self.rhoNH = _np.zeros_like(lat)
-        self.latSH = _np.zeros_like(lat)
-        self.lonSH = _np.zeros_like(lat)
-        self.rhoSH = _np.zeros_like(lat)
+        self.lat_n = _np.zeros_like(lat)
+        self.lon_n = _np.zeros_like(lat)
+        self.rho_n = _np.zeros_like(lat)
+        self.lat_s = _np.zeros_like(lat)
+        self.lon_s = _np.zeros_like(lat)
+        self.rho_s = _np.zeros_like(lat)
         self.trace_gsw = []
 
         # And now iterate through the desired points
         for ip in _np.arange(len(lat)):
             # This has to be called first
-            Geopack.recalc_08(datetime[ip].year,
+            geopack.recalc_08(datetime[ip].year,
                               datetime[ip].timetuple().tm_yday,
                               datetime[ip].hour, datetime[ip].minute,
-                              datetime[ip].second, *vswgse)
+                              datetime[ip].second, *vsw_gse)
 
             # Convert spherical to cartesian
-            r, theta, phi, xgeo, ygeo, zgeo = Geopack.sphcar_08(
+            r, theta, phi, xgeo, ygeo, zgeo = geopack.sphcar_08(
                 rho[ip]/RE, _np.radians(90.-lat[ip]), _np.radians(lon[ip]),
                 0., 0., 0., 1)
 
             # Convert to GSW.
             if coords.lower() == "geo":
-                _, _, _, xgsw, ygsw, zgsw = Geopack.geogsw_08(xgeo, ygeo, zgeo,
+                _, _, _, xgsw, ygsw, zgsw = geopack.geogsw_08(xgeo, ygeo, zgeo,
                                                               0., 0., 0., 1)
 
             self.gsw[ip, 0] = xgsw
@@ -271,63 +289,63 @@ class Trace(object):
             # Trace field line
             inmod = "IGRF_GSW_08"
             exmod = "T96_01"
-            parmod = [pdyn, dst, byimf, bzimf, 0., 0., 0., 0., 0., 0.]
+            parmod = [pdyn, dst, by_imf, bz_imf, 0., 0., 0., 0., 0., 0.]
 
             # Towards NH and then towards SH
             for mapto in [-1, 1]:
                 xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt \
-                    = Geopack.trace_08(xgsw, ygsw, zgsw, mapto, dsmax, err,
+                    = geopack.trace_08(xgsw, ygsw, zgsw, mapto, dsmax, err,
                                        rmax, rmin, 0, parmod, exmod, inmod,
                                        l_max)
 
                 # Convert back to spherical geographic coords
-                xfgeo, yfgeo, zfgeo, _, _, _ = Geopack.geogsw_08(0., 0., 0.,
+                xfgeo, yfgeo, zfgeo, _, _, _ = geopack.geogsw_08(0., 0., 0.,
                                                                  xfgsw, yfgsw,
                                                                  zfgsw, -1)
-                rhof, colatf, lonf, _, _, _ = Geopack.sphcar_08(0., 0., 0.,
+                rhof, colatf, lonf, _, _, _ = geopack.sphcar_08(0., 0., 0.,
                                                                 xfgeo, yfgeo,
                                                                 zfgeo, -1)
 
                 # Get coordinates of traced point, and store traces
                 if mapto == 1:
-                    self.latSH[ip] = 90. - _np.degrees(colatf)
-                    self.lonSH[ip] = _np.degrees(lonf)
-                    self.rhoSH[ip] = rhof*RE
+                    self.lat_s[ip] = 90. - _np.degrees(colatf)
+                    self.lon_s[ip] = _np.degrees(lonf)
+                    self.rho_s[ip] = rhof*RE
 
-                    x_trace_SH = xarr[0:l_cnt]
-                    y_trace_SH = yarr[0:l_cnt]
-                    z_trace_SH = zarr[0:l_cnt]
+                    x_trace_s = xarr[0:l_cnt]
+                    y_trace_s = yarr[0:l_cnt]
+                    z_trace_s = zarr[0:l_cnt]
                 elif mapto == -1:
-                    self.latNH[ip] = 90. - _np.degrees(colatf)
-                    self.lonNH[ip] = _np.degrees(lonf)
-                    self.rhoNH[ip] = rhof*RE
+                    self.lat_n[ip] = 90. - _np.degrees(colatf)
+                    self.lon_n[ip] = _np.degrees(lonf)
+                    self.rho_n[ip] = rhof*RE
 
-                    x_trace_NH = xarr[l_cnt-1::-1]
-                    y_trace_NH = yarr[l_cnt-1::-1]
-                    z_trace_NH = zarr[l_cnt-1::-1]
+                    x_trace_n = xarr[l_cnt-1::-1]
+                    y_trace_n = yarr[l_cnt-1::-1]
+                    z_trace_n = zarr[l_cnt-1::-1]
 
-            # Combine the NH and SH traces into x/y/z arrays of shape (l_cnt,).
-            x_trace = _np.concatenate((x_trace_NH, x_trace_SH))
-            y_trace = _np.concatenate((y_trace_NH, y_trace_SH))
-            z_trace = _np.concatenate((z_trace_NH, z_trace_SH))
+            # Combine the NH and SH traces into x/y/z arrays.
+            x_trace = _np.concatenate((x_trace_n, x_trace_s))
+            y_trace = _np.concatenate((y_trace_n, y_trace_s))
+            z_trace = _np.concatenate((z_trace_n, z_trace_s))
 
-            # Combine the combined arrays into an array of shape (l_cnt,3),
+            # Combine the combined arrays into an array of shape (:,3)
             # and add it to the list of traces.
             self.trace_gsw.append(_np.array((x_trace, y_trace, z_trace)).T)
 
     def __str__(self):
         """Print salient inputs alongside trace results for each trace"""
         outstr = """
-vswgse=[{:6.0f},{:6.0f},{:6.0f}]   [m/s]
-pdyn=   {:6.1f}                  [nPa]
-dst=    {:6.1f}                  [nT]
-byimf=  {:6.1f}                  [nT]
-bzimf=  {:6.1f}                  [nT]
+vsw_gse=[{:6.0f},{:6.0f},{:6.0f}]   [m/s]
+pdyn=    {:6.1f}                  [nPa]
+dst=     {:6.1f}                  [nT]
+by_imf=  {:6.1f}                  [nT]
+bz_imf=  {:6.1f}                  [nT]
 
 Coords: {}
 (latitude [deg], longitude [deg], distance from center of the Earth [km])
-""".format(self.vswgse[0], self.vswgse[1], self.vswgse[2], self.pdyn, self.dst,
-           self.byimf, self.bzimf, self.coords)
+""".format(self.vsw_gse[0], self.vsw_gse[1], self.vsw_gse[2], self.pdyn,
+           self.dst, self.by_imf, self.bz_imf, self.coords)
 
         # Print the trace for each set of input coordinates.
         for ip in range(len(self.lat)):
@@ -337,8 +355,8 @@ Coords: {}
     --> SH({:6.3f}, {:6.3f}, {:6.3f})""".format(
                 self.lat[ip], self.lon[ip], self.rho[ip],
                 self.datetime[ip].strftime("%H:%M UT (%d-%b-%y)"),
-                self.latNH[ip], self.lonNH[ip], self.rhoNH[ip],
-                self.latSH[ip], self.lonSH[ip], self.rhoSH[ip])
+                self.lat_n[ip], self.lon_n[ip], self.rho_n[ip],
+                self.lat_s[ip], self.lon_s[ip], self.rho_s[ip])
 
         return outstr
 
@@ -381,7 +399,7 @@ Coords: {}
         # First plot a nice disk for the Earth
         if show_earth:
             circ = Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
-                          alpha=.5, zorder=0)
+                          alpha=.5, zorder=4)
             ax.add_patch(circ)
 
         # Select indices to show
@@ -399,65 +417,30 @@ Coords: {}
                 xx = self.trace_gsw[ip][:, 0]
                 xpt = self.gsw[ip, 0]
                 ax.set_xlabel(r"$X_{GSW}$")
-                xdir = [1, 0, 0]
             elif proj[0] == "y":
                 xx = self.trace_gsw[ip][:, 1]
                 xpt = self.gsw[ip, 1]
                 ax.set_xlabel(r"$Y_{GSW}$")
-                xdir = [0, 1, 0]
             elif proj[0] == "z":
                 xx = self.trace_gsw[ip][:, 2]
                 xpt = self.gsw[ip, 2]
                 ax.set_xlabel(r"$Z_{GSW}$")
-                xdir = [0, 0, 1]
             if proj[1] == "x":
                 yy = self.trace_gsw[ip][:, 0]
                 ypt = self.gsw[ip, 0]
                 ax.set_ylabel(r"$X_{GSW}$")
-                ydir = [1, 0, 0]
             elif proj[1] == "y":
                 yy = self.trace_gsw[ip][:, 1]
                 ypt = self.gsw[ip, 1]
                 ax.set_ylabel(r"$Y_{GSW}$")
-                ydir = [0, 1, 0]
             elif proj[1] == "z":
                 yy = self.trace_gsw[ip][:, 2]
                 ypt = self.gsw[ip, 2]
                 ax.set_ylabel(r"$Z_{GSW}$")
-                ydir = [0, 0, 1]
 
-            # Work out whether the cross product is into or out of the plot.
-            if -1 in _np.cross(xdir, ydir):
-                sign = -1
-            else:
-                sign = 1
-
-            # Work out which indices would be in front of/behind the 0 plane.
-            if "x" not in proj:
-                zz = sign*self.gsw[ip, 0]
-                ind_mask = sign*self.trace_gsw[ip][:, 0] < 0
-            if "y" not in proj:
-                zz = sign*self.gsw[ip, 1]
-                ind_mask = sign*self.trace_gsw[ip][:, 1] < 0
-            if "z" not in proj:
-                zz = sign*self.gsw[ip, 2]
-                ind_mask = sign*self.trace_gsw[ip][:, 2] < 0
-
-            # If some points are in front and some behind, set alpha to half.
-            if ind_mask.any() & ~ind_mask.all():
-                alpha = 0.5
-            else:
-                alpha = 1.
-
-            # Plot the behind points behind, and the front points in front.
-            ax.plot(_np.ma.masked_array(xx, mask=~ind_mask),
-                    _np.ma.masked_array(yy, mask=~ind_mask), zorder=-1,
-                    color='C{:1d}'.format(cnt), alpha=alpha, **kwargs)
-            ax.plot(_np.ma.masked_array(xx, mask=ind_mask),
-                    _np.ma.masked_array(yy, mask=ind_mask), zorder=1,
-                    color='C{:1d}'.format(cnt), alpha=alpha, **kwargs)
+            ax.plot(xx, yy, **kwargs)
             if show_pts:
-                ax.scatter(xpt, ypt, c="k", zorder=zz)
+                ax.scatter(xpt, ypt, c="k", zorder=4)
 
         # Set x limits to have the Sun to the left as per convention
         ax.set_xlim(ax.get_xlim()[::-1])

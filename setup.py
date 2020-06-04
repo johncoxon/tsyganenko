@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 from numpy.distutils.core import setup, Extension
 
-ext = Extension('Geopack',
+ext = Extension('geopack',
   sources=['tsyganenko/geopack_py.pyf','tsyganenko/geopack_py.for','tsyganenko/T96.f','tsyganenko/T02.f'])
 
 setup (name = "Tsyganenko",
-       version = "14",
+       version = "2020.1",
        description = "A wrapper to call fortran routines from the Tsyganenko models",
        author = "John Coxon and Sebastien de Larquier",
        author_email = "work@johncoxon.co.uk",
