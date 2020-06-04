@@ -1,3 +1,6 @@
+c@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+c<pre>
+c
 c          ##########################################################################
 c          #                                                                        #
 c          #                             GEOPACK-2008                               #
@@ -393,9 +396,6 @@ C                         COMMENTS ADDED)
 C
 C   AUTHOR:  N. A. TSYGANENKO
 C
-Cf2py intent(in) J
-Cf2py intent(in,out) :: R,THETA,PHI,X,Y,Z
-C
       IF(J.GT.0) GOTO 3
       SQ=X**2+Y**2
       R=SQRT(SQ+Z**2)
@@ -565,8 +565,6 @@ c    The code now includes preparation of the model coefficients for the subrout
 c    IGRF_08 and GEOMAG_08. This eliminates the need for the SAVE statements, used
 c    in the old versions, making the codes easier and more compiler-independent.
 C---------------------------------------------------------------------------------------------------
-C
-Cf2py IYEAR,IDAY,IHOUR,MIN,ISEC,VGSEX,VGSEY,VGSEZ
 C
       COMMON /GEOPACK1/ ST0,CT0,SL0,CL0,CTCL,STCL,CTSL,STSL,SFI,CFI,
      * SPS,CPS,DS3,CGST,SGST,PSI,A11,A21,A31,A12,A22,A32,A13,A23,A33,
@@ -1443,8 +1441,6 @@ C
 C     AUTHOR:  N. A. TSYGANENKO
 C
       COMMON /GEOPACK1/ AA(16),A11,A21,A31,A12,A22,A32,A13,A23,A33,B(9)
-Cf2py intent(in) :: J
-Cf2py intent(in,out) :: XGEO,YGEO,ZGEO,XGSW,YGSW,ZGSW
 C
       IF (J.GT.0) THEN
        XGSW=A11*XGEO+A12*YGEO+A13*ZGEO
@@ -1496,8 +1492,6 @@ C
 C   AUTHOR:  N. A. TSYGANENKO
 c   DATE:    DEC 5, 2007
 C
-Cf2py intent(in) :: J
-Cf2py intent(in,out) :: H,XMU,R,THETA
       DATA R_EQ, BETA /6378.137, 6.73949674228E-3/
 c
 c  R_EQ is the semi-major axis of the Earth's ellipsoid, and BETA is its
@@ -1563,10 +1557,8 @@ C     EXNAME AND INNAME ARE NAMES OF SUBROUTINES FOR THE EXTERNAL AND INTERNAL
 C     PARTS OF THE TOTAL FIELD, E.G., T96_01 AND IGRF_GSW_08
 C
       COMMON /GEOPACK1/ A(12),DS3,BB(2),PSI,CC(18)
-C       EXTERNAL EXNAME,INNAME
       CHARACTER EXNAME*(*),INNAME*(*)
 
-!       print*, '-------IN--',X,Y,Z,HXGSW,HYGSW,HZGSW,BXGSW,BYGSW,BZGSW
       IF (EXNAME.eq.'T96_01') THEN
             CALL T96_01(IOPT,PARMOD,PSI,X,Y,Z,BXGSW,BYGSW,BZGSW)
       ELSE IF (EXNAME.eq.'T01_01') THEN
@@ -1577,10 +1569,6 @@ C       EXTERNAL EXNAME,INNAME
       ELSE IF (INNAME.eq.'DIP_08') THEN
             CALL DIP_08(X,Y,Z,HXGSW,HYGSW,HZGSW)
       ENDIF
-!       print*, '-------OUT-',X,Y,Z,HXGSW,HYGSW,HZGSW,BXGSW,BYGSW,BZGSW
-!         rr = SQRT(X**2 + Y**2 + Z**2)
-!         print*, X,Y,Z,rr,HXGSW,HYGSW,HZGSW
-!         print*, '##PARMOD ',PARMOD
 
       BX=BXGSW+HXGSW
       BY=BYGSW+HYGSW
@@ -1620,7 +1608,6 @@ C     AUTHOR:  N. A. TSYGANENKO
 C
       DIMENSION PARMOD(10)
       COMMON /GEOPACK1/ A(12),DS3,B(21)
-C       EXTERNAL EXNAME,INNAME
       CHARACTER EXNAME*(*),INNAME*(*)
 
   1   DS3=-DS/3.
@@ -1751,15 +1738,7 @@ C     AUTHOR:  N. A. TSYGANENKO
 C
       DIMENSION XX(LMAX),YY(LMAX),ZZ(LMAX), PARMOD(10)
       COMMON /GEOPACK1/ AA(12),DD,BB(21)
-C       EXTERNAL EXNAME,INNAME
       CHARACTER EXNAME*(*),INNAME*(*)
-Cf2py intent(in) ::  XI, YI, ZI
-Cf2py intent(in) ::  DIR, DSMAX, ERR, R0, RLIM, IOPT, PARMOD
-Cf2py intent(in) ::  EXNAME, INNAME
-Cf2py integer intent(in) ::  LMAX
-Cf2py intent(out) :: XF,YF,ZF
-Cf2py intent(out),depend(LMAX) :: XX,YY,ZZ
-Cf2py intent(out) :: L
 C
       L=0
       NREV=0
@@ -2103,4 +2082,4 @@ C                                           THE MAGNETOSPHERE
 C
 C===================================================================================
 C
-c
+c</pre>
