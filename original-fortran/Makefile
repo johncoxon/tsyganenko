@@ -15,7 +15,7 @@ SOURCES = T96.f \
 	  T02.f
 SRC = Geopack-2008_2020-01-01.for
 SRC_2010 = Geopack-2008_2010-11-30.for
-SRC_PY = ../tsyganenko/geopack08.for
+SRC_PY = ../tsyganenko/geopack_py.for
 TEST_SRC = test_geopack.f90
 OBJ = $(SOURCES:.f=.o) $(SRC:.for=.o)
 
