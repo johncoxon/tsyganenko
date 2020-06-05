@@ -10,7 +10,7 @@ Copyright (C) 2012 VT SuperDARN Lab
 .. moduleauthor:: John Coxon
 """
 import geopack
-from .trace import Trace
+from .trace import *
 
 
 # Declare the same Earth radius as used in Tsyganenko models (km)

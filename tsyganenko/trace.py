@@ -1,5 +1,6 @@
 """trace: Provides a class to easily trace field lines from start points"""
 import numpy as _np
+import tsyganenko as tsy
 
 
 class Trace(object):
@@ -139,20 +140,21 @@ Coords: {}
         # And now iterate through the desired points
         for ip in _np.arange(len(self.lat)):
             # This has to be called first
-            geopack.recalc_08(self.datetime[ip].year,
-                              self.datetime[ip].timetuple().tm_yday,
-                              self.datetime[ip].hour, self.datetime[ip].minute,
-                              self.datetime[ip].second, *self.vsw_gse)
+            tsy.geopack.recalc_08(self.datetime[ip].year,
+                                  self.datetime[ip].timetuple().tm_yday,
+                                  self.datetime[ip].hour,
+                                  self.datetime[ip].minute,
+                                  self.datetime[ip].second, *self.vsw_gse)
 
             # Convert spherical to cartesian
-            r, theta, phi, xgeo, ygeo, zgeo = geopack.sphcar_08(
-                self.rho[ip]/RE, _np.radians(90.-self.lat[ip]),
+            r, theta, phi, xgeo, ygeo, zgeo = tsy.geopack.sphcar_08(
+                self.rho[ip]/tsy.RE, _np.radians(90.-self.lat[ip]),
                 _np.radians(self.lon[ip]), 0., 0., 0., 1)
 
             # Convert to GSW.
             if self.coords.lower() == "geo":
-                _, _, _, xgsw, ygsw, zgsw = geopack.geogsw_08(xgeo, ygeo, zgeo,
-                                                              0., 0., 0., 1)
+                _, _, _, xgsw, ygsw, zgsw = tsy.geopack.geogsw_08(
+                    xgeo, ygeo, zgeo, 0., 0., 0., 1)
 
             self.gsw[ip, 0] = xgsw
             self.gsw[ip, 1] = ygsw
@@ -167,23 +169,21 @@ Coords: {}
             # Towards NH and then towards SH
             for mapto in [-1, 1]:
                 xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt \
-                    = geopack.trace_08(xgsw, ygsw, zgsw, mapto, dsmax, err,
-                                       rmax, rmin, 0, parmod, exmod, inmod,
-                                       l_max)
+                    = tsy.geopack.trace_08(xgsw, ygsw, zgsw, mapto, dsmax, err,
+                                           rmax, rmin, 0, parmod, exmod, inmod,
+                                           l_max)
 
                 # Convert back to spherical geographic coords
-                xfgeo, yfgeo, zfgeo, _, _, _ = geopack.geogsw_08(0., 0., 0.,
-                                                                 xfgsw, yfgsw,
-                                                                 zfgsw, -1)
-                rhof, colatf, lonf, _, _, _ = geopack.sphcar_08(0., 0., 0.,
-                                                                xfgeo, yfgeo,
-                                                                zfgeo, -1)
+                xfgeo, yfgeo, zfgeo, _, _, _ = tsy.geopack.geogsw_08(
+                    0., 0., 0., xfgsw, yfgsw, zfgsw, -1)
+                rhof, colatf, lonf, _, _, _ = tsy.geopack.sphcar_08(
+                    0., 0., 0., xfgeo, yfgeo, zfgeo, -1)
 
                 # Get coordinates of traced point, and store traces
                 if mapto == 1:
                     self.lat_s[ip] = 90. - _np.degrees(colatf)
                     self.lon_s[ip] = _np.degrees(lonf)
-                    self.rho_s[ip] = rhof*RE
+                    self.rho_s[ip] = rhof*tsy.RE
 
                     x_trace_s = xarr[0:l_cnt]
                     y_trace_s = yarr[0:l_cnt]
@@ -191,7 +191,7 @@ Coords: {}
                 elif mapto == -1:
                     self.lat_n[ip] = 90. - _np.degrees(colatf)
                     self.lon_n[ip] = _np.degrees(lonf)
-                    self.rho_n[ip] = rhof*RE
+                    self.rho_n[ip] = rhof*tsy.RE
 
                     x_trace_n = xarr[l_cnt-1::-1]
                     y_trace_n = yarr[l_cnt-1::-1]
