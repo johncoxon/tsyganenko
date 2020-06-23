@@ -10,6 +10,7 @@ Copyright (C) 2012 VT SuperDARN Lab
 .. moduleauthor:: John Coxon
 
 """
+from . import convert
 import geopack
 import logging
 import numpy as _np
