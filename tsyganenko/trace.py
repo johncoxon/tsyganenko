@@ -55,21 +55,21 @@ class Trace(object):
         Distance of the trace footpoint from the center of the Earth in
         Northern/Southern Hemisphere (km).
 
-    Examples
+    Example
     --------
         import numpy as np
         import tsyganenko as tsy
-        # trace a series of points
+        # Trace a series of points
         lats = np.arange(10, 90, 10)
-        lons = np.zeros(len(lats))
-        rhos = 6372.*np.ones(len(lats))
+        lons = 0.
+        rhos = tsy.RE
         trace = tsy.Trace(lats, lons, rhos)
         # Print the results nicely
-        print(trace
+        print(trace)
         # Plot the traced field lines
-        ax = trace.plot()
+        trace.plot()
         # Or generate a 3d view of the traced field lines
-        ax = trace.plot3d()
+        trace.plot3d()
     """
     def __init__(self, lat, lon, rho, coords="geo", datetime=None,
                  vsw_gse=[-400., 0., 0.], pdyn=2., dst=-5., by_imf=0.,

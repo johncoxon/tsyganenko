@@ -1,30 +1,32 @@
-# Tsyganenko Geomagnetic Field Model: Python wrappers
-
 ## Licence
 
-Though edits had to be made to the fortran code to accomodate f2py compilation, all fortran files and their scientific content have been developped by N.A. Tsyganenko and colleagues.
+Though edits had to be made to the fortran code to accomodate `f2py` compilation, all Fortran files and their scientific contents are developed by and belong to N. A. Tsyganenko and colleagues.
 
-I am only responsible for the python wrappers, which provide a convenient python class as an interface with the fortran subroutines.
+The Python wrappers were originally written by Sebastien de Larquier in 2012 and expanded by John Coxon in 2020. These wrappers allow for the Fortran subroutines to be easily called in Python.
 
 ## Installation
 
-To install the Tsyganenko python module, from this directory run:  
+To install the Tsyganenko python module, from this directory run:
 
     cd tsyganenko
     make clean
     make
     cd ..
-    sudo python setup.py install
+    python setup.py install
+
+To run the unit tests to confirm that the module behaves as expected, run:
+
+    cd tests
+    python -m unittest test.Trace1965to2015
 
 ## Use
 
 To use this module, simply follow the example provided in the Trace object docstring.
 
-    import tsyganenko
-    tsyganenko.Trace?
+    import tsyganenko as tsy
+    tsy.Trace?
 
-You can also use ipython notbook to visualize a more detailed example.
+Alternatively, there are example notebooks provided which can be used to explore what this module can do. To access these, run:
 
-    ipython notebook --pylab=inline
-
-If you run the above command from this repository you should see a notebook called 'Tsyganenko - Python examples'. If you run the above command from anywhere on your computer, you can drag and drop the file called 'Tsyganenko - Python examples.ipynb' to the notebok dashboard.
+    cd notebooks
+    jupyter notebook
