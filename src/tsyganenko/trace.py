@@ -20,9 +20,8 @@ class Trace(object):
         Distance of the start point from the center of the Earth (km).
     coords : str, optional
         The coordinate system of the start point. Default is "geo".
-    datetime : numpy.ndarray
-        The date and time of the start point. If None, defaults to the
-        current date and time.
+    datetime : array_like
+        The date and time of the start point. If None, defaults to the current date and time.
     vsw_gse : list_like, optional
         Solar wind velocity in GSE coordinates (m/s, m/s, m/s).
     pdyn : float, optional
@@ -46,17 +45,13 @@ class Trace(object):
 
     Attributes
     ----------
-    lat, lon, rho, coords, datetime, vsw_gse, pdyn, dst, by_imf, bz_imf
-        As above.
+    lat, lon, rho, coords, time, vsw_gse, pdyn, dst, by_imf, bz_imf
     lat_[n/s] : array_like
-        Latitude (degrees) of the trace footpoint in the Northern/Southern
-        Hemisphere.
+        Latitude (degrees) of the trace footpoint in the Northern/Southern Hemisphere.
     lon_[n/s] : array_like
-        Longitude (degrees) of the trace footpoint in the Northern/Southern
-        Hemisphere.
+        Longitude (degrees) of the trace footpoint in the Northern/Southern Hemisphere.
     rho_[n/s] : array_like
-        Distance of the trace footpoint from the center of the Earth in
-        Northern/Southern Hemisphere (km).
+        Distance of the trace footpoint from the center of the Earth in Northern/Southern Hemisphere (km).
 
     Example
     --------
@@ -100,6 +95,16 @@ class Trace(object):
         if not valid_inputs:
             raise ValueError("The inputs were not valid.")
 
+        # Initialize trace arrays
+        self.gsw = _np.zeros((len(self.lat), 3))
+        self.lat_n = _np.zeros_like(self.lat)
+        self.lon_n = _np.zeros_like(self.lat)
+        self.rho_n = _np.zeros_like(self.lat)
+        self.lat_s = _np.zeros_like(self.lat)
+        self.lon_s = _np.zeros_like(self.lat)
+        self.rho_s = _np.zeros_like(self.lat)
+        self.trace_gsw = []
+
         self.trace(l_max=l_max, rmax=rmax, rmin=rmin, dsmax=dsmax, err=err)
 
     def __str__(self):
@@ -131,17 +136,7 @@ Coords: {}
 
     def trace(self, l_max=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
         """Trace from the start point for both North/Southern Hemispheres"""
-        # Initialize trace arrays
-        self.gsw = _np.zeros((len(self.lat), 3))
-        self.lat_n = _np.zeros_like(self.lat)
-        self.lon_n = _np.zeros_like(self.lat)
-        self.rho_n = _np.zeros_like(self.lat)
-        self.lat_s = _np.zeros_like(self.lat)
-        self.lon_s = _np.zeros_like(self.lat)
-        self.rho_s = _np.zeros_like(self.lat)
-        self.trace_gsw = []
-
-        # And now iterate through the desired points
+        # Iterate through the desired points
         for ip in _np.arange(len(self.lat)):
             # This has to be called first
             tsy.geopack.recalc_08(self.time[ip].year,
@@ -151,14 +146,14 @@ Coords: {}
                                   self.time[ip].second, *self.vsw_gse)
 
             # Convert spherical to cartesian
-            r, theta, phi, xgeo, ygeo, zgeo = tsy.geopack.sphcar_08(
-                self.rho[ip]/tsy.RE, _np.radians(90.-self.lat[ip]),
+            r, theta, phi, x, y, z = tsy.geopack.sphcar_08(
+                self.rho[ip]/tsy.earth_radius, _np.radians(90. - self.lat[ip]),
                 _np.radians(self.lon[ip]), 0., 0., 0., 1)
 
             # Convert to GSW.
             if self.coords.lower() == "geo":
                 _, _, _, xgsw, ygsw, zgsw = tsy.geopack.geogsw_08(
-                    xgeo, ygeo, zgeo, 0., 0., 0., 1)
+                    x, y, z, 0., 0., 0., 1)
 
             self.gsw[ip, 0] = xgsw
             self.gsw[ip, 1] = ygsw
@@ -167,39 +162,13 @@ Coords: {}
             # Trace field line
             inmod = "IGRF_GSW_08"
             exmod = "T96_01"
-            parmod = [self.pdyn, self.dst, self.by_imf, self.bz_imf,
-                      0., 0., 0., 0., 0., 0.]
+            parmod = [self.pdyn, self.dst, self.by_imf, self.bz_imf, 0., 0., 0., 0., 0., 0.]
 
             # Towards NH and then towards SH
-            for mapto in [-1, 1]:
-                xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt \
-                    = tsy.geopack.trace_08(xgsw, ygsw, zgsw, mapto, dsmax, err,
-                                           rmax, rmin, 0, parmod, exmod, inmod,
-                                           l_max)
-
-                # Convert back to spherical geographic coords
-                xfgeo, yfgeo, zfgeo, _, _, _ = tsy.geopack.geogsw_08(
-                    0., 0., 0., xfgsw, yfgsw, zfgsw, -1)
-                rhof, colatf, lonf, _, _, _ = tsy.geopack.sphcar_08(
-                    0., 0., 0., xfgeo, yfgeo, zfgeo, -1)
-
-                # Get coordinates of traced point, and store traces
-                if mapto == 1:
-                    self.lat_s[ip] = 90. - _np.degrees(colatf)
-                    self.lon_s[ip] = _np.degrees(lonf)
-                    self.rho_s[ip] = rhof*tsy.RE
-
-                    x_trace_s = xarr[0:l_cnt]
-                    y_trace_s = yarr[0:l_cnt]
-                    z_trace_s = zarr[0:l_cnt]
-                elif mapto == -1:
-                    self.lat_n[ip] = 90. - _np.degrees(colatf)
-                    self.lon_n[ip] = _np.degrees(lonf)
-                    self.rho_n[ip] = rhof*tsy.RE
-
-                    x_trace_n = xarr[l_cnt-1::-1]
-                    y_trace_n = yarr[l_cnt-1::-1]
-                    z_trace_n = zarr[l_cnt-1::-1]
+            x_trace_n, y_trace_n, z_trace_n = self._trace_to_hemisphere("north", ip, xgsw, ygsw, zgsw, dsmax, err, rmax,
+                                                                        rmin, parmod, exmod, inmod, l_max)
+            x_trace_s, y_trace_s, z_trace_s = self._trace_to_hemisphere("south", ip, xgsw, ygsw, zgsw, dsmax, err, rmax,
+                                                                        rmin, parmod, exmod, inmod, l_max)
 
             # Combine the NH and SH traces into x/y/z arrays.
             x_trace = _np.concatenate((x_trace_n, x_trace_s))
@@ -215,10 +184,8 @@ Coords: {}
         if len(self.vsw_gse) != 3:
             raise ValueError("vsw_gse must have 3 elements")
         if self.coords.lower() != "geo":
-            raise ValueError("{}: this coordinate system is not supported")\
-                .format(self.coords.lower())
-        if _np.isnan(self.pdyn) | _np.isnan(self.dst) | \
-                _np.isnan(self.by_imf) | _np.isnan(self.bz_imf):
+            raise ValueError("{}: this coordinate system is not supported".format(self.coords.lower()))
+        if _np.isnan(self.pdyn) | _np.isnan(self.dst) | _np.isnan(self.by_imf) | _np.isnan(self.bz_imf):
             raise ValueError("Input parameters are not numbers")
 
         try:
@@ -233,10 +200,7 @@ Coords: {}
             len_rho = len(self.rho)
         except TypeError:
             len_rho = 1
-        try:
-            len_dt = len(self.time)
-        except TypeError:
-            len_dt = 1
+        len_dt = len(self.time)
 
         # Make the inputs into floating point arrays. Where an input is passed
         # once, make it into an array of that input (this allows passing e.g.
@@ -270,6 +234,39 @@ Coords: {}
 
         return True
 
+    def _trace_to_hemisphere(self, hemisphere, ip, xgsw, ygsw, zgsw, dsmax, err, rmax, rmin, parmod, exmod, inmod,
+                             l_max):
+        if hemisphere == "north":
+            mapto = -1
+        else:
+            mapto = 1
+
+        xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt = tsy.geopack.trace_08(
+            xgsw, ygsw, zgsw, mapto, dsmax, err, rmax, rmin, 0, parmod, exmod, inmod, l_max)
+
+        # Convert back to spherical geographic coords
+        xfgeo, yfgeo, zfgeo, _, _, _ = tsy.geopack.geogsw_08(0., 0., 0., xfgsw, yfgsw, zfgsw, -1)
+        rhof, colatf, lonf, _, _, _ = tsy.geopack.sphcar_08(0., 0., 0., xfgeo, yfgeo, zfgeo, -1)
+
+        if hemisphere == "north":
+            self.lat_n[ip] = 90. - _np.degrees(colatf)
+            self.lon_n[ip] = _np.degrees(lonf)
+            self.rho_n[ip] = rhof * tsy.earth_radius
+
+            x_trace = xarr[l_cnt - 1::-1]
+            y_trace = yarr[l_cnt - 1::-1]
+            z_trace = zarr[l_cnt - 1::-1]
+        else:
+            self.lat_s[ip] = 90. - _np.degrees(colatf)
+            self.lon_s[ip] = _np.degrees(lonf)
+            self.rho_s[ip] = rhof * tsy.earth_radius
+
+            x_trace = xarr[0:l_cnt]
+            y_trace = yarr[0:l_cnt]
+            z_trace = zarr[0:l_cnt]
+
+        return x_trace, y_trace, z_trace
+
     def plot(self, ax=None, proj="xz", only_pts=None, show_pts=False,
              show_earth=True,  **kwargs):
         """Generate a 2D plot of the trace projected onto a given plane
@@ -294,8 +291,8 @@ Coords: {}
         -------
         ax : matplotlib axes object
         """
-        if (len(proj) != 2) or (proj[0] not in ["x", "y", "z"])\
-                or (proj[1] not in ["x", "y", "z"]) or (proj[0] == proj[1]):
+        if ((len(proj) != 2) or (proj[0] not in ["x", "y", "z"])
+                or (proj[1] not in ["x", "y", "z"]) or (proj[0] == proj[1])):
             raise ValueError("Invalid projection plane.")
 
         if ax is None:
@@ -328,10 +325,11 @@ Coords: {}
                 xx = self.trace_gsw[ip][:, 1]
                 xpt = self.gsw[ip, 1]
                 ax.set_xlabel(r"$Y_{GSW}$")
-            elif proj[0] == "z":
+            else:
                 xx = self.trace_gsw[ip][:, 2]
                 xpt = self.gsw[ip, 2]
                 ax.set_xlabel(r"$Z_{GSW}$")
+
             if proj[1] == "x":
                 yy = self.trace_gsw[ip][:, 0]
                 ypt = self.gsw[ip, 0]
@@ -340,7 +338,7 @@ Coords: {}
                 yy = self.trace_gsw[ip][:, 1]
                 ypt = self.gsw[ip, 1]
                 ax.set_ylabel(r"$Y_{GSW}$")
-            elif proj[1] == "z":
+            else:
                 yy = self.trace_gsw[ip][:, 2]
                 ypt = self.gsw[ip, 2]
                 ax.set_ylabel(r"$Z_{GSW}$")
