@@ -7,10 +7,12 @@ def car_to_sph(x, y, z):
     r, theta, phi, _, _, _ = tsy.geopack.sphcar_08(0., 0., 0., x, y, z, -1)
     return r, theta, phi
 
+
 def sph_to_car(r, theta, phi):
     """Convert spherical (in radians) to cartesian coordinates"""
     _, _, _, x, y, z = tsy.geopack.sphcar_08(r, theta, phi, 0., 0., 0., 1)
     return x, y, z
+
 
 def coordinates(xin, yin, zin, coords_in, coords_out):
     """
@@ -37,7 +39,7 @@ def coordinates(xin, yin, zin, coords_in, coords_out):
             xout, yout, zout, _, _, _ = function(0., 0., 0., xin, yin, zin, -1)
     else:
         _, _, _, xout, yout, zout = function(xin, yin, zin, 0., 0., 0., 1)
-    
+
     if (xout, yout, zout) == (0., 0., 0.):
         print("\nHave you forgotten to call recalc_08?\n")
 
