@@ -1,4 +1,7 @@
 """trace: Provides a class to easily trace field lines from start points"""
+import datetime as _dt
+from matplotlib import pyplot as _plt
+from matplotlib.patches import Circle as _Circle
 import numpy as _np
 import tsyganenko as tsy
 
@@ -17,9 +20,8 @@ class Trace(object):
         Distance of the start point from the center of the Earth (km).
     coords : str, optional
         The coordinate system of the start point. Default is "geo".
-    datetime : datetime, optional
-        The date and time of the start point. If None, defaults to the
-        current date and time.
+    datetime : np.ndarray, optional
+        An array of the dates and times of the start point. If None, defaults to the current date and time.
     vsw_gse : list_like, optional
         Solar wind velocity in GSE coordinates (m/s, m/s, m/s).
     pdyn : float, optional
@@ -62,7 +64,7 @@ class Trace(object):
         # Trace a series of points
         lats = np.arange(10, 90, 10)
         lons = 0.
-        rhos = tsy.RE
+        rhos = tsy.earth_radius
         trace = tsy.Trace(lats, lons, rhos)
         # Print the results nicely
         print(trace)
@@ -72,11 +74,9 @@ class Trace(object):
         trace.plot3d()
     """
     def __init__(self, lat, lon, rho, coords="geo", datetime=None,
-                 vsw_gse=[-400., 0., 0.], pdyn=2., dst=-5., by_imf=0.,
+                 vsw_gse=(-400., 0., 0.), pdyn=2., dst=-5., by_imf=0.,
                  bz_imf=-5., l_max=5000, rmax=60., rmin=1., dsmax=0.01,
                  err=0.000001):
-        from datetime import datetime as pydt
-
         self.lat = lat
         self.lon = lon
         self.rho = rho
@@ -87,14 +87,27 @@ class Trace(object):
         self.by_imf = by_imf
         self.bz_imf = bz_imf
 
+        # Initialize trace arrays
+        self.lat_n = _np.zeros_like(self.lat)
+        self.lon_n = _np.zeros_like(self.lat)
+        self.rho_n = _np.zeros_like(self.lat)
+        self.lat_s = _np.zeros_like(self.lat)
+        self.lon_s = _np.zeros_like(self.lat)
+        self.rho_s = _np.zeros_like(self.lat)
+        self.trace_gsw = []
+        self.gsw = _np.zeros((len(self.lat), 3))
+
         # If no datetime is provided, defaults to today
         if datetime is None:
-            datetime = pydt.utcnow()
-        self.datetime = datetime
+            self.datetime = _np.array([_dt.datetime.utcnow()])
+        elif isinstance(datetime, _dt.datetime):
+            self.datetime = _np.array([datetime])
+        else:
+            self.datetime = datetime
 
         valid_inputs = self._test_valid()
         if not valid_inputs:
-            self.__del__()
+            raise ValueError("The inputs were invalid.")
 
         self.trace(l_max=l_max, rmax=rmax, rmin=rmin, dsmax=dsmax, err=err)
 
@@ -127,17 +140,8 @@ Coords: {}
 
     def trace(self, l_max=5000, rmax=60., rmin=1., dsmax=0.01, err=0.000001):
         """Trace from the start point for both North/Southern Hemispheres"""
-        # Initialize trace arrays
-        self.gsw = _np.zeros((len(self.lat), 3))
-        self.lat_n = _np.zeros_like(self.lat)
-        self.lon_n = _np.zeros_like(self.lat)
-        self.rho_n = _np.zeros_like(self.lat)
-        self.lat_s = _np.zeros_like(self.lat)
-        self.lon_s = _np.zeros_like(self.lat)
-        self.rho_s = _np.zeros_like(self.lat)
-        self.trace_gsw = []
 
-        # And now iterate through the desired points
+        # Iterate through the desired points
         for ip in _np.arange(len(self.lat)):
             # This has to be called first
             tsy.geopack.recalc_08(self.datetime[ip].year,
@@ -147,14 +151,14 @@ Coords: {}
                                   self.datetime[ip].second, *self.vsw_gse)
 
             # Convert spherical to cartesian
-            r, theta, phi, xgeo, ygeo, zgeo = tsy.geopack.sphcar_08(
-                self.rho[ip]/tsy.RE, _np.radians(90.-self.lat[ip]),
+            r, theta, phi, x, y, z = tsy.geopack.sphcar_08(
+                self.rho[ip]/tsy.earth_radius, _np.radians(90. - self.lat[ip]),
                 _np.radians(self.lon[ip]), 0., 0., 0., 1)
 
             # Convert to GSW.
             if self.coords.lower() == "geo":
                 _, _, _, xgsw, ygsw, zgsw = tsy.geopack.geogsw_08(
-                    xgeo, ygeo, zgeo, 0., 0., 0., 1)
+                    x, y, z, 0., 0., 0., 1)
 
             self.gsw[ip, 0] = xgsw
             self.gsw[ip, 1] = ygsw
@@ -163,39 +167,13 @@ Coords: {}
             # Trace field line
             inmod = "IGRF_GSW_08"
             exmod = "T96_01"
-            parmod = [self.pdyn, self.dst, self.by_imf, self.bz_imf,
-                      0., 0., 0., 0., 0., 0.]
+            parmod = [self.pdyn, self.dst, self.by_imf, self.bz_imf, 0., 0., 0., 0., 0., 0.]
 
             # Towards NH and then towards SH
-            for mapto in [-1, 1]:
-                xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt \
-                    = tsy.geopack.trace_08(xgsw, ygsw, zgsw, mapto, dsmax, err,
-                                           rmax, rmin, 0, parmod, exmod, inmod,
-                                           l_max)
-
-                # Convert back to spherical geographic coords
-                xfgeo, yfgeo, zfgeo, _, _, _ = tsy.geopack.geogsw_08(
-                    0., 0., 0., xfgsw, yfgsw, zfgsw, -1)
-                rhof, colatf, lonf, _, _, _ = tsy.geopack.sphcar_08(
-                    0., 0., 0., xfgeo, yfgeo, zfgeo, -1)
-
-                # Get coordinates of traced point, and store traces
-                if mapto == 1:
-                    self.lat_s[ip] = 90. - _np.degrees(colatf)
-                    self.lon_s[ip] = _np.degrees(lonf)
-                    self.rho_s[ip] = rhof*tsy.RE
-
-                    x_trace_s = xarr[0:l_cnt]
-                    y_trace_s = yarr[0:l_cnt]
-                    z_trace_s = zarr[0:l_cnt]
-                elif mapto == -1:
-                    self.lat_n[ip] = 90. - _np.degrees(colatf)
-                    self.lon_n[ip] = _np.degrees(lonf)
-                    self.rho_n[ip] = rhof*tsy.RE
-
-                    x_trace_n = xarr[l_cnt-1::-1]
-                    y_trace_n = yarr[l_cnt-1::-1]
-                    z_trace_n = zarr[l_cnt-1::-1]
+            x_trace_n, y_trace_n, z_trace_n = self.trace_to_hemisphere("north", ip, xgsw, ygsw, zgsw, dsmax, err, rmax,
+                                                                       rmin, parmod, exmod, inmod, l_max)
+            x_trace_s, y_trace_s, z_trace_s = self.trace_to_hemisphere("south", ip, xgsw, ygsw, zgsw, dsmax, err, rmax,
+                                                                       rmin, parmod, exmod, inmod, l_max)
 
             # Combine the NH and SH traces into x/y/z arrays.
             x_trace = _np.concatenate((x_trace_n, x_trace_s))
@@ -206,87 +184,45 @@ Coords: {}
             # and add it to the list of traces.
             self.trace_gsw.append(_np.array((x_trace, y_trace, z_trace)).T)
 
-    def update_inputs(self, lat=None, lon=None, rho=None, coords=None,
-                      datetime=None, vsw_gse=None, pdyn=None, dst=None,
-                      by_imf=None, bz_imf=None):
-        """Update the start point coordinates and solar wind constants"""
+    def trace_to_hemisphere(self, hemisphere, ip, xgsw, ygsw, zgsw, dsmax, err, rmax, rmin, parmod, exmod, inmod,
+                            l_max):
+        if hemisphere == "north":
+            mapto = -1
+        else:
+            mapto = 1
 
-        # If new values are passed to this function, store existing values of
-        # class attributes in case something is wrong and we need to revert
-        # them, and then assign the attributes to the new values.
-        if lat:
-            _lat = self.lat
-            self.lat = lat
+        xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt = tsy.geopack.trace_08(
+            xgsw, ygsw, zgsw, mapto, dsmax, err, rmax, rmin, 0, parmod, exmod, inmod, l_max)
 
-        if lon:
-            _lon = self.lon
-            self.lon = lon
+        # Convert back to spherical geographic coords
+        xfgeo, yfgeo, zfgeo, _, _, _ = tsy.geopack.geogsw_08(0., 0., 0., xfgsw, yfgsw, zfgsw, -1)
+        rhof, colatf, lonf, _, _, _ = tsy.geopack.sphcar_08(0., 0., 0., xfgeo, yfgeo, zfgeo, -1)
 
-        if rho:
-            _rho = self.rho
-            self.rho = rho
+        if hemisphere == "north":
+            self.lat_n[ip] = 90. - _np.degrees(colatf)
+            self.lon_n[ip] = _np.degrees(lonf)
+            self.rho_n[ip] = rhof * tsy.earth_radius
 
-        if coords:
-            _coords = self.coords
-            self.coords = coords
+            x_trace = xarr[l_cnt - 1::-1]
+            y_trace = yarr[l_cnt - 1::-1]
+            z_trace = zarr[l_cnt - 1::-1]
+        else:
+            self.lat_s[ip] = 90. - _np.degrees(colatf)
+            self.lon_s[ip] = _np.degrees(lonf)
+            self.rho_s[ip] = rhof * tsy.earth_radius
 
-        if datetime is not None:
-            _datetime = self.datetime
-            self.datetime = datetime
+            x_trace = xarr[0:l_cnt]
+            y_trace = yarr[0:l_cnt]
+            z_trace = zarr[0:l_cnt]
 
-        if vsw_gse:
-            _vsw_gse = self.vsw_gse
-            self.vsw_gse = vsw_gse
-
-        if pdyn:
-            _pdyn = self.pdyn
-            self.pdyn = pdyn
-
-        if dst:
-            _dst = self.dst
-            self.dst = dst
-
-        if by_imf:
-            _by_imf = self.by_imf
-            self.by_imf = by_imf
-
-        if bz_imf:
-            _bz_imf = self.bz_imf
-            self.bz_imf = bz_imf
-
-        # Test that everything is in order, if not revert to existing values
-        valid_inputs = self._test_valid()
-        if not valid_inputs:
-            if lat:
-                self.lat = _lat
-            if lon:
-                self.lon = _lon
-            if rho:
-                self.rho = _rho
-            if coords:
-                self.coords = _coords
-            if datetime is not None:
-                self.datetime = _datetime
-            if vsw_gse:
-                self.vsw_gse = _vsw_gse
-            if pdyn:
-                self.pdyn = _pdyn
-            if dst:
-                self.dst = _dst
-            if by_imf:
-                self.by_imf = _by_imf
-            if bz_imf:
-                self.bz_imf = _bz_imf
-
-        return valid_inputs
+        return x_trace, y_trace, z_trace
 
     def _test_valid(self):
         """Test the validity of inputs to the Trace class and trace method"""
         if len(self.vsw_gse) != 3:
             raise ValueError("vsw_gse must have 3 elements")
         if self.coords.lower() != "geo":
-            raise ValueError("{}: this coordinate system is not supported")\
-                .format(self.coords.lower())
+            raise ValueError("{}: this coordinate system is not supported".format(self.coords.lower()))
         if _np.isnan(self.pdyn) | _np.isnan(self.dst) | \
                 _np.isnan(self.by_imf) | _np.isnan(self.bz_imf):
             raise ValueError("Input parameters are not numbers")
@@ -303,27 +239,25 @@ Coords: {}
             len_rho = len(self.rho)
         except TypeError:
             len_rho = 1
-        try:
-            len_dt = len(self.datetime)
-        except TypeError:
-            len_dt = 1
+
+        len_dt = len(self.datetime)
 
         # Make the inputs into floating point arrays. Where an input is passed
         # once, make it into an array of that input (this allows passing e.g.
         # many latitudes for one longitude and rho).
         lens = _np.array((len_lat, len_lon, len_rho, len_dt))
         if len_lat == 1:
-            self.lat = _np.ones(lens.max(), dtype=float) * self.lat
+            self.lat = _np.ones(_np.max(lens), dtype=float) * self.lat
             len_lat = len(self.lat)
         else:
             self.lat = _np.array(self.lat, dtype=float)
         if len_lon == 1:
-            self.lon = _np.ones(lens.max(), dtype=float) * self.lon
+            self.lon = _np.ones(_np.max(lens), dtype=float) * self.lon
             len_lon = len(self.lon)
         else:
             self.lon = _np.array(self.lon, dtype=float)
         if len_rho == 1:
-            self.rho = _np.ones(lens.max(), dtype=float) * self.rho
+            self.rho = _np.ones(_np.max(lens), dtype=float) * self.rho
             len_rho = len(self.rho)
         else:
             self.rho = _np.array(self.rho, dtype=float)
@@ -364,22 +298,19 @@ Coords: {}
         -------
         ax : matplotlib axes object
         """
-        from matplotlib import pyplot as plt
-        from matplotlib.patches import Circle
-
         if (len(proj) != 2) or (proj[0] not in ["x", "y", "z"])\
                 or (proj[1] not in ["x", "y", "z"]) or (proj[0] == proj[1]):
             raise ValueError("Invalid projection plane.")
 
         if ax is None:
-            fig = plt.gcf()
+            fig = _plt.gcf()
             ax = fig.gca()
             ax.set_aspect("equal")
 
         # First plot a nice disk for the Earth
         if show_earth:
-            circ = Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
-                          alpha=.5, zorder=4)
+            circ = _Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
+                           alpha=.5, zorder=4)
             ax.add_patch(circ)
 
         # Select indices to show
@@ -450,10 +381,7 @@ Coords: {}
         ax :  matplotlib axes
             axes object
         """
-        from mpl_toolkits.mplot3d import proj3d
-        from matplotlib import pyplot as plt
-
-        fig = plt.gcf()
+        fig = _plt.gcf()
         ax = fig.gca(projection="3d")
 
         # First plot a nice sphere for the Earth
@@ -492,11 +420,12 @@ Coords: {}
 
         return ax
 
-    def _equal_aspect_3d(self, ax):
+    @staticmethod
+    def _equal_aspect_3d(ax):
         """Set limits on a 3D axis to get equal aspect ratio on each side"""
         lims = _np.array([ax.get_xlim3d(), ax.get_ylim3d(), ax.get_zlim3d()])
         diffs = _np.array([-1 * _np.subtract(*i) for i in lims])
-        half_diff_max = diffs.max() / 2.
+        half_diff_max = _np.max(diffs) / 2.
 
         x_mid = lims[0][0] + (diffs[0] / 2.)
         y_mid = lims[1][0] + (diffs[1] / 2.)

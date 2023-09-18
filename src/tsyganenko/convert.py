@@ -2,15 +2,31 @@
 import tsyganenko as tsy
 
 
+def recalc(datetime, v_x, v_y, v_z):
+    """
+    Run RECALC_08 for the user so they don't have to import geopack in its entirety.
+
+    Parameters
+    ----------
+    datetime : datetime.datetime
+    v_x, v_y, v_z : float
+        The X, Y and Z components of the solar wind velocity.
+    """
+    tsy.geopack.recalc_08(datetime.year, datetime.timetuple().tm_yday,
+                          datetime.hour, datetime.minute, datetime.second, v_x, v_y, v_z)
+
+
 def car_to_sph(x, y, z):
     """Convert cartesian to spherical coordinates (in radians)"""
     r, theta, phi, _, _, _ = tsy.geopack.sphcar_08(0., 0., 0., x, y, z, -1)
     return r, theta, phi
 
+
 def sph_to_car(r, theta, phi):
     """Convert spherical (in radians) to cartesian coordinates"""
     _, _, _, x, y, z = tsy.geopack.sphcar_08(r, theta, phi, 0., 0., 0., 1)
     return x, y, z
+
 
 def coordinates(xin, yin, zin, coords_in, coords_out):
     """
