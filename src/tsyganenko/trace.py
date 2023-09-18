@@ -302,9 +302,9 @@ Coords: {}
 
         # First plot a nice disk for the Earth
         if show_earth:
-            circ = _Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
-                           alpha=.5, zorder=4)
-            ax.add_patch(circ)
+            earth = _Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
+                            alpha=.5, zorder=4)
+            ax.add_patch(earth)
 
         # Select indices to show
         if only_pts is None:
