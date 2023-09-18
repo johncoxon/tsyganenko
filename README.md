@@ -8,16 +8,16 @@ The Python wrappers were originally written by Sebastien de Larquier in 2012 and
 
 To install the Tsyganenko python module, from this directory run:
 
-    cd tsyganenko
+    cd src/tsyganenko
     make clean
     make
-    cd ..
-    python setup.py install
+    cd ../..
+    pip install .
 
 To run the unit tests to confirm that the module behaves as expected, run:
 
     cd tests
-    python -m unittest test.Trace1965to2015
+    pytests tests.py
 
 ## Use
 

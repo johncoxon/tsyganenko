@@ -1,6 +1,9 @@
 """trace: Provides a class to easily trace field lines from start points"""
+import datetime as _dt
 import numpy as _np
 import tsyganenko as tsy
+from matplotlib import pyplot as _plt
+from matplotlib.patches import Circle as _Circle
 
 
 class Trace(object):
@@ -17,7 +20,7 @@ class Trace(object):
         Distance of the start point from the center of the Earth (km).
     coords : str, optional
         The coordinate system of the start point. Default is "geo".
-    datetime : datetime, optional
+    datetime : numpy.ndarray
         The date and time of the start point. If None, defaults to the
         current date and time.
     vsw_gse : list_like, optional
@@ -72,11 +75,9 @@ class Trace(object):
         trace.plot3d()
     """
     def __init__(self, lat, lon, rho, coords="geo", datetime=None,
-                 vsw_gse=[-400., 0., 0.], pdyn=2., dst=-5., by_imf=0.,
+                 vsw_gse=(-400., 0., 0.), pdyn=2., dst=-5., by_imf=0.,
                  bz_imf=-5., l_max=5000, rmax=60., rmin=1., dsmax=0.01,
                  err=0.000001):
-        from datetime import datetime as pydt
-
         self.lat = lat
         self.lon = lon
         self.rho = rho
@@ -89,12 +90,15 @@ class Trace(object):
 
         # If no datetime is provided, defaults to today
         if datetime is None:
-            datetime = pydt.utcnow()
-        self.datetime = datetime
+            self.time = _np.array([_dt.datetime.utcnow()])
+        elif isinstance(datetime, _dt.datetime):
+            self.time = _np.array([datetime])
+        else:
+            self.time = datetime
 
         valid_inputs = self._test_valid()
         if not valid_inputs:
-            self.__del__()
+            raise ValueError("The inputs were not valid.")
 
         self.trace(l_max=l_max, rmax=rmax, rmin=rmin, dsmax=dsmax, err=err)
 
@@ -119,7 +123,7 @@ Coords: {}
     --> NH({:6.3f}, {:6.3f}, {:6.3f})
     --> SH({:6.3f}, {:6.3f}, {:6.3f})""".format(
                 self.lat[ip], self.lon[ip], self.rho[ip],
-                self.datetime[ip].strftime("%H:%M UT (%d-%b-%y)"),
+                self.time[ip].strftime("%H:%M UT (%d-%b-%y)"),
                 self.lat_n[ip], self.lon_n[ip], self.rho_n[ip],
                 self.lat_s[ip], self.lon_s[ip], self.rho_s[ip])
 
@@ -140,11 +144,11 @@ Coords: {}
         # And now iterate through the desired points
         for ip in _np.arange(len(self.lat)):
             # This has to be called first
-            tsy.geopack.recalc_08(self.datetime[ip].year,
-                                  self.datetime[ip].timetuple().tm_yday,
-                                  self.datetime[ip].hour,
-                                  self.datetime[ip].minute,
-                                  self.datetime[ip].second, *self.vsw_gse)
+            tsy.geopack.recalc_08(self.time[ip].year,
+                                  self.time[ip].timetuple().tm_yday,
+                                  self.time[ip].hour,
+                                  self.time[ip].minute,
+                                  self.time[ip].second, *self.vsw_gse)
 
             # Convert spherical to cartesian
             r, theta, phi, xgeo, ygeo, zgeo = tsy.geopack.sphcar_08(
@@ -206,80 +210,6 @@ Coords: {}
             # and add it to the list of traces.
             self.trace_gsw.append(_np.array((x_trace, y_trace, z_trace)).T)
 
-    def update_inputs(self, lat=None, lon=None, rho=None, coords=None,
-                      datetime=None, vsw_gse=None, pdyn=None, dst=None,
-                      by_imf=None, bz_imf=None):
-        """Update the start point coordinates and solar wind constants"""
-
-        # If new values are passed to this function, store existing values of
-        # class attributes in case something is wrong and we need to revert
-        # them, and then assign the attributes to the new values.
-        if lat:
-            _lat = self.lat
-            self.lat = lat
-
-        if lon:
-            _lon = self.lon
-            self.lon = lon
-
-        if rho:
-            _rho = self.rho
-            self.rho = rho
-
-        if coords:
-            _coords = self.coords
-            self.coords = coords
-
-        if datetime is not None:
-            _datetime = self.datetime
-            self.datetime = datetime
-
-        if vsw_gse:
-            _vsw_gse = self.vsw_gse
-            self.vsw_gse = vsw_gse
-
-        if pdyn:
-            _pdyn = self.pdyn
-            self.pdyn = pdyn
-
-        if dst:
-            _dst = self.dst
-            self.dst = dst
-
-        if by_imf:
-            _by_imf = self.by_imf
-            self.by_imf = by_imf
-
-        if bz_imf:
-            _bz_imf = self.bz_imf
-            self.bz_imf = bz_imf
-
-        # Test that everything is in order, if not revert to existing values
-        valid_inputs = self._test_valid()
-        if not valid_inputs:
-            if lat:
-                self.lat = _lat
-            if lon:
-                self.lon = _lon
-            if rho:
-                self.rho = _rho
-            if coords:
-                self.coords = _coords
-            if datetime is not None:
-                self.datetime = _datetime
-            if vsw_gse:
-                self.vsw_gse = _vsw_gse
-            if pdyn:
-                self.pdyn = _pdyn
-            if dst:
-                self.dst = _dst
-            if by_imf:
-                self.by_imf = _by_imf
-            if bz_imf:
-                self.bz_imf = _bz_imf
-
-        return valid_inputs
-
     def _test_valid(self):
         """Test the validity of inputs to the Trace class and trace method"""
         if len(self.vsw_gse) != 3:
@@ -304,7 +234,7 @@ Coords: {}
         except TypeError:
             len_rho = 1
         try:
-            len_dt = len(self.datetime)
+            len_dt = len(self.time)
         except TypeError:
             len_dt = 1
 
@@ -313,25 +243,25 @@ Coords: {}
         # many latitudes for one longitude and rho).
         lens = _np.array((len_lat, len_lon, len_rho, len_dt))
         if len_lat == 1:
-            self.lat = _np.ones(lens.max(), dtype=float) * self.lat
+            self.lat = _np.ones(_np.max(lens), dtype=float) * self.lat
             len_lat = len(self.lat)
         else:
             self.lat = _np.array(self.lat, dtype=float)
         if len_lon == 1:
-            self.lon = _np.ones(lens.max(), dtype=float) * self.lon
+            self.lon = _np.ones(_np.max(lens), dtype=float) * self.lon
             len_lon = len(self.lon)
         else:
             self.lon = _np.array(self.lon, dtype=float)
         if len_rho == 1:
-            self.rho = _np.ones(lens.max(), dtype=float) * self.rho
+            self.rho = _np.ones(_np.max(lens), dtype=float) * self.rho
             len_rho = len(self.rho)
         else:
             self.rho = _np.array(self.rho, dtype=float)
         if len_dt == 1:
-            self.datetime = _np.array([self.datetime for _ in self.lat])
-            len_dt = len(self.datetime)
+            self.time = _np.array([self.time for _ in self.lat])
+            len_dt = len(self.time)
         else:
-            self.datetime = _np.array(self.datetime)
+            self.time = _np.array(self.time)
 
         # Make sure they're all the same length
         if not (len_lat == len_lon == len_rho == len_dt):
@@ -364,22 +294,19 @@ Coords: {}
         -------
         ax : matplotlib axes object
         """
-        from matplotlib import pyplot as plt
-        from matplotlib.patches import Circle
-
         if (len(proj) != 2) or (proj[0] not in ["x", "y", "z"])\
                 or (proj[1] not in ["x", "y", "z"]) or (proj[0] == proj[1]):
             raise ValueError("Invalid projection plane.")
 
         if ax is None:
-            fig = plt.gcf()
+            fig = _plt.gcf()
             ax = fig.gca()
             ax.set_aspect("equal")
 
         # First plot a nice disk for the Earth
         if show_earth:
-            circ = Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
-                          alpha=.5, zorder=4)
+            circ = _Circle(xy=(0, 0), radius=1, facecolor="0.8", edgecolor="k",
+                           alpha=.5, zorder=4)
             ax.add_patch(circ)
 
         # Select indices to show
@@ -450,10 +377,7 @@ Coords: {}
         ax :  matplotlib axes
             axes object
         """
-        from mpl_toolkits.mplot3d import proj3d
-        from matplotlib import pyplot as plt
-
-        fig = plt.gcf()
+        fig = _plt.gcf()
         ax = fig.gca(projection="3d")
 
         # First plot a nice sphere for the Earth
@@ -492,11 +416,12 @@ Coords: {}
 
         return ax
 
-    def _equal_aspect_3d(self, ax):
+    @staticmethod
+    def _equal_aspect_3d(ax):
         """Set limits on a 3D axis to get equal aspect ratio on each side"""
         lims = _np.array([ax.get_xlim3d(), ax.get_ylim3d(), ax.get_zlim3d()])
         diffs = _np.array([-1 * _np.subtract(*i) for i in lims])
-        half_diff_max = diffs.max() / 2.
+        half_diff_max = _np.max(diffs) / 2.
 
         x_mid = lims[0][0] + (diffs[0] / 2.)
         y_mid = lims[1][0] + (diffs[1] / 2.)
