@@ -15,4 +15,4 @@ from .trace import *
 
 
 # Declare the same Earth radius as used in Tsyganenko models (km)
-earth_radius = 6371.2
+RE = 6371.2
