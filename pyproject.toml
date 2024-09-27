@@ -1,0 +1,15 @@
+[build-system]
+requires = ["scikit-build-core", "numpy"]
+build-backend = "scikit_build_core.build"
+
+[project]
+name = "Tsyganenko"
+version = "2020.2"
+dependencies = ["numpy"]
+
+[tool.scikit-build]
+ninja.version = ">=1.10"
+cmake.version = ">=3.17.2"
+
+[tool.setuptools.packages.find]
+where = ["src"]
