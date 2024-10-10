@@ -20,10 +20,20 @@ set_property(TARGET fortranobject PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 add_custom_command(
   OUTPUT geopack_pymodule.c geopack_py-f2pywrappers.f
-  DEPENDS src/tsyganenko/geopack_py.f
+  DEPENDS
+    src/tsyganenko/geopack_py.pyf
+    src/tsyganenko/geopack_py.f
+    src/tsyganenko/T96.f
+    src/tsyganenko/T02.f
   VERBATIM
   COMMAND "${Python_EXECUTABLE}" -m numpy.f2py
-          "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack_py.f" -m geopack_py --lower)
+    -m geopack_py
+    --lower
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack_py.pyf"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack_py.f"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T96.f"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T02.f"
+)
 
 python_add_library(
   geopack_py MODULE "${CMAKE_CURRENT_BINARY_DIR}/geopack_pymodule.c"

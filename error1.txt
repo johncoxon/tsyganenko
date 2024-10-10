@@ -1,0 +1,2808 @@
+(tsyganenko) John@Yavin Tsyganenko % pip install .
+Processing /Users/John/Repositories/Tsyganenko
+  Installing build dependencies ... done
+  Getting requirements to build wheel ... done
+  Installing backend dependencies ... done
+  Preparing metadata (pyproject.toml) ... done
+Collecting numpy (from Tsyganenko==2020.2)
+  Using cached numpy-2.1.2-cp313-cp313-macosx_14_0_arm64.whl.metadata (60 kB)
+Using cached numpy-2.1.2-cp313-cp313-macosx_14_0_arm64.whl (5.1 MB)
+Building wheels for collected packages: Tsyganenko
+  Building wheel for Tsyganenko (pyproject.toml) ... error
+  error: subprocess-exited-with-error
+  
+  × Building wheel for Tsyganenko (pyproject.toml) did not run successfully.
+  │ exit code: 1
+  ╰─> [2786 lines of output]
+      *** scikit-build-core 0.10.7 using CMake 3.30.4 (wheel)
+      *** Configuring CMake...
+      loading initial cache file /var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/tmpfuotcldh/build/CMakeInit.txt
+      -- The C compiler identification is AppleClang 16.0.0.16000026
+      -- The Fortran compiler identification is GNU 14.2.0
+      -- Detecting C compiler ABI info
+      -- Detecting C compiler ABI info - done
+      -- Check for working C compiler: /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang - skipped
+      -- Detecting C compile features
+      -- Detecting C compile features - done
+      -- Checking whether Fortran compiler has -isysroot
+      -- Checking whether Fortran compiler has -isysroot - yes
+      -- Checking whether Fortran compiler supports OSX deployment target flag
+      -- Checking whether Fortran compiler supports OSX deployment target flag - yes
+      -- Detecting Fortran compiler ABI info
+      -- Detecting Fortran compiler ABI info - done
+      -- Check for working Fortran compiler: /opt/homebrew/bin/gfortran - skipped
+      -- Found Python: /opt/homebrew/Caskroom/mambaforge/base/envs/tsyganenko/bin/python3.13 (found version "3.13.0") found components: Interpreter Development.Module NumPy
+      -- Configuring done (1.4s)
+      -- Generating done (0.0s)
+      -- Build files have been written to: /var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/tmpfuotcldh/build
+      *** Building project with Ninja...
+      [1/9] Building C object CMakeFiles/fortranobject.dir/private/var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/pip-build-env-lktdmzhe/overlay/lib/python3.13/site-packages/numpy/f2py/src/fortranobject.c.o
+      [2/9] Generating geopack_pymodule.c, geopack_py-f2pywrappers.f
+      rmbadname1: Replacing "min" with "min_bn".
+      rmbadname1: Replacing "min" with "min_bn".
+      rmbadname1: Replacing "min" with "min_bn".
+      Ignoring -m geopack_py.
+      /Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.pyf defines geopack to be the modulename.
+      Reading fortran codes...
+          Reading file '/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.pyf' (format:free)
+          Reading file '/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f' (format:fix,strict)
+          Reading file '/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f' (format:fix,strict)
+          Reading file '/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f' (format:fix,strict)
+      Post-processing...
+          Block: geopack
+                          Block: geopack
+                                          Block: igrf_gsw_08
+                                          Block: igrf_geo_08
+                                          Block: dip_08
+                                          Block: sun_08
+                                          Block: sphcar_08
+                                          Block: bspcar_08
+                                          Block: bcarsp_08
+                                          Block: recalc_08
+                                          Block: gswgse_08
+                                          Block: geomag_08
+                                          Block: geigeo_08
+                                          Block: magsm_08
+                                          Block: smgsw_08
+                                          Block: geogsw_08
+                                          Block: geodgeo_08
+                                          Block: rhand_08
+                                          Block: step_08
+                                          Block: trace_08
+                                          Block: shuetal_mgnp_08
+                                          Block: t96_mgnp_08
+                                          Block: t96_01
+                                          Block: dipshld
+                                          Block: cylharm
+                                          Block: cylhar1
+                                          Block: bes
+                                          Block: bes0
+                                          Block: bes1
+                                          Block: intercon
+                                          Block: tailrc96
+                                          Block: ringcurr96
+                                          Block: taildisk
+                                          Block: tail87
+                                          Block: shlcar3x3
+                                          Block: birk1tot_02
+                                          Block: diploop1
+                                          Block: circle
+                                          Block: crosslp
+                                          Block: dipxyz
+                                          Block: condip1
+                                          Block: birk1shld
+                                          Block: birk2tot_02
+                                          Block: birk2shl
+                                          Block: r2_birk
+                                          Block: r2inner
+                                          Block: bconic
+                                          Block: dipdistr
+                                          Block: r2outer
+                                          Block: loops4
+                                          Block: r2sheet
+                                          Block: xksi
+                                          Block: fexp
+                                          Block: fexp1
+                                          Block: tksi
+                                          Block: dipole
+                                          Block: t01_01
+                                          Block: t02_extall
+                                          Block: t02_shlcar3x3
+                                          Block: t02_deformed
+                                          Block: t02_warped
+                                          Block: t02_unwarped
+                                          Block: t02_taildisk
+                                          Block: t02_shlcar5x5
+                                          Block: t02_birk_tot
+                                          Block: t02_birk_1n2
+                                          Block: t02_twocones
+                                          Block: t02_one_cone
+                                          Block: r_s
+                                          Block: theta_s
+                                          Block: t02_fialcos
+                                          Block: t02_birk_shl
+                                          Block: t02_full_rc
+                                          Block: t02_src_prc
+                                          Block: t02_rc_symm
+                                          Block: ap
+                                          Block: t02_prc_symm
+                                          Block: apprc
+                                          Block: t02_prc_quad
+                                          Block: br_prc_q
+                                          Block: bt_prc_q
+                                          Block: t02_ffs
+                                          Block: t02_rc_shield
+                                          Block: t02_dipole
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_gsw_08
+      vars2fortran: No typespec for argument "xgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_gsw_08
+      vars2fortran: No typespec for argument "ygsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_gsw_08
+      vars2fortran: No typespec for argument "zgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_gsw_08
+      vars2fortran: No typespec for argument "hxgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_gsw_08
+      vars2fortran: No typespec for argument "hygsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_gsw_08
+      vars2fortran: No typespec for argument "hzgsw".
+                          Block: igrf_gsw_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_geo_08
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_geo_08
+      vars2fortran: No typespec for argument "theta".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_geo_08
+      vars2fortran: No typespec for argument "phi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_geo_08
+      vars2fortran: No typespec for argument "br".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_geo_08
+      vars2fortran: No typespec for argument "btheta".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:igrf_geo_08
+      vars2fortran: No typespec for argument "bphi".
+                          Block: igrf_geo_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:dip_08
+      vars2fortran: No typespec for argument "xgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:dip_08
+      vars2fortran: No typespec for argument "ygsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:dip_08
+      vars2fortran: No typespec for argument "zgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:dip_08
+      vars2fortran: No typespec for argument "bxgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:dip_08
+      vars2fortran: No typespec for argument "bygsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:dip_08
+      vars2fortran: No typespec for argument "bzgsw".
+                          Block: dip_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sun_08
+      vars2fortran: No typespec for argument "iyear".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sun_08
+      vars2fortran: No typespec for argument "iday".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sun_08
+      vars2fortran: No typespec for argument "ihour".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sun_08
+      vars2fortran: No typespec for argument "min_bn".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sun_08
+      vars2fortran: No typespec for argument "isec".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sun_08
+      vars2fortran: No typespec for argument "gst".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sun_08
+      vars2fortran: No typespec for argument "slong".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sun_08
+      vars2fortran: No typespec for argument "srasn".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sun_08
+      vars2fortran: No typespec for argument "sdec".
+                          Block: sun_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sphcar_08
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sphcar_08
+      vars2fortran: No typespec for argument "theta".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sphcar_08
+      vars2fortran: No typespec for argument "phi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sphcar_08
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sphcar_08
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sphcar_08
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:sphcar_08
+      vars2fortran: No typespec for argument "j".
+                          Block: sphcar_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bspcar_08
+      vars2fortran: No typespec for argument "theta".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bspcar_08
+      vars2fortran: No typespec for argument "phi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bspcar_08
+      vars2fortran: No typespec for argument "br".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bspcar_08
+      vars2fortran: No typespec for argument "btheta".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bspcar_08
+      vars2fortran: No typespec for argument "bphi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bspcar_08
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bspcar_08
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bspcar_08
+      vars2fortran: No typespec for argument "bz".
+                          Block: bspcar_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bcarsp_08
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bcarsp_08
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bcarsp_08
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bcarsp_08
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bcarsp_08
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bcarsp_08
+      vars2fortran: No typespec for argument "bz".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bcarsp_08
+      vars2fortran: No typespec for argument "br".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bcarsp_08
+      vars2fortran: No typespec for argument "btheta".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:bcarsp_08
+      vars2fortran: No typespec for argument "bphi".
+                          Block: bcarsp_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:recalc_08
+      vars2fortran: No typespec for argument "iyear".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:recalc_08
+      vars2fortran: No typespec for argument "iday".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:recalc_08
+      vars2fortran: No typespec for argument "ihour".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:recalc_08
+      vars2fortran: No typespec for argument "min_bn".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:recalc_08
+      vars2fortran: No typespec for argument "isec".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:recalc_08
+      vars2fortran: No typespec for argument "vgsex".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:recalc_08
+      vars2fortran: No typespec for argument "vgsey".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:recalc_08
+      vars2fortran: No typespec for argument "vgsez".
+                          Block: recalc_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:gswgse_08
+      vars2fortran: No typespec for argument "xgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:gswgse_08
+      vars2fortran: No typespec for argument "ygsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:gswgse_08
+      vars2fortran: No typespec for argument "zgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:gswgse_08
+      vars2fortran: No typespec for argument "xgse".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:gswgse_08
+      vars2fortran: No typespec for argument "ygse".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:gswgse_08
+      vars2fortran: No typespec for argument "zgse".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:gswgse_08
+      vars2fortran: No typespec for argument "j".
+                          Block: gswgse_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geomag_08
+      vars2fortran: No typespec for argument "xgeo".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geomag_08
+      vars2fortran: No typespec for argument "ygeo".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geomag_08
+      vars2fortran: No typespec for argument "zgeo".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geomag_08
+      vars2fortran: No typespec for argument "xmag".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geomag_08
+      vars2fortran: No typespec for argument "ymag".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geomag_08
+      vars2fortran: No typespec for argument "zmag".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geomag_08
+      vars2fortran: No typespec for argument "j".
+                          Block: geomag_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geigeo_08
+      vars2fortran: No typespec for argument "xgei".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geigeo_08
+      vars2fortran: No typespec for argument "ygei".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geigeo_08
+      vars2fortran: No typespec for argument "zgei".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geigeo_08
+      vars2fortran: No typespec for argument "xgeo".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geigeo_08
+      vars2fortran: No typespec for argument "ygeo".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geigeo_08
+      vars2fortran: No typespec for argument "zgeo".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geigeo_08
+      vars2fortran: No typespec for argument "j".
+                          Block: geigeo_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:magsm_08
+      vars2fortran: No typespec for argument "xmag".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:magsm_08
+      vars2fortran: No typespec for argument "ymag".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:magsm_08
+      vars2fortran: No typespec for argument "zmag".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:magsm_08
+      vars2fortran: No typespec for argument "xsm".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:magsm_08
+      vars2fortran: No typespec for argument "ysm".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:magsm_08
+      vars2fortran: No typespec for argument "zsm".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:magsm_08
+      vars2fortran: No typespec for argument "j".
+                          Block: magsm_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:smgsw_08
+      vars2fortran: No typespec for argument "xsm".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:smgsw_08
+      vars2fortran: No typespec for argument "ysm".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:smgsw_08
+      vars2fortran: No typespec for argument "zsm".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:smgsw_08
+      vars2fortran: No typespec for argument "xgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:smgsw_08
+      vars2fortran: No typespec for argument "ygsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:smgsw_08
+      vars2fortran: No typespec for argument "zgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:smgsw_08
+      vars2fortran: No typespec for argument "j".
+                          Block: smgsw_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geogsw_08
+      vars2fortran: No typespec for argument "xgeo".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geogsw_08
+      vars2fortran: No typespec for argument "ygeo".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geogsw_08
+      vars2fortran: No typespec for argument "zgeo".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geogsw_08
+      vars2fortran: No typespec for argument "xgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geogsw_08
+      vars2fortran: No typespec for argument "ygsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geogsw_08
+      vars2fortran: No typespec for argument "zgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geogsw_08
+      vars2fortran: No typespec for argument "j".
+                          Block: geogsw_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geodgeo_08
+      vars2fortran: No typespec for argument "h".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geodgeo_08
+      vars2fortran: No typespec for argument "xmu".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geodgeo_08
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geodgeo_08
+      vars2fortran: No typespec for argument "theta".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:geodgeo_08
+      vars2fortran: No typespec for argument "j".
+                          Block: geodgeo_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:rhand_08
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:rhand_08
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:rhand_08
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:rhand_08
+      vars2fortran: No typespec for argument "r1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:rhand_08
+      vars2fortran: No typespec for argument "r2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:rhand_08
+      vars2fortran: No typespec for argument "r3".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:rhand_08
+      vars2fortran: No typespec for argument "iopt".
+      {'attrspec': ['dimension(10)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:rhand_08
+      vars2fortran: No typespec for argument "parmod".
+                          Block: rhand_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:step_08
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:step_08
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:step_08
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:step_08
+      vars2fortran: No typespec for argument "ds".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:step_08
+      vars2fortran: No typespec for argument "dsmax".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:step_08
+      vars2fortran: No typespec for argument "errin".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:step_08
+      vars2fortran: No typespec for argument "iopt".
+      {'attrspec': ['dimension(10)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:step_08
+      vars2fortran: No typespec for argument "parmod".
+                          Block: step_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "xi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "yi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "zi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "dir".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "dsmax".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "err".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "rlim".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "r0".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "iopt".
+      {'attrspec': ['dimension(10)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "parmod".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "xf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "yf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "zf".
+      {'attrspec': ['dimension(lmax)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "xx".
+      {'attrspec': ['dimension(lmax)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "yy".
+      {'attrspec': ['dimension(lmax)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "zz".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "l".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:trace_08
+      vars2fortran: No typespec for argument "lmax".
+                          Block: trace_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "xn_pd".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "vel".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "bzimf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "xgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "ygsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "zgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "xmgnp".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "ymgnp".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "zmgnp".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "dist".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:shuetal_mgnp_08
+      vars2fortran: No typespec for argument "id".
+                          Block: shuetal_mgnp_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:t96_mgnp_08
+      vars2fortran: No typespec for argument "xn_pd".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:t96_mgnp_08
+      vars2fortran: No typespec for argument "vel".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:t96_mgnp_08
+      vars2fortran: No typespec for argument "xgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:t96_mgnp_08
+      vars2fortran: No typespec for argument "ygsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:t96_mgnp_08
+      vars2fortran: No typespec for argument "zgsw".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:t96_mgnp_08
+      vars2fortran: No typespec for argument "xmgnp".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:t96_mgnp_08
+      vars2fortran: No typespec for argument "ymgnp".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:t96_mgnp_08
+      vars2fortran: No typespec for argument "zmgnp".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:t96_mgnp_08
+      vars2fortran: No typespec for argument "dist".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/geopack_py.f:t96_mgnp_08
+      vars2fortran: No typespec for argument "id".
+                          Block: t96_mgnp_08
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:t96_01
+      vars2fortran: No typespec for argument "iopt".
+                          Block: t96_01
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipshld
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipshld
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipshld
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipshld
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipshld
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipshld
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipshld
+      vars2fortran: No typespec for argument "bz".
+                          Block: dipshld
+      {'attrspec': ['dimension(12)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylharm
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylharm
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylharm
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylharm
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylharm
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylharm
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylharm
+      vars2fortran: No typespec for argument "bz".
+                          Block: cylharm
+      {'attrspec': ['dimension(12)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylhar1
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylhar1
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylhar1
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylhar1
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylhar1
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylhar1
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:cylhar1
+      vars2fortran: No typespec for argument "bz".
+                          Block: cylhar1
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bes
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bes
+      vars2fortran: No typespec for argument "k".
+                          Block: bes
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bes0
+      vars2fortran: No typespec for argument "x".
+                          Block: bes0
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bes1
+      vars2fortran: No typespec for argument "x".
+                          Block: bes1
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:intercon
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:intercon
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:intercon
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:intercon
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:intercon
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:intercon
+      vars2fortran: No typespec for argument "bz".
+                          Block: intercon
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "sps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "bxrc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "byrc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "bzrc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "bxt2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "byt2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "bzt2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "bxt3".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "byt3".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tailrc96
+      vars2fortran: No typespec for argument "bzt3".
+                          Block: tailrc96
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:ringcurr96
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:ringcurr96
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:ringcurr96
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:ringcurr96
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:ringcurr96
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:ringcurr96
+      vars2fortran: No typespec for argument "bz".
+                          Block: ringcurr96
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:taildisk
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:taildisk
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:taildisk
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:taildisk
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:taildisk
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:taildisk
+      vars2fortran: No typespec for argument "bz".
+                          Block: taildisk
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tail87
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tail87
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tail87
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tail87
+      vars2fortran: No typespec for argument "bz".
+                          Block: tail87
+      {'attrspec': ['dimension(48)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:shlcar3x3
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:shlcar3x3
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:shlcar3x3
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:shlcar3x3
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:shlcar3x3
+      vars2fortran: No typespec for argument "sps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:shlcar3x3
+      vars2fortran: No typespec for argument "hx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:shlcar3x3
+      vars2fortran: No typespec for argument "hy".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:shlcar3x3
+      vars2fortran: No typespec for argument "hz".
+                          Block: shlcar3x3
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1tot_02
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1tot_02
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1tot_02
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1tot_02
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1tot_02
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1tot_02
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1tot_02
+      vars2fortran: No typespec for argument "bz".
+                          Block: birk1tot_02
+      {'attrspec': ['dimension(4)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:diploop1
+      vars2fortran: No typespec for argument "xi".
+      {'attrspec': ['dimension(3,26)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:diploop1
+      vars2fortran: No typespec for argument "d".
+                          Block: diploop1
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:circle
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:circle
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:circle
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:circle
+      vars2fortran: No typespec for argument "rl".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:circle
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:circle
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:circle
+      vars2fortran: No typespec for argument "bz".
+                          Block: circle
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:crosslp
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:crosslp
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:crosslp
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:crosslp
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:crosslp
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:crosslp
+      vars2fortran: No typespec for argument "bz".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:crosslp
+      vars2fortran: No typespec for argument "xc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:crosslp
+      vars2fortran: No typespec for argument "rl".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:crosslp
+      vars2fortran: No typespec for argument "al".
+                          Block: crosslp
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "bxx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "byx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "bzx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "bxy".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "byy".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "bzy".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "bxz".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "byz".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipxyz
+      vars2fortran: No typespec for argument "bzz".
+                          Block: dipxyz
+      {'attrspec': ['dimension(4)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:condip1
+      vars2fortran: No typespec for argument "xi".
+      {'attrspec': ['dimension(3,79)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:condip1
+      vars2fortran: No typespec for argument "d".
+                          Block: condip1
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1shld
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1shld
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1shld
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1shld
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1shld
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1shld
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk1shld
+      vars2fortran: No typespec for argument "bz".
+                          Block: birk1shld
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2tot_02
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2tot_02
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2tot_02
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2tot_02
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2tot_02
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2tot_02
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2tot_02
+      vars2fortran: No typespec for argument "bz".
+                          Block: birk2tot_02
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2shl
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2shl
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2shl
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2shl
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2shl
+      vars2fortran: No typespec for argument "hx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2shl
+      vars2fortran: No typespec for argument "hy".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:birk2shl
+      vars2fortran: No typespec for argument "hz".
+                          Block: birk2shl
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2_birk
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2_birk
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2_birk
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2_birk
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2_birk
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2_birk
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2_birk
+      vars2fortran: No typespec for argument "bz".
+                          Block: r2_birk
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2inner
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2inner
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2inner
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2inner
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2inner
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2inner
+      vars2fortran: No typespec for argument "bz".
+                          Block: r2inner
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bconic
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bconic
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bconic
+      vars2fortran: No typespec for argument "z".
+      {'attrspec': ['dimension(nmax)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bconic
+      vars2fortran: No typespec for argument "cbx".
+      {'attrspec': ['dimension(nmax)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bconic
+      vars2fortran: No typespec for argument "cby".
+      {'attrspec': ['dimension(nmax)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bconic
+      vars2fortran: No typespec for argument "cbz".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:bconic
+      vars2fortran: No typespec for argument "nmax".
+                          Block: bconic
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipdistr
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipdistr
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipdistr
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipdistr
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipdistr
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipdistr
+      vars2fortran: No typespec for argument "bz".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipdistr
+      vars2fortran: No typespec for argument "mode".
+                          Block: dipdistr
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2outer
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2outer
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2outer
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2outer
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2outer
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2outer
+      vars2fortran: No typespec for argument "bz".
+                          Block: r2outer
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "bz".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "xc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "yc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "zc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "theta".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:loops4
+      vars2fortran: No typespec for argument "phi".
+                          Block: loops4
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2sheet
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2sheet
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2sheet
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2sheet
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2sheet
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:r2sheet
+      vars2fortran: No typespec for argument "bz".
+                          Block: r2sheet
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:xksi
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:xksi
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:xksi
+      vars2fortran: No typespec for argument "z".
+                          Block: xksi
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:fexp
+      vars2fortran: No typespec for argument "s".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:fexp
+      vars2fortran: No typespec for argument "a".
+                          Block: fexp
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:fexp1
+      vars2fortran: No typespec for argument "s".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:fexp1
+      vars2fortran: No typespec for argument "a".
+                          Block: fexp1
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tksi
+      vars2fortran: No typespec for argument "xksi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tksi
+      vars2fortran: No typespec for argument "xks0".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:tksi
+      vars2fortran: No typespec for argument "dxksi".
+                          Block: tksi
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipole
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipole
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipole
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipole
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipole
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipole
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T96.f:dipole
+      vars2fortran: No typespec for argument "bz".
+                          Block: dipole
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t01_01
+      vars2fortran: No typespec for argument "iopt".
+                          Block: t01_01
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "iopgen".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "iopt".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "iopb".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "iopr".
+      {'attrspec': ['dimension(ntot)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "ntot".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "pdyn".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "dst".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "byimf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bzimf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "vbimf1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "vbimf2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bxcf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bycf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bzcf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bxt1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "byt1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bzt1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bxt2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "byt2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bzt2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bxsrc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bysrc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bzsrc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bxprc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "byprc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bzprc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bxr11".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "byr11".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bzr11".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bxr12".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "byr12".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bzr12".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bxr21".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "byr21".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bzr21".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bxr22".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "byr22".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bzr22".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "hximf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "hyimf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "hzimf".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_extall
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_extall
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar3x3
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar3x3
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar3x3
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar3x3
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar3x3
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar3x3
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar3x3
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_shlcar3x3
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "iopt".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "bx1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "by1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "bz1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "bx2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "by2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_deformed
+      vars2fortran: No typespec for argument "bz2".
+                          Block: t02_deformed
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "iopt".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "bx1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "by1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "bz1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "bx2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "by2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_warped
+      vars2fortran: No typespec for argument "bz2".
+                          Block: t02_warped
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_unwarped
+      vars2fortran: No typespec for argument "iopt".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_unwarped
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_unwarped
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_unwarped
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_unwarped
+      vars2fortran: No typespec for argument "bx1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_unwarped
+      vars2fortran: No typespec for argument "by1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_unwarped
+      vars2fortran: No typespec for argument "bz1".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_unwarped
+      vars2fortran: No typespec for argument "bx2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_unwarped
+      vars2fortran: No typespec for argument "by2".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_unwarped
+      vars2fortran: No typespec for argument "bz2".
+                          Block: t02_unwarped
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_taildisk
+      vars2fortran: No typespec for argument "d0".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_taildisk
+      vars2fortran: No typespec for argument "deltadx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_taildisk
+      vars2fortran: No typespec for argument "deltady".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_taildisk
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_taildisk
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_taildisk
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_taildisk
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_taildisk
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_taildisk
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_taildisk
+      {'attrspec': ['dimension(60)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar5x5
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar5x5
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar5x5
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar5x5
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar5x5
+      vars2fortran: No typespec for argument "dshift".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar5x5
+      vars2fortran: No typespec for argument "hx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar5x5
+      vars2fortran: No typespec for argument "hy".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_shlcar5x5
+      vars2fortran: No typespec for argument "hz".
+                          Block: t02_shlcar5x5
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      determineexprtype: could not determine expressions ('bz                          bx21') type.
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "iopb".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "bx11".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "by11".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "bz11".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "bx12".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "by12".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "e_bz__________________________bx21_e".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "by21".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "bz21".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "bx22".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "by22".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      vars2fortran: No typespec for argument "bz22".
+                          Block: t02_birk_tot
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_tot
+      determineexprtype: could not determine expressions ('bz                          bx21') type.
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_1n2
+      vars2fortran: No typespec for argument "numb".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_1n2
+      vars2fortran: No typespec for argument "mode".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_1n2
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_1n2
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_1n2
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_1n2
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_1n2
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_1n2
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_1n2
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_birk_1n2
+      {'attrspec': ['dimension(31)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_twocones
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_twocones
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_twocones
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_twocones
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_twocones
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_twocones
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_twocones
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_twocones
+      {'attrspec': ['dimension(31)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_one_cone
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_one_cone
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_one_cone
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_one_cone
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_one_cone
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_one_cone
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_one_cone
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_one_cone
+      {'attrspec': ['dimension(31)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:r_s
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:r_s
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:r_s
+      vars2fortran: No typespec for argument "theta".
+                          Block: r_s
+      {'attrspec': ['dimension(31)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:theta_s
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:theta_s
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:theta_s
+      vars2fortran: No typespec for argument "theta".
+                          Block: theta_s
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_fialcos
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_fialcos
+      vars2fortran: No typespec for argument "theta".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_fialcos
+      vars2fortran: No typespec for argument "phi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_fialcos
+      vars2fortran: No typespec for argument "btheta".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_fialcos
+      vars2fortran: No typespec for argument "bphi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_fialcos
+      vars2fortran: No typespec for argument "n".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_fialcos
+      vars2fortran: No typespec for argument "theta0".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_fialcos
+      vars2fortran: No typespec for argument "dt".
+                          Block: t02_fialcos
+      {'attrspec': ['dimension(86)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_shl
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_shl
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_shl
+      vars2fortran: No typespec for argument "x_sc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_shl
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_shl
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_shl
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_shl
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_shl
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_birk_shl
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_birk_shl
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      determineexprtype: could not determine expressions ('bypr  bzprc') type.
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      vars2fortran: No typespec for argument "iopr".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      vars2fortran: No typespec for argument "bxsrc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      vars2fortran: No typespec for argument "bysrc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      vars2fortran: No typespec for argument "bzsrc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      vars2fortran: No typespec for argument "bxprc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      vars2fortran: No typespec for argument "e_bypr__bzprc_e".
+                          Block: t02_full_rc
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_full_rc
+      determineexprtype: could not determine expressions ('bypr  bzprc') type.
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      determineexprtype: could not determine expressions ('bysrc    bzsrc') type.
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "iopr".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "sc_sy".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "sc_pr".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "phi".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "bxsrc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "e_bysrc____bzsrc_e".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "bxprc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "byprc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      vars2fortran: No typespec for argument "bzprc".
+                          Block: t02_src_prc
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_src_prc
+      determineexprtype: could not determine expressions ('bysrc    bzsrc') type.
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_symm
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_symm
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_symm
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_symm
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_symm
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_symm
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_rc_symm
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:ap
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:ap
+      vars2fortran: No typespec for argument "sint".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:ap
+      vars2fortran: No typespec for argument "cost".
+                          Block: ap
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_symm
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_symm
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_symm
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_symm
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_symm
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_symm
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_prc_symm
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:apprc
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:apprc
+      vars2fortran: No typespec for argument "sint".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:apprc
+      vars2fortran: No typespec for argument "cost".
+                          Block: apprc
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_quad
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_quad
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_quad
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_quad
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_quad
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_prc_quad
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_prc_quad
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:br_prc_q
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:br_prc_q
+      vars2fortran: No typespec for argument "sint".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:br_prc_q
+      vars2fortran: No typespec for argument "cost".
+                          Block: br_prc_q
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:bt_prc_q
+      vars2fortran: No typespec for argument "r".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:bt_prc_q
+      vars2fortran: No typespec for argument "sint".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:bt_prc_q
+      vars2fortran: No typespec for argument "cost".
+                          Block: bt_prc_q
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_ffs
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_ffs
+      vars2fortran: No typespec for argument "a0".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_ffs
+      vars2fortran: No typespec for argument "da".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_ffs
+      vars2fortran: No typespec for argument "f".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_ffs
+      vars2fortran: No typespec for argument "fa".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_ffs
+      vars2fortran: No typespec for argument "fs".
+                          Block: t02_ffs
+      {'attrspec': ['dimension(86)']}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_shield
+      vars2fortran: No typespec for argument "a".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_shield
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_shield
+      vars2fortran: No typespec for argument "x_sc".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_shield
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_shield
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_shield
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_shield
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_shield
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_rc_shield
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_rc_shield
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_dipole
+      vars2fortran: No typespec for argument "ps".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_dipole
+      vars2fortran: No typespec for argument "x".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_dipole
+      vars2fortran: No typespec for argument "y".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_dipole
+      vars2fortran: No typespec for argument "z".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_dipole
+      vars2fortran: No typespec for argument "bx".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_dipole
+      vars2fortran: No typespec for argument "by".
+      {}
+      In: :geopack:/Users/John/Repositories/Tsyganenko/src/tsyganenko/T02.f:t02_dipole
+      vars2fortran: No typespec for argument "bz".
+                          Block: t02_dipole
+      Applying post-processing hooks...
+        character_backward_compatibility_hook
+      Post-processing (stage 2)...
+      Building modules...
+          Building module "geopack"...
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "igrf_gsw_08"...
+                hxgsw,hygsw,hzgsw = igrf_gsw_08(xgsw,ygsw,zgsw)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "igrf_geo_08"...
+                br,btheta,bphi = igrf_geo_08(r,theta,phi)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "dip_08"...
+                bxgsw,bygsw,bzgsw = dip_08(xgsw,ygsw,zgsw)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "sun_08"...
+                gst,slong,srasn,sdec = sun_08(iyear,iday,ihour,min_bn,isec)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "sphcar_08"...
+                r,theta,phi,x,y,z = sphcar_08(r,theta,phi,x,y,z,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "bspcar_08"...
+                bx,by,bz = bspcar_08(theta,phi,br,btheta,bphi)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "bcarsp_08"...
+                br,btheta,bphi = bcarsp_08(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "recalc_08"...
+                recalc_08(iyear,iday,ihour,min_bn,isec,vgsex,vgsey,vgsez)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "gswgse_08"...
+                xgsw,ygsw,zgsw,xgse,ygse,zgse = gswgse_08(xgsw,ygsw,zgsw,xgse,ygse,zgse,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "geomag_08"...
+                xgeo,ygeo,zgeo,xmag,ymag,zmag = geomag_08(xgeo,ygeo,zgeo,xmag,ymag,zmag,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "geigeo_08"...
+                xgei,ygei,zgei,xgeo,ygeo,zgeo = geigeo_08(xgei,ygei,zgei,xgeo,ygeo,zgeo,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "magsm_08"...
+                xmag,ymag,zmag,xsm,ysm,zsm = magsm_08(xmag,ymag,zmag,xsm,ysm,zsm,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "smgsw_08"...
+                xsm,ysm,zsm,xgsw,ygsw,zgsw = smgsw_08(xsm,ysm,zsm,xgsw,ygsw,zgsw,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "geogsw_08"...
+                xgeo,ygeo,zgeo,xgsw,ygsw,zgsw = geogsw_08(xgeo,ygeo,zgeo,xgsw,ygsw,zgsw,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "geodgeo_08"...
+                h,xmu,r,theta = geodgeo_08(h,xmu,r,theta,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "rhand_08"...
+                rhand_08(x,y,z,r1,r2,r3,iopt,parmod,exname,inname)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "step_08"...
+                step_08(x,y,z,ds,dsmax,errin,iopt,parmod,exname,inname)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "trace_08"...
+                xf,yf,zf,xx,yy,zz,l = trace_08(xi,yi,zi,dir,dsmax,err,rlim,r0,iopt,parmod,exname,inname,lmax)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "shuetal_mgnp_08"...
+                xmgnp,ymgnp,zmgnp,dist,id = shuetal_mgnp_08(xn_pd,vel,bzimf,xgsw,ygsw,zgsw)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t96_mgnp_08"...
+                xmgnp,ymgnp,zmgnp,dist,id = t96_mgnp_08(xn_pd,vel,xgsw,ygsw,zgsw)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t96_01"...
+                t96_01(iopt,parmod,ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "dipshld"...
+                dipshld(ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "cylharm"...
+                cylharm(a,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "cylhar1"...
+                cylhar1(a,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "bes"("bes")...
+              Constructing wrapper function "bes"...
+                bes = bes(x,k)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "bes0"("bes0")...
+              Constructing wrapper function "bes0"...
+                bes0 = bes0(x)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "bes1"("bes1")...
+              Constructing wrapper function "bes1"...
+                bes1 = bes1(x)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "intercon"...
+                intercon(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "tailrc96"...
+                tailrc96(sps,x,y,z,bxrc,byrc,bzrc,bxt2,byt2,bzt2,bxt3,byt3,bzt3)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "ringcurr96"...
+                ringcurr96(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "taildisk"...
+                taildisk(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "tail87"...
+                tail87(x,z,bx,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "shlcar3x3"...
+                shlcar3x3(a,x,y,z,sps,hx,hy,hz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "birk1tot_02"...
+                birk1tot_02(ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "diploop1"...
+                diploop1(xi,d)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "circle"...
+                circle(x,y,z,rl,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "crosslp"...
+                crosslp(x,y,z,bx,by,bz,xc,rl,al)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "dipxyz"...
+                dipxyz(x,y,z,bxx,byx,bzx,bxy,byy,bzy,bxz,byz,bzz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "condip1"...
+                condip1(xi,d)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "birk1shld"...
+                birk1shld(ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "birk2tot_02"...
+                birk2tot_02(ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "birk2shl"...
+                birk2shl(x,y,z,ps,hx,hy,hz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "r2_birk"...
+                r2_birk(x,y,z,ps,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "r2inner"...
+                r2inner(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "bconic"...
+                bconic(x,y,z,cbx,cby,cbz,[nmax])
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "dipdistr"...
+                dipdistr(x,y,z,bx,by,bz,mode)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "r2outer"...
+                r2outer(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "loops4"...
+                loops4(x,y,z,bx,by,bz,xc,yc,zc,r,theta,phi)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "r2sheet"...
+                r2sheet(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "xksi"("xksi")...
+              Constructing wrapper function "xksi"...
+                xksi = xksi(x,y,z)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "fexp"("fexp")...
+              Constructing wrapper function "fexp"...
+                fexp = fexp(s,a)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "fexp1"("fexp1")...
+              Constructing wrapper function "fexp1"...
+                fexp1 = fexp1(s,a)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "tksi"("tksi")...
+              Constructing wrapper function "tksi"...
+                tksi = tksi(xksi,xks0,dxksi)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "dipole"...
+                dipole(ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t01_01"...
+                t01_01(iopt,parmod,ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_extall"...
+                t02_extall(iopgen,iopt,iopb,iopr,a,pdyn,dst,byimf,bzimf,vbimf1,vbimf2,ps,x,y,z,bxcf,bycf,bzcf,bxt1,byt1,bzt1,bxt2,byt2,bzt2,bxsrc,bysrc,bzsrc,bxprc,byprc,bzprc,bxr11,byr11,bzr11,bxr12,byr12,bzr12,bxr21,byr21,bzr21,bxr22,byr22,bzr22,hximf,hyimf,hzimf,bx,by,bz,[ntot])
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_shlcar3x3"...
+                t02_shlcar3x3(x,y,z,ps,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_deformed"...
+                t02_deformed(iopt,ps,x,y,z,bx1,by1,bz1,bx2,by2,bz2)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_warped"...
+                t02_warped(iopt,ps,x,y,z,bx1,by1,bz1,bx2,by2,bz2)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_unwarped"...
+                t02_unwarped(iopt,x,y,z,bx1,by1,bz1,bx2,by2,bz2)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_taildisk"...
+                t02_taildisk(d0,deltadx,deltady,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_shlcar5x5"...
+                t02_shlcar5x5(a,x,y,z,dshift,hx,hy,hz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_birk_tot"...
+                t02_birk_tot(iopb,ps,x,y,z,bx11,by11,bz11,bx12,by12,e_bz__________________________bx21_er,by21,bz21,bx22,by22,bz22)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_birk_1n2"...
+                t02_birk_1n2(numb,mode,ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_twocones"...
+                t02_twocones(a,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_one_cone"...
+                t02_one_cone(a,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "r_s"("r_s")...
+              Constructing wrapper function "r_s"...
+                r_s = r_s(a,r,theta)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "theta_s"("theta_s")...
+              Constructing wrapper function "theta_s"...
+                theta_s = theta_s(a,r,theta)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_fialcos"...
+                t02_fialcos(r,theta,phi,btheta,bphi,n,theta0,dt)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_birk_shl"...
+                t02_birk_shl(a,ps,x_sc,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_full_rc"...
+                t02_full_rc(iopr,ps,x,y,z,bxsrc,bysrc,bzsrc,bxprc,e_bypr__bzprc_er)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_src_prc"...
+                t02_src_prc(iopr,sc_sy,sc_pr,phi,ps,x,y,z,bxsrc,e_bysrc____bzsrc_er,bxprc,byprc,bzprc)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_rc_symm"...
+                t02_rc_symm(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "ap"("ap")...
+              Constructing wrapper function "ap"...
+                ap = ap(r,sint,cost)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_prc_symm"...
+                t02_prc_symm(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "apprc"("apprc")...
+              Constructing wrapper function "apprc"...
+                apprc = apprc(r,sint,cost)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_prc_quad"...
+                t02_prc_quad(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "br_prc_q"("br_prc_q")...
+              Constructing wrapper function "br_prc_q"...
+                br_prc_q = br_prc_q(r,sint,cost)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "bt_prc_q"("bt_prc_q")...
+              Constructing wrapper function "bt_prc_q"...
+                bt_prc_q = bt_prc_q(r,sint,cost)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_ffs"...
+                t02_ffs(a,a0,da,f,fa,fs)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_rc_shield"...
+                t02_rc_shield(a,ps,x_sc,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_dipole"...
+                t02_dipole(ps,x,y,z,bx,by,bz)
+                  Constructing COMMON block support for "geopack2"...
+                    g,h,rec
+                  Constructing COMMON block support for "geopack1"...
+                    aa,sps,cps,bb
+                  Constructing COMMON block support for "warp"...
+                    cpss,spss,dpsrr,rps,warp,d,xs,zs,dxsx,dxsy,dxsz,dzsx,dzsy,dzsz,dzetas,ddzetadx,ddzetady,ddzetadz,zsww
+                  Constructing COMMON block support for "dx1"...
+                    dx,scalein,scaleout
+                  Constructing COMMON block support for "rhdr"...
+                    rh,dr
+                  Constructing COMMON block support for "loopdip1"...
+                    tilt,xcentre,radius,dipx,dipy
+                  Constructing COMMON block support for "coord11"...
+                    xx1,yy1
+                  Constructing COMMON block support for "coord21"...
+                    xx2,yy2,zz2
+                  Constructing COMMON block support for "birkpar"...
+                    xkappa1,xkappa2
+                  Constructing COMMON block support for "rh0"...
+                    rh0
+                  Constructing COMMON block support for "tail"...
+                    dxshift1,dxshift2,d,deltady
+                  Constructing COMMON block support for "rcpar"...
+                    sc_sy,sc_as,phi
+                  Constructing COMMON block support for "g"...
+                    g
+                  Constructing COMMON block support for "dphi_b_rho0"...
+                    dphi,b,rho_0,xkappa
+                  Constructing COMMON block support for "modenum"...
+                    m
+                  Constructing COMMON block support for "dtheta"...
+                    dtheta
+          Wrote C/API module "geopack" to file "./geopackmodule.c"
+          Fortran 77 wrappers are saved to "./geopack-f2pywrappers.f"
+          Building module "geopack"...
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "igrf_gsw_08"...
+                igrf_gsw_08(xgsw,ygsw,zgsw,hxgsw,hygsw,hzgsw)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "igrf_geo_08"...
+                igrf_geo_08(r,theta,phi,br,btheta,bphi)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "dip_08"...
+                dip_08(xgsw,ygsw,zgsw,bxgsw,bygsw,bzgsw)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "sun_08"...
+                sun_08(iyear,iday,ihour,min_bn,isec,gst,slong,srasn,sdec)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "sphcar_08"...
+                sphcar_08(r,theta,phi,x,y,z,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "bspcar_08"...
+                bspcar_08(theta,phi,br,btheta,bphi,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "bcarsp_08"...
+                bcarsp_08(x,y,z,bx,by,bz,br,btheta,bphi)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "recalc_08"...
+                recalc_08(iyear,iday,ihour,min_bn,isec,vgsex,vgsey,vgsez)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "gswgse_08"...
+                gswgse_08(xgsw,ygsw,zgsw,xgse,ygse,zgse,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "geomag_08"...
+                geomag_08(xgeo,ygeo,zgeo,xmag,ymag,zmag,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "geigeo_08"...
+                geigeo_08(xgei,ygei,zgei,xgeo,ygeo,zgeo,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "magsm_08"...
+                magsm_08(xmag,ymag,zmag,xsm,ysm,zsm,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "smgsw_08"...
+                smgsw_08(xsm,ysm,zsm,xgsw,ygsw,zgsw,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "geogsw_08"...
+                geogsw_08(xgeo,ygeo,zgeo,xgsw,ygsw,zgsw,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "geodgeo_08"...
+                geodgeo_08(h,xmu,r,theta,j)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "rhand_08"...
+                rhand_08(x,y,z,r1,r2,r3,iopt,parmod,exname,inname)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "step_08"...
+                step_08(x,y,z,ds,dsmax,errin,iopt,parmod,exname,inname)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "trace_08"...
+                trace_08(xi,yi,zi,dir,dsmax,err,rlim,r0,iopt,parmod,exname,inname,xf,yf,zf,xx,yy,zz,l,[lmax])
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "shuetal_mgnp_08"...
+                shuetal_mgnp_08(xn_pd,vel,bzimf,xgsw,ygsw,zgsw,xmgnp,ymgnp,zmgnp,dist,id)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t96_mgnp_08"...
+                t96_mgnp_08(xn_pd,vel,xgsw,ygsw,zgsw,xmgnp,ymgnp,zmgnp,dist,id)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t96_01"...
+                t96_01(iopt,parmod,ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "dipshld"...
+                dipshld(ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "cylharm"...
+                cylharm(a,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "cylhar1"...
+                cylhar1(a,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "bes"("bes")...
+              Constructing wrapper function "bes"...
+                bes = bes(x,k)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "bes0"("bes0")...
+              Constructing wrapper function "bes0"...
+                bes0 = bes0(x)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "bes1"("bes1")...
+              Constructing wrapper function "bes1"...
+                bes1 = bes1(x)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "intercon"...
+                intercon(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "tailrc96"...
+                tailrc96(sps,x,y,z,bxrc,byrc,bzrc,bxt2,byt2,bzt2,bxt3,byt3,bzt3)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "ringcurr96"...
+                ringcurr96(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "taildisk"...
+                taildisk(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "tail87"...
+                tail87(x,z,bx,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "shlcar3x3"...
+                shlcar3x3(a,x,y,z,sps,hx,hy,hz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "birk1tot_02"...
+                birk1tot_02(ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "diploop1"...
+                diploop1(xi,d)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "circle"...
+                circle(x,y,z,rl,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "crosslp"...
+                crosslp(x,y,z,bx,by,bz,xc,rl,al)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "dipxyz"...
+                dipxyz(x,y,z,bxx,byx,bzx,bxy,byy,bzy,bxz,byz,bzz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "condip1"...
+                condip1(xi,d)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "birk1shld"...
+                birk1shld(ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "birk2tot_02"...
+                birk2tot_02(ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "birk2shl"...
+                birk2shl(x,y,z,ps,hx,hy,hz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "r2_birk"...
+                r2_birk(x,y,z,ps,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "r2inner"...
+                r2inner(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "bconic"...
+                bconic(x,y,z,cbx,cby,cbz,[nmax])
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "dipdistr"...
+                dipdistr(x,y,z,bx,by,bz,mode)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "r2outer"...
+                r2outer(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "loops4"...
+                loops4(x,y,z,bx,by,bz,xc,yc,zc,r,theta,phi)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "r2sheet"...
+                r2sheet(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "xksi"("xksi")...
+              Constructing wrapper function "xksi"...
+                xksi = xksi(x,y,z)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "fexp"("fexp")...
+              Constructing wrapper function "fexp"...
+                fexp = fexp(s,a)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "fexp1"("fexp1")...
+              Constructing wrapper function "fexp1"...
+                fexp1 = fexp1(s,a)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "tksi"("tksi")...
+              Constructing wrapper function "tksi"...
+                tksi = tksi(xksi,xks0,dxksi)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "dipole"...
+                dipole(ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t01_01"...
+                t01_01(iopt,parmod,ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_extall"...
+                t02_extall(iopgen,iopt,iopb,iopr,a,pdyn,dst,byimf,bzimf,vbimf1,vbimf2,ps,x,y,z,bxcf,bycf,bzcf,bxt1,byt1,bzt1,bxt2,byt2,bzt2,bxsrc,bysrc,bzsrc,bxprc,byprc,bzprc,bxr11,byr11,bzr11,bxr12,byr12,bzr12,bxr21,byr21,bzr21,bxr22,byr22,bzr22,hximf,hyimf,hzimf,bx,by,bz,[ntot])
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_shlcar3x3"...
+                t02_shlcar3x3(x,y,z,ps,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_deformed"...
+                t02_deformed(iopt,ps,x,y,z,bx1,by1,bz1,bx2,by2,bz2)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_warped"...
+                t02_warped(iopt,ps,x,y,z,bx1,by1,bz1,bx2,by2,bz2)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_unwarped"...
+                t02_unwarped(iopt,x,y,z,bx1,by1,bz1,bx2,by2,bz2)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_taildisk"...
+                t02_taildisk(d0,deltadx,deltady,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_shlcar5x5"...
+                t02_shlcar5x5(a,x,y,z,dshift,hx,hy,hz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_birk_tot"...
+                t02_birk_tot(iopb,ps,x,y,z,bx11,by11,bz11,bx12,by12,e_bz__________________________bx21_er,by21,bz21,bx22,by22,bz22)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_birk_1n2"...
+                t02_birk_1n2(numb,mode,ps,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_twocones"...
+                t02_twocones(a,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_one_cone"...
+                t02_one_cone(a,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "r_s"("r_s")...
+              Constructing wrapper function "r_s"...
+                r_s = r_s(a,r,theta)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "theta_s"("theta_s")...
+              Constructing wrapper function "theta_s"...
+                theta_s = theta_s(a,r,theta)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_fialcos"...
+                t02_fialcos(r,theta,phi,btheta,bphi,n,theta0,dt)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_birk_shl"...
+                t02_birk_shl(a,ps,x_sc,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_full_rc"...
+                t02_full_rc(iopr,ps,x,y,z,bxsrc,bysrc,bzsrc,bxprc,e_bypr__bzprc_er)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_src_prc"...
+                t02_src_prc(iopr,sc_sy,sc_pr,phi,ps,x,y,z,bxsrc,e_bysrc____bzsrc_er,bxprc,byprc,bzprc)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_rc_symm"...
+                t02_rc_symm(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "ap"("ap")...
+              Constructing wrapper function "ap"...
+                ap = ap(r,sint,cost)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_prc_symm"...
+                t02_prc_symm(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "apprc"("apprc")...
+              Constructing wrapper function "apprc"...
+                apprc = apprc(r,sint,cost)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_prc_quad"...
+                t02_prc_quad(x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "br_prc_q"("br_prc_q")...
+              Constructing wrapper function "br_prc_q"...
+                br_prc_q = br_prc_q(r,sint,cost)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+                  Creating wrapper for Fortran function "bt_prc_q"("bt_prc_q")...
+              Constructing wrapper function "bt_prc_q"...
+                bt_prc_q = bt_prc_q(r,sint,cost)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_ffs"...
+                t02_ffs(a,a0,da,f,fa,fs)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_rc_shield"...
+                t02_rc_shield(a,ps,x_sc,x,y,z,bx,by,bz)
+          Generating possibly empty wrappers"
+          Maybe empty "geopack-f2pywrappers.f"
+              Constructing wrapper function "t02_dipole"...
+                t02_dipole(ps,x,y,z,bx,by,bz)
+                  Constructing COMMON block support for "geopack2"...
+                    g,h,rec
+                  Constructing COMMON block support for "geopack1"...
+                    aa,sps,cps,bb
+                  Constructing COMMON block support for "warp"...
+                    cpss,spss,dpsrr,rps,warp,d,xs,zs,dxsx,dxsy,dxsz,dzsx,dzsy,dzsz,dzetas,ddzetadx,ddzetady,ddzetadz,zsww
+                  Constructing COMMON block support for "coord11"...
+                    xx1,yy1
+                  Constructing COMMON block support for "rhdr"...
+                    rh,dr
+                  Constructing COMMON block support for "loopdip1"...
+                    tilt,xcentre,radius,dipx,dipy
+                  Constructing COMMON block support for "coord21"...
+                    xx2,yy2,zz2
+                  Constructing COMMON block support for "dx1"...
+                    dx,scalein,scaleout
+                  Constructing COMMON block support for "tail"...
+                    dxshift1,dxshift2,d,deltady
+                  Constructing COMMON block support for "birkpar"...
+                    xkappa1,xkappa2
+                  Constructing COMMON block support for "rcpar"...
+                    sc_sy,sc_as,phi
+                  Constructing COMMON block support for "g"...
+                    g
+                  Constructing COMMON block support for "rh0"...
+                    rh0
+                  Constructing COMMON block support for "dphi_b_rho0"...
+                    dphi,b,rho_0,xkappa
+                  Constructing COMMON block support for "modenum"...
+                    m
+                  Constructing COMMON block support for "dtheta"...
+                    dtheta
+          Wrote C/API module "geopack" to file "./geopackmodule.c"
+          Fortran 77 wrappers are saved to "./geopack-f2pywrappers.f"
+      [3/9] Building C object CMakeFiles/geopack_py.dir/geopack_pymodule.c.o
+      FAILED: CMakeFiles/geopack_py.dir/geopack_pymodule.c.o
+      /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Dgeopack_py_EXPORTS -I/private/var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/pip-build-env-lktdmzhe/overlay/lib/python3.13/site-packages/numpy/f2py/src -isystem /opt/homebrew/Caskroom/mambaforge/base/envs/tsyganenko/include/python3.13 -isystem /private/var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/pip-build-env-lktdmzhe/overlay/lib/python3.13/site-packages/numpy/_core/include -O3 -DNDEBUG -arch arm64 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -fPIC -MD -MT CMakeFiles/geopack_py.dir/geopack_pymodule.c.o -MF CMakeFiles/geopack_py.dir/geopack_pymodule.c.o.d -o CMakeFiles/geopack_py.dir/geopack_pymodule.c.o -c /var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/tmpfuotcldh/build/geopack_pymodule.c
+      clang: error: no such file or directory: '/var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/tmpfuotcldh/build/geopack_pymodule.c'
+      clang: error: no input files
+      [4/9] Building Fortran preprocessed CMakeFiles/geopack_py.dir/geopack_py-f2pywrappers.f-pp.f
+      FAILED: CMakeFiles/geopack_py.dir/geopack_py-f2pywrappers.f-pp.f CMakeFiles/geopack_py.dir/geopack_py-f2pywrappers.f.o.ddi
+      /opt/homebrew/bin/gfortran -cpp -Dgeopack_py_EXPORTS -I/private/var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/pip-build-env-lktdmzhe/overlay/lib/python3.13/site-packages/numpy/f2py/src -I/opt/homebrew/Caskroom/mambaforge/base/envs/tsyganenko/include/python3.13 -I/private/var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/pip-build-env-lktdmzhe/overlay/lib/python3.13/site-packages/numpy/_core/include -O3 -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX15.0.sdk -fPIC -E /var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/tmpfuotcldh/build/geopack_py-f2pywrappers.f -o CMakeFiles/geopack_py.dir/geopack_py-f2pywrappers.f-pp.f && /private/var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/pip-build-env-lktdmzhe/normal/lib/python3.13/site-packages/cmake/data/bin/cmake -E cmake_ninja_depends --tdi=CMakeFiles/geopack_py.dir/FortranDependInfo.json --lang=Fortran --src=CMakeFiles/geopack_py.dir/geopack_py-f2pywrappers.f-pp.f --out=CMakeFiles/geopack_py.dir/geopack_py-f2pywrappers.f-pp.f --dep=CMakeFiles/geopack_py.dir/geopack_py-f2pywrappers.f-pp.f.d --obj=CMakeFiles/geopack_py.dir/geopack_py-f2pywrappers.f.o --ddi=CMakeFiles/geopack_py.dir/geopack_py-f2pywrappers.f.o.ddi --src-orig=/var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/tmpfuotcldh/build/geopack_py-f2pywrappers.f
+      f951: Fatal Error: /var/folders/f9/tvbhl__13j72c0y9c8ghmwvr0000gn/T/tmpfuotcldh/build/geopack_py-f2pywrappers.f: No such file or directory
+      compilation terminated.
+      [5/9] Building Fortran preprocessed CMakeFiles/geopack_py.dir/src/tsyganenko/geopack_py.f-pp.f
+      ninja: build stopped: subcommand failed.
+      
+      *** CMake build failed
+      [end of output]
+  
+  note: This error originates from a subprocess, and is likely not a problem with pip.
+  ERROR: Failed building wheel for Tsyganenko
+Failed to build Tsyganenko
+ERROR: ERROR: Failed to build installable wheels for some pyproject.toml based projects (Tsyganenko)
