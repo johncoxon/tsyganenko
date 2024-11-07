@@ -19,26 +19,28 @@ target_include_directories(fortranobject PUBLIC "${F2PY_INCLUDE_DIR}")
 set_property(TARGET fortranobject PROPERTY POSITION_INDEPENDENT_CODE ON)
 
 add_custom_command(
-  OUTPUT geopack_pymodule.c geopack_py-f2pywrappers.f
+  OUTPUT geopack_tsyganenkomodule.c geopack_tsyganenko-f2pywrappers.f
   DEPENDS
-    src/tsyganenko/geopack_py.pyf
-    src/tsyganenko/geopack_py.f
+    src/tsyganenko/geopack.pyf
+    src/tsyganenko/geopack.f
     src/tsyganenko/T96.f
     src/tsyganenko/T02.f
-  VERBATIM
   COMMAND "${Python_EXECUTABLE}" -m numpy.f2py
-    -m geopack_py
+    -m geopack_tsyganenko
     --lower
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack_py.pyf"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack_py.f"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.pyf"
+    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.f"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T96.f"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T02.f"
 )
 
 python_add_library(
-  geopack_py MODULE "${CMAKE_CURRENT_BINARY_DIR}/geopack_pymodule.c"
-  "${CMAKE_CURRENT_BINARY_DIR}/geopack_py-f2pywrappers.f"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack_py.f" WITH_SOABI)
-target_link_libraries(geopack_py PRIVATE fortranobject)
+  geopack_tsyganenko MODULE "${CMAKE_CURRENT_BINARY_DIR}/geopack_tsyganenkomodule.c"
+  "${CMAKE_CURRENT_BINARY_DIR}/geopack_tsyganenko-f2pywrappers.f"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.f"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T96.f"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T02.f"
+  WITH_SOABI)
+target_link_libraries(geopack_tsyganenko PRIVATE fortranobject)
 
-install(TARGETS geopack_py DESTINATION .)
+install(TARGETS geopack_tsyganenko DESTINATION .)

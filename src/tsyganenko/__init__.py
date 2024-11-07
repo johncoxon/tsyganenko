@@ -10,9 +10,4 @@ Copyright (C) 2012 VT SuperDARN Lab
 .. moduleauthor:: John Coxon
 """
 from . import convert
-import geopack
 from .trace import *
-
-
-# Declare the same Earth radius as used in Tsyganenko models (km)
-earth_radius = 6371.2
