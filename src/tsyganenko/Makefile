@@ -1,5 +1,5 @@
 #!/bin/bash
-MODULE := Geopack
+MODULE := geopack_tsyganenko
 
 # Makefile for building Tsyganenko and compliling it with f2py
 
@@ -17,15 +17,16 @@ REQ_FLAGS = -w
 
 # Declare source code
 SOURCES = T96.f \
-	  T02.f
-SRC = geopack_py.for
+    T02.f
+SRC = geopack.f
 OBJ = $(SOURCES:.f=.o) $(SRC:.for=.o)
 
-PYF = $(SRC:.for=.pyf)
+PYF = $(SRC:.f=.pyf)
 PYO = $(PYF:.pyf=.so)
 
 # Define operations
 all:
+    echo $(PYF)
 	$(F77) $(REQ_FLAGS) $(OPT_FLAGS) -c $(SRC) $(SOURCES)
 	$(F2PY) --f77flags="$(REQ_FLAGS)" -c $(PYF) $(SRC) $(SOURCES)
 
@@ -34,7 +35,7 @@ clean:
 
 # Declare test operations
 test:
-	$(F2PY) $(SRC) -m Geopack -h geopack_py_test.pyf $(SOURCES)
+	$(F2PY) $(SRC) -m Geopack -h geopack_test.pyf $(SOURCES)
 
 test_clean:
-	rm -f geopack_py_test.pyf
+	rm -f geopack_test.pyf

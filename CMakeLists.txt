@@ -6,6 +6,8 @@ find_package(
   COMPONENTS Interpreter Development.Module NumPy
   REQUIRED)
 
+set(CMAKE_VERBOSE_MAKEFILE ON)
+
 # F2PY headers
 execute_process(
   COMMAND "${PYTHON_EXECUTABLE}" -c
@@ -25,19 +27,21 @@ add_custom_command(
     src/tsyganenko/geopack.f
     src/tsyganenko/T96.f
     src/tsyganenko/T02.f
+  VERBATIM
   COMMAND "${Python_EXECUTABLE}" -m numpy.f2py
-    -m geopack_tsyganenko
-    --lower
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.pyf"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.f"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T96.f"
     "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T02.f"
+    -m geopack_tsyganenko
+    --lower
 )
 
 python_add_library(
   geopack_tsyganenko MODULE "${CMAKE_CURRENT_BINARY_DIR}/geopack_tsyganenkomodule.c"
   "${CMAKE_CURRENT_BINARY_DIR}/geopack_tsyganenko-f2pywrappers.f"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.f"
+  "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.pyf"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T96.f"
   "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T02.f"
   WITH_SOABI)
