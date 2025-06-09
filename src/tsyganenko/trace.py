@@ -1,6 +1,6 @@
 """trace: Provides a class to easily trace field lines from start points"""
 import datetime as _dt
-import geopack_tsyganenko as geopack
+import geopack_tsyganenko as _geopack
 import numpy as _np
 from matplotlib import pyplot as _plt
 from matplotlib.patches import Circle as _Circle
@@ -143,20 +143,20 @@ Coords: {}
         for ip in _np.arange(len(self.lat)):
             # This has to be called first
             print(self.time.shape)
-            geopack.recalc_08(self.time[ip].year,
-                              self.time[ip].timetuple().tm_yday,
-                              self.time[ip].hour,
-                              self.time[ip].minute,
-                              self.time[ip].second, *self.vsw_gse)
+            _geopack.recalc_08(self.time[ip].year,
+                               self.time[ip].timetuple().tm_yday,
+                               self.time[ip].hour,
+                               self.time[ip].minute,
+                               self.time[ip].second, *self.vsw_gse)
 
             # Convert spherical to cartesian
-            r, theta, phi, x, y, z = geopack.sphcar_08(
+            r, theta, phi, x, y, z = _geopack.sphcar_08(
                 self.rho[ip]/earth_radius, _np.radians(90. - self.lat[ip]),
                 _np.radians(self.lon[ip]), 0., 0., 0., 1)
 
             # Convert to GSW.
             if self.coords.lower() == "geo":
-                _, _, _, xgsw, ygsw, zgsw = geopack.geogsw_08(
+                _, _, _, xgsw, ygsw, zgsw = _geopack.geogsw_08(
                     x, y, z, 0., 0., 0., 1)
 
             self.gsw[ip, 0] = xgsw
@@ -247,12 +247,12 @@ Coords: {}
         else:
             mapto = 1
 
-        xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt = geopack.trace_08(
+        xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt = _geopack.trace_08(
             xgsw, ygsw, zgsw, mapto, dsmax, err, rmax, rmin, 0, parmod, exmod, inmod, l_max)
 
         # Convert back to spherical geographic coords
-        xfgeo, yfgeo, zfgeo, _, _, _ = geopack.geogsw_08(0., 0., 0., xfgsw, yfgsw, zfgsw, -1)
-        rhof, colatf, lonf, _, _, _ = geopack.sphcar_08(0., 0., 0., xfgeo, yfgeo, zfgeo, -1)
+        xfgeo, yfgeo, zfgeo, _, _, _ = _geopack.geogsw_08(0., 0., 0., xfgsw, yfgsw, zfgsw, -1)
+        rhof, colatf, lonf, _, _, _ = _geopack.sphcar_08(0., 0., 0., xfgeo, yfgeo, zfgeo, -1)
 
         if hemisphere == "north":
             self.lat_n[ip] = 90. - _np.degrees(colatf)
