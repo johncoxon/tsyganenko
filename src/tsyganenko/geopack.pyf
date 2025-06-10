@@ -297,7 +297,7 @@ python module geopack_tsyganenko ! in
             real dimension(lmax),intent(out),depend(lmax) :: yy
             real dimension(lmax),intent(out),depend(lmax) :: zz
             integer intent(out) :: l
-            integer, optional,check(shape(xx, 0) == lmax),depend(xx) :: lmax=shape(xx, 0)
+            integer intent(in) :: lmax
             real dimension(12) :: aa
             real :: dd
             real dimension(21) :: bb
