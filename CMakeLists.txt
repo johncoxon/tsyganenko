@@ -7,6 +7,7 @@ find_package(
   REQUIRED)
 
 set(CMAKE_VERBOSE_MAKEFILE ON)
+set(CMAKE_Fortran_FLAGS "-w")
 
 # F2PY headers
 execute_process(
@@ -38,10 +39,10 @@ add_custom_command(
     ${FORTRAN_T02_FILE}
   VERBATIM
   COMMAND "${PYTHON_EXECUTABLE}" -m numpy.f2py
-    "${FORTRAN_PYF_FILE"}
-    "${FORTRAN_SRC_FILE"}
-    "${FORTRAN_T96_FILE"}
-    "${FORTRAN_T02_FILE"}
+    "${FORTRAN_PYF_FILE}"
+    "${FORTRAN_SRC_FILE}"
+    "${FORTRAN_T96_FILE}"
+    "${FORTRAN_T02_FILE}"
     -m ${MODULE_NAME}
     --lower
 )
