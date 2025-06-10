@@ -20,31 +20,40 @@ target_link_libraries(fortranobject PUBLIC Python::NumPy)
 target_include_directories(fortranobject PUBLIC "${F2PY_INCLUDE_DIR}")
 set_property(TARGET fortranobject PROPERTY POSITION_INDEPENDENT_CODE ON)
 
+# Define variables
+set(FORTRAN_PYF_FILE ${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.pyf)
+set(FORTRAN_SRC_FILE ${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.f)
+set(FORTRAN_T96_FILE ${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T96.f)
+set(FORTRAN_T02_FILE ${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T02.f)
+set(MODULE_NAME geopack_tsyganenko)
+set(F2PY_MODULE ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}module.c)
+set(F2PY_WRAPPERS ${CMAKE_CURRENT_BINARY_DIR}/${MODULE_NAME}-f2pywrappers.f)
+
 add_custom_command(
-  OUTPUT geopack_tsyganenkomodule.c geopack_tsyganenko-f2pywrappers.f
+  OUTPUT ${F2PY_MODULE} ${F2PY_WRAPPERS}
   DEPENDS
-    src/tsyganenko/geopack.pyf
-    src/tsyganenko/geopack.f
-    src/tsyganenko/T96.f
-    src/tsyganenko/T02.f
+    ${FORTRAN_PYF_FILE}
+    ${FORTRAN_SRC_FILE}
+    ${FORTRAN_T96_FILE}
+    ${FORTRAN_T02_FILE}
   VERBATIM
-  COMMAND "${Python_EXECUTABLE}" -m numpy.f2py
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.pyf"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.f"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T96.f"
-    "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T02.f"
-    -m geopack_tsyganenko
+  COMMAND "${PYTHON_EXECUTABLE}" -m numpy.f2py
+    "${FORTRAN_PYF_FILE"}
+    "${FORTRAN_SRC_FILE"}
+    "${FORTRAN_T96_FILE"}
+    "${FORTRAN_T02_FILE"}
+    -m ${MODULE_NAME}
     --lower
 )
 
 python_add_library(
-  geopack_tsyganenko MODULE "${CMAKE_CURRENT_BINARY_DIR}/geopack_tsyganenkomodule.c"
-  "${CMAKE_CURRENT_BINARY_DIR}/geopack_tsyganenko-f2pywrappers.f"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.f"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/geopack.pyf"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T96.f"
-  "${CMAKE_CURRENT_SOURCE_DIR}/src/tsyganenko/T02.f"
+  geopack_tsyganenko MODULE "${F2PY_MODULE}"
+  "${F2PY_WRAPPERS}"
+  "${FORTRAN_PYF_FILE}"
+  "${FORTRAN_SRC_FILE}"
+  "${FORTRAN_T96_FILE}"
+  "${FORTRAN_T02_FILE}"
   WITH_SOABI)
-target_link_libraries(geopack_tsyganenko PRIVATE fortranobject)
+target_link_libraries(${MODULE_NAME} PRIVATE fortranobject)
 
-install(TARGETS geopack_tsyganenko DESTINATION .)
+install(TARGETS ${MODULE_NAME} DESTINATION .)
