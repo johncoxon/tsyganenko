@@ -85,9 +85,7 @@ class Trace(object):
 
         # If no datetime is provided, defaults to today
         if datetime is None:
-            self.time = _np.array([_dt.datetime.utcnow()])
-        elif isinstance(datetime, _dt.datetime):
-            self.time = _np.array([datetime])
+            self.time = _dt.datetime.now()
         else:
             self.time = datetime
 
@@ -200,7 +198,10 @@ Coords: {}
             len_rho = len(self.rho)
         except TypeError:
             len_rho = 1
-        len_dt = len(self.time)
+        try:
+            len_dt = len(self.time)
+        except TypeError:
+            len_dt = 1
 
         # Make the inputs into floating point arrays. Where an input is passed
         # once, make it into an array of that input (this allows passing e.g.
