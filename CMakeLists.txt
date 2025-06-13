@@ -6,9 +6,6 @@ find_package(
   COMPONENTS Interpreter Development.Module NumPy
   REQUIRED)
 
-set(CMAKE_VERBOSE_MAKEFILE ON)
-set(CMAKE_Fortran_FLAGS "-w")
-
 # F2PY headers
 execute_process(
   COMMAND "${PYTHON_EXECUTABLE}" -c
@@ -37,7 +34,7 @@ add_custom_command(
     ${FORTRAN_T96_FILE}
     ${FORTRAN_T02_FILE}
   VERBATIM
-  COMMAND "${PYTHON_EXECUTABLE}" -m numpy.f2py -c
+  COMMAND "${PYTHON_EXECUTABLE}" -m numpy.f2py -c --f77flags="-w"
     "${FORTRAN_PYF_FILE}"
     "${FORTRAN_SRC_FILE}"
     "${FORTRAN_T96_FILE}"
