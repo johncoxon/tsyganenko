@@ -142,7 +142,6 @@ Coords: {}
         # Iterate through the desired points
         for ip in _np.arange(len(self.lat)):
             # This has to be called first
-            print(self.time.shape)
             _geopack.recalc_08(self.time[ip].year,
                                self.time[ip].timetuple().tm_yday,
                                self.time[ip].hour,
@@ -191,8 +190,6 @@ Coords: {}
             raise ValueError("{}: this coordinate system is not supported".format(self.coords.lower()))
         if _np.isnan(self.pdyn) | _np.isnan(self.dst) | _np.isnan(self.by_imf) | _np.isnan(self.bz_imf):
             raise ValueError("Input parameters are not numbers")
-
-        print("1", self.time.shape)
 
         try:
             len_lat = len(self.lat)
