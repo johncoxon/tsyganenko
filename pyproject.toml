@@ -7,7 +7,8 @@ name = "tsyganenko"
 version = "2020.2.0"
 dependencies = [
     "matplotlib",
-    "numpy"
+    "numpy",
+    "pandas"
 ]
 requires-python = ">=3.9"
 authors = [
