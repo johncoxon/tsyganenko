@@ -1,3 +1,5 @@
+[![Tests badge](https://github.com/johncoxon/tsyganenko/actions/workflows/tests.yaml/badge.svg)](https://github.com/johncoxon/tsyganenko/actions/workflows/tests.yaml)
+
 ## Licence
 
 Though edits had to be made to the fortran code to accomodate `f2py` compilation, all Fortran files and their scientific contents are developed by and belong to N. A. Tsyganenko and colleagues.
