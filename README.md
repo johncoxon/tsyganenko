@@ -5,7 +5,7 @@
 
 A Python wrapper for N. A. Tsyganenko’s field-line tracing routines.
 
-[For information on the models and routines that are wrapped by this package, please visit Empirical Magnetosphere 
+[For information on the models and routines that are wrapped by this package, please visit Empirical Magnetosphere
 Models by N. A. Tsyganenko.](https://geo.phys.spbu.ru/~tsyganenko/empirical-models/)
 
 ## Citation
@@ -14,22 +14,24 @@ When using this software, please cite [the Zenodo record](https://doi.org/10.528
 
 ## Copyright
 
-Geopack and the other Fortran code in this repository are developed by N A Tsyganenko et al. and licenced under the GPL 
+Geopack and the other Fortran code in this repository are developed by N A Tsyganenko et al. and licenced under the GPL
 v3 or later.
 
-The Python wrappers were originally written by Sebastien de Larquier in 2012. They are now maintained by John C Coxon 
-and licenced under the MIT licence.
+The Python wrappers were originally written by Sebastien de Larquier in 2012. They are now maintained by John C Coxon.
+Small edits have been made to `Geopack-2008.for` to allow for `f2py` compilation. Code in this repository other than the
+original Fortran is licenced under the MIT licence.
 
 ## Funding
 
-John C Coxon was supported during this work by Science and Technology Facilities Council (STFC) Consolidated Grants ST/R000719/1 and ST/V000942/1, and Ernest Rutherford Fellowship ST/V004883/1.
+John C Coxon was supported during this work by Science and Technology Facilities Council (STFC) Consolidated Grants 
+ST/R000719/1 and ST/V000942/1, and Ernest Rutherford Fellowship ST/V004883/1.
 
 ## Installation
 
     pip install tsyganenko
     pytest tests/test.py
 
-Tests take around 1 hour to run, so don’t be alarmed if you see this behaviour on your machine
+Tests take around 1 hour to run, so don’t be alarmed if you see this behaviour on your machine.
 
 The tests are run against the `csv` files in the repository which were created on an Apple Silicon (M1) Mac. Compiling 
 the package on other machines leads to disparities which reflect the change in underlying architecture rather than
@@ -44,7 +46,7 @@ To use this module, simply follow the example provided in the Trace object docst
     from tsyganenko.trace import Trace
     help(Trace)
 
-Alternatively, there are example notebooks provided which can be used to explore what this module can do. To access these, run:
+Alternatively, there are example notebooks provided which can be used to explore what this module can do:
 
     cd notebooks
     jupyter notebook
