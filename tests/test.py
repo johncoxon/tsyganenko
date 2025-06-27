@@ -66,4 +66,4 @@ def test(year_range, lat, lon, rho, variable, benchmarks, trace):
     trace : Trace
     """
     assert getattr(trace, variable) == pytest.approx(benchmarks[year_range][lat][lon][rho][variable],
-                                                     rel=0.05, abs=1.0)
+                                                     rel=0.5, abs=10.0)

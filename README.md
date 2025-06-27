@@ -35,9 +35,9 @@ Tests take around 1 hour to run, so don’t be alarmed if you see this behaviour
 
 The tests are run against the `csv` files in the repository which were created on an Apple Silicon (M1) Mac. Compiling 
 the package on other machines leads to disparities which reflect the change in underlying architecture rather than
-reflecting changes in code. As such, by default, `tests.py` is quite permissive; it will test to within 5% accuracy. If
-you want to run tests with the `pytest` defaults, run `pytest tests/test_exact.py`, and expect a large number of tests
-to fail.
+reflecting changes in code. As such, by default, `tests.py` is extremely permissive; it will test to a relative accuracy
+of 0.5 or an absolute accuracy of 10.0. If you want to run tests with the `pytest` defaults, run
+`pytest tests/test_exact.py`, and expect a large number of tests to fail.
 
 ## Usage
 
