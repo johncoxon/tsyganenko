@@ -1,7 +1,7 @@
 !    -*- f90 -*-
 ! Note: the context of this file is case sensitive.
 
-python module geopack_tsyganenko ! in 
+python module geopack_tsyganenko ! in
     interface  ! in :geopack_tsyganenko
         subroutine igrf_gsw_08(xgsw,ygsw,zgsw,hxgsw,hygsw,hzgsw) ! in :geopack_tsyganenko:geopack.f
             real intent(in) :: xgsw
@@ -633,7 +633,7 @@ python module geopack_tsyganenko ! in
             real*8 dimension(nmax) :: cbx
             real*8 dimension(nmax),depend(nmax) :: cby
             real*8 dimension(nmax),depend(nmax) :: cbz
-            integer, optional,check(shape(cbx, 0) == nmax),depend(cbx) :: nmax=shape(cbx, 0)
+            integer, optional,check(len(cbx)>=nmax),depend(cbx) :: nmax=len(cbx)
         end subroutine bconic
         subroutine dipdistr(x,y,z,bx,by,bz,mode) ! in :geopack_tsyganenko:T96.f
             real*8 :: x
@@ -697,13 +697,13 @@ python module geopack_tsyganenko ! in
             double precision :: tksi
         end function tksi
         subroutine dipole(ps,x,y,z,bx,by,bz) ! in :geopack_tsyganenko:T96.f
-            real*8 :: ps
-            real*8 :: x
-            real*8 :: y
-            real*8 :: z
-            real*8 :: bx
-            real*8 :: by
-            real*8 :: bz
+            real :: ps
+            real :: x
+            real :: y
+            real :: z
+            real :: bx
+            real :: by
+            real :: bz
         end subroutine dipole
         subroutine t01_01(iopt,parmod,ps,x,y,z,bx,by,bz) ! in :geopack_tsyganenko:T02.f
             integer :: iopt
@@ -722,7 +722,7 @@ python module geopack_tsyganenko ! in
             integer :: iopb
             integer :: iopr
             real dimension(ntot) :: a
-            integer, optional,check(shape(a, 0) == ntot),depend(a) :: ntot=shape(a, 0)
+            integer, optional,check(len(a)>=ntot),depend(a) :: ntot=len(a)
             real :: pdyn
             real :: dst
             real :: byimf
@@ -766,22 +766,22 @@ python module geopack_tsyganenko ! in
             real :: bx
             real :: by
             real :: bz
+            real :: xkappa1
+            real :: xkappa2
+            real, optional :: rh0=8.0d0
             real :: dxshift1
             real :: dxshift2
             real :: d
             real :: deltady
-            real :: xkappa1
-            real :: xkappa2
             real :: sc_sy
             real :: sc_as
             real :: phi
             real :: g
-            real, optional :: rh0=8.0d0
-            common /tail/ dxshift1,dxshift2,d,deltady
             common /birkpar/ xkappa1,xkappa2
+            common /rh0/ rh0
+            common /tail/ dxshift1,dxshift2,d,deltady
             common /rcpar/ sc_sy,sc_as,phi
             common /g/ g
-            common /rh0/ rh0
         end subroutine t02_extall
         subroutine t02_shlcar3x3(x,y,z,ps,bx,by,bz) ! in :geopack_tsyganenko:T02.f
             real :: x
@@ -879,6 +879,7 @@ python module geopack_tsyganenko ! in
             real*8 :: bz22
             real*8 :: xkappa1
             real*8 :: xkappa2
+            real*8 :: specified
             real*8 :: dphi
             real*8 :: b
             real*8 :: rho_0
@@ -1071,6 +1072,5 @@ python module geopack_tsyganenko ! in
     end interface 
 end python module geopack_tsyganenko
 
-! This file was auto-generated with f2py (version:2.2.6).
-! See:
-! https://web.archive.org/web/20140822061353/http://cens.ioc.ee/projects/f2py2e
+! This file was auto-generated with f2py (version:2).
+! See http://cens.ioc.ee/projects/f2py2e/

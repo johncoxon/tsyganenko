@@ -1,25 +1,32 @@
-## Licence
+# tsyganenko
 
-Though edits had to be made to the fortran code to accomodate `f2py` compilation, all Fortran files and their scientific contents are developed by and belong to N. A. Tsyganenko and colleagues.
+[![Zenodo badge](https://zenodo.org/badge/190026596.svg)](https://doi.org/10.5281/zenodo.3937276)
+[![Tests badge](https://github.com/johncoxon/tsyganenko/actions/workflows/tests.yaml/badge.svg)](https://github.com/johncoxon/tsyganenko/actions/workflows/tests.yaml)
 
-The Python wrappers were originally written by Sebastien de Larquier in 2012 and expanded by John Coxon in 2020. These wrappers allow for the Fortran subroutines to be easily called in Python.
+A Python wrapper for N. A. Tsyganenko’s field-line tracing routines.
+
+[For information on the models and routines that are wrapped by this package, please visit Empirical Magnetosphere Models by N. A. Tsyganenko.](https://geo.phys.spbu.ru/~tsyganenko/empirical-models/)
+
+## Citation
+
+When using this software, please cite [the Zenodo record](https://doi.org/10.5281/zenodo.3937277) as well as following the instructions on [N. A. Tsyganenko's website](https://geo.phys.spbu.ru/~tsyganenko/empirical-models/).
+
+## Copyright
+
+All Fortran files and their scientific contents are developed by and belong to N. A. Tsyganenko and colleagues.
+
+The Python wrappers were originally written by Sebastien de Larquier in 2012 and are now maintained by John C Coxon.
+
+## Funding
+
+John C Coxon was supported during this work by Science and Technology Facilities Council (STFC) Consolidated Grants ST/R000719/1 and ST/V000942/1, and Ernest Rutherford Fellowship ST/V004883/1.
 
 ## Installation
 
-To install the Tsyganenko python module, from this directory run:
+    pip install tsyganenko
+    pytest tests/tests.py
 
-    cd src/tsyganenko
-    make clean
-    make
-    cd ../..
-    pip install .
-
-To run the unit tests to confirm that the module behaves as expected, run:
-
-    cd tests
-    pytests tests.py
-
-## Use
+## Usage
 
 To use this module, simply follow the example provided in the Trace object docstring.
 
