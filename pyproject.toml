@@ -30,6 +30,9 @@ classifiers = ["Development Status :: 4 - Beta",
                "Topic :: Scientific/Engineering :: Physics"
 ]
 
+[project.optional-dependencies]
+notebook = ["jupyter"]
+
 [project.urls]
 doi = "https://doi.org/10.5281/zenodo.3937276"
 repository = "https://github.com/johncoxon/tsyganenko"
