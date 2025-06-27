@@ -5,17 +5,20 @@
 
 A Python wrapper for N. A. Tsyganenko’s field-line tracing routines.
 
-[For information on the models and routines that are wrapped by this package, please visit Empirical Magnetosphere Models by N. A. Tsyganenko.](https://geo.phys.spbu.ru/~tsyganenko/empirical-models/)
+[For information on the models and routines that are wrapped by this package, please visit Empirical Magnetosphere 
+Models by N. A. Tsyganenko.](https://geo.phys.spbu.ru/~tsyganenko/empirical-models/)
 
 ## Citation
 
-When using this software, please cite [the Zenodo record](https://doi.org/10.5281/zenodo.3937277) as well as following the instructions on [N. A. Tsyganenko's website](https://geo.phys.spbu.ru/~tsyganenko/empirical-models/).
+When using this software, please cite [the Zenodo record](https://doi.org/10.5281/zenodo.3937277) as well as citing the relevant papers.
 
 ## Copyright
 
-All Fortran files and their scientific contents are developed by and belong to N. A. Tsyganenko and colleagues.
+Geopack and the other Fortran code in this repository are developed by N A Tsyganenko et al. and licenced under the GPL 
+v3 or later.
 
-The Python wrappers were originally written by Sebastien de Larquier in 2012 and are now maintained by John C Coxon.
+The Python wrappers were originally written by Sebastien de Larquier in 2012. They are now maintained by John C Coxon 
+and licenced under the MIT licence.
 
 ## Funding
 
@@ -24,14 +27,22 @@ John C Coxon was supported during this work by Science and Technology Facilities
 ## Installation
 
     pip install tsyganenko
-    pytest tests/tests.py
+    pytest tests/test.py
+
+Tests take around 1 hour to run, so don’t be alarmed if you see this behaviour on your machine
+
+The tests are run against the `csv` files in the repository which were created on an Apple Silicon (M1) Mac. Compiling 
+the package on other machines leads to disparities which reflect the change in underlying architecture rather than
+reflecting changes in code. As such, by default, `tests.py` is quite permissive; it will test to within 5% accuracy. If
+you want to run tests with the `pytest` defaults, run `pytest tests/test_exact.py`, and expect a large number of tests
+to fail.
 
 ## Usage
 
 To use this module, simply follow the example provided in the Trace object docstring.
 
-    import tsyganenko as tsy
-    tsy.Trace?
+    from tsyganenko.trace import Trace
+    help(Trace)
 
 Alternatively, there are example notebooks provided which can be used to explore what this module can do. To access these, run:
 
