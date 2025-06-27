@@ -7,7 +7,8 @@
             "affiliation": "Northumbria University"
         },
         {
-            "name": "de Larquier, Sebastien"
+            "name": "de Larquier, Sebastien",
+            "affiliation": "Virginia Tech"
         }
     ],
     "description": "A Python wrapper for N. A. Tsyganenko’s field-line tracing routines.",
