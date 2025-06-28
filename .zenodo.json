@@ -1,0 +1,66 @@
+{
+    "access_right": "open",
+    "creators": [
+        {
+            "name": "Coxon, John C",
+            "orcid": "0000-0002-0166-6854",
+            "affiliation": "Northumbria University"
+        },
+        {
+            "name": "de Larquier, Sebastien",
+            "affiliation": "Virginia Tech"
+        }
+    ],
+    "description": "A Python wrapper for N. A. Tsyganenko’s field-line tracing routines.",
+    "grants": [
+        {
+            "id": "10.13039/100014013::ST/R000719/1"
+        },
+        {
+            "id": "10.13039/100014013::ST/V000942/1"
+        },
+        {
+            "id": "10.13039/100014013::ST/V004883/1"
+        }
+    ],
+    "keywords": [
+        "Magnetic field",
+        "Magnetosphere"
+    ],
+    "language": "eng",
+    "license": "MIT",
+    "related_identifiers": [
+        {
+            "identifier": "https://github.com/johncoxon/tsyganenko",
+            "relation": "isSupplementTo",
+            "resource_type": "software",
+            "scheme": "url"
+        },
+        {
+            "identifier": "https://geo.phys.spbu.ru/~tsyganenko/empirical-models/",
+            "relation": "isDerivedFrom",
+            "resource_type": "software",
+            "scheme": "doi"
+        }
+    ],
+    "subjects": [
+        {
+            "term": "Earth (planet)",
+            "identifier": "https://vocabularies.unesco.org/thesaurus/concept4083",
+            "scheme": "url"
+        },
+        {
+            "term": "Geophysics",
+            "identifier": "https://vocabularies.unesco.org/thesaurus/concept160",
+            "scheme": "url"
+        },
+        {
+            "term": "Space sciences",
+            "identifier": "https://vocabularies.unesco.org/thesaurus/mt2.30",
+            "scheme": "url"
+        }
+    ],
+    "title": "tsyganenko",
+    "upload_type": "software",
+    "version": "2020.2.0"
+}

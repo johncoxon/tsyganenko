@@ -1,5 +1,5 @@
 """convert: Wrappers for the conversion routines from Geopack."""
-import tsyganenko as tsy
+import geopack_tsyganenko as _geopack
 
 
 def recalc(datetime, v_x, v_y, v_z):
@@ -12,19 +12,19 @@ def recalc(datetime, v_x, v_y, v_z):
     v_x, v_y, v_z : float
         The X, Y and Z components of the solar wind velocity.
     """
-    tsy.geopack.recalc_08(datetime.year, datetime.timetuple().tm_yday,
-                          datetime.hour, datetime.minute, datetime.second, v_x, v_y, v_z)
+    _geopack.recalc_08(datetime.year, datetime.timetuple().tm_yday,
+                       datetime.hour, datetime.minute, datetime.second, v_x, v_y, v_z)
 
 
 def car_to_sph(x, y, z):
     """Convert cartesian to spherical coordinates (in radians)"""
-    r, theta, phi, _, _, _ = tsy.geopack.sphcar_08(0., 0., 0., x, y, z, -1)
+    r, theta, phi, _, _, _ = _geopack.sphcar_08(0., 0., 0., x, y, z, -1)
     return r, theta, phi
 
 
 def sph_to_car(r, theta, phi):
     """Convert spherical (in radians) to cartesian coordinates"""
-    _, _, _, x, y, z = tsy.geopack.sphcar_08(r, theta, phi, 0., 0., 0., 1)
+    _, _, _, x, y, z = _geopack.sphcar_08(r, theta, phi, 0., 0., 0., 1)
     return x, y, z
 
 
@@ -40,11 +40,11 @@ def coordinates(xin, yin, zin, coords_in, coords_out):
         The strings describing the coordinate systems to convert from/to.
     """
     try:
-        function = getattr(tsy.geopack, "{}{}_08".format(
+        function = getattr(_geopack, "{}{}_08".format(
             coords_in.lower(), coords_out.lower()))
     except AttributeError:
         try:
-            function = getattr(tsy.geopack, "{}{}_08".format(
+            function = getattr(_geopack, "{}{}_08".format(
                 coords_out.lower(), coords_in.lower()))
         except AttributeError:
             raise ValueError("Cannot convert {} to {}".format(

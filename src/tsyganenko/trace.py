@@ -1,9 +1,12 @@
 """trace: Provides a class to easily trace field lines from start points"""
 import datetime as _dt
+import geopack_tsyganenko as _geopack
 import numpy as _np
-import tsyganenko as tsy
 from matplotlib import pyplot as _plt
 from matplotlib.patches import Circle as _Circle
+
+# Declare the same Earth radius as used in Tsyganenko models (km)
+earth_radius = 6371.2
 
 
 class Trace(object):
@@ -60,7 +63,7 @@ class Trace(object):
         # Trace a series of points
         lats = np.arange(10, 90, 10)
         lons = 0.
-        rhos = tsy.RE
+        rhos = tsy.earth_radius
         trace = tsy.Trace(lats, lons, rhos)
         # Print the results nicely
         print(trace)
@@ -85,7 +88,9 @@ class Trace(object):
 
         # If no datetime is provided, defaults to today
         if datetime is None:
-            self.time = _dt.datetime.now()
+            self.time = _np.array([_dt.datetime.now()])
+        elif isinstance(datetime, _dt.datetime):
+            self.time = _np.array([datetime])
         else:
             self.time = datetime
 
@@ -137,20 +142,20 @@ Coords: {}
         # Iterate through the desired points
         for ip in _np.arange(len(self.lat)):
             # This has to be called first
-            tsy.geopack.recalc_08(self.time[ip].year,
-                                  self.time[ip].timetuple().tm_yday,
-                                  self.time[ip].hour,
-                                  self.time[ip].minute,
-                                  self.time[ip].second, *self.vsw_gse)
+            _geopack.recalc_08(self.time[ip].year,
+                               self.time[ip].timetuple().tm_yday,
+                               self.time[ip].hour,
+                               self.time[ip].minute,
+                               self.time[ip].second, *self.vsw_gse)
 
             # Convert spherical to cartesian
-            r, theta, phi, x, y, z = tsy.geopack.sphcar_08(
-                self.rho[ip]/tsy.earth_radius, _np.radians(90. - self.lat[ip]),
+            r, theta, phi, x, y, z = _geopack.sphcar_08(
+                self.rho[ip]/earth_radius, _np.radians(90. - self.lat[ip]),
                 _np.radians(self.lon[ip]), 0., 0., 0., 1)
 
             # Convert to GSW.
             if self.coords.lower() == "geo":
-                _, _, _, xgsw, ygsw, zgsw = tsy.geopack.geogsw_08(
+                _, _, _, xgsw, ygsw, zgsw = _geopack.geogsw_08(
                     x, y, z, 0., 0., 0., 1)
 
             self.gsw[ip, 0] = xgsw
@@ -198,10 +203,7 @@ Coords: {}
             len_rho = len(self.rho)
         except TypeError:
             len_rho = 1
-        try:
-            len_dt = len(self.time)
-        except TypeError:
-            len_dt = 1
+        len_dt = len(self.time)
 
         # Make the inputs into floating point arrays. Where an input is passed
         # once, make it into an array of that input (this allows passing e.g.
@@ -223,7 +225,7 @@ Coords: {}
         else:
             self.rho = _np.array(self.rho, dtype=float)
         if len_dt == 1:
-            self.time = _np.array([self.time for _ in self.lat])
+            self.time = _np.array([self.time[0] for _ in self.lat])
             len_dt = len(self.time)
         else:
             self.time = _np.array(self.time)
@@ -242,17 +244,17 @@ Coords: {}
         else:
             mapto = 1
 
-        xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt = tsy.geopack.trace_08(
+        xfgsw, yfgsw, zfgsw, xarr, yarr, zarr, l_cnt = _geopack.trace_08(
             xgsw, ygsw, zgsw, mapto, dsmax, err, rmax, rmin, 0, parmod, exmod, inmod, l_max)
 
         # Convert back to spherical geographic coords
-        xfgeo, yfgeo, zfgeo, _, _, _ = tsy.geopack.geogsw_08(0., 0., 0., xfgsw, yfgsw, zfgsw, -1)
-        rhof, colatf, lonf, _, _, _ = tsy.geopack.sphcar_08(0., 0., 0., xfgeo, yfgeo, zfgeo, -1)
+        xfgeo, yfgeo, zfgeo, _, _, _ = _geopack.geogsw_08(0., 0., 0., xfgsw, yfgsw, zfgsw, -1)
+        rhof, colatf, lonf, _, _, _ = _geopack.sphcar_08(0., 0., 0., xfgeo, yfgeo, zfgeo, -1)
 
         if hemisphere == "north":
             self.lat_n[ip] = 90. - _np.degrees(colatf)
             self.lon_n[ip] = _np.degrees(lonf)
-            self.rho_n[ip] = rhof * tsy.earth_radius
+            self.rho_n[ip] = rhof * earth_radius
 
             x_trace = xarr[l_cnt - 1::-1]
             y_trace = yarr[l_cnt - 1::-1]
@@ -260,7 +262,7 @@ Coords: {}
         else:
             self.lat_s[ip] = 90. - _np.degrees(colatf)
             self.lon_s[ip] = _np.degrees(lonf)
-            self.rho_s[ip] = rhof * tsy.earth_radius
+            self.rho_s[ip] = rhof * earth_radius
 
             x_trace = xarr[0:l_cnt]
             y_trace = yarr[0:l_cnt]
