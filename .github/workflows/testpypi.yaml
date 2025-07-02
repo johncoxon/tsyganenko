@@ -2,7 +2,7 @@ name: Publish to TestPyPI
 
 on:
   push:
-    branches: ["develop"]
+    branches: ["pypi"]
 
 jobs:
   build_wheels:
