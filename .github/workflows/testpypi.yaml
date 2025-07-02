@@ -15,22 +15,22 @@ jobs:
             runs-on: ubuntu-latest
           - os: linux-arm
             runs-on: ubuntu-24.04-arm
-          - os: windows-intel
-            runs-on: windows-latest
-          - os: windows-arm
-            runs-on: windows-11-arm
-          - os: macos-intel
-            # macos-13 was the last x86_64 runner
-            runs-on: macos-13
-          - os: macos-arm
-            # macos-14+ (including latest) are ARM64 runners
-            runs-on: macos-latest
+#          - os: windows-intel
+#            runs-on: windows-latest
+#          - os: windows-arm
+#            runs-on: windows-11-arm
+#          - os: macos-intel
+#            # macos-13 was the last x86_64 runner
+#            runs-on: macos-13
+#          - os: macos-arm
+#            # macos-14+ (including latest) are ARM64 runners
+#            runs-on: macos-latest
 #          - os: ios
 #            runs-on: macos-latest
 #            platform: ios
-          - os: pyodide
-            runs-on: ubuntu-latest
-            platform: pyodide
+#          - os: pyodide
+#            runs-on: ubuntu-latest
+#            platform: pyodide
 
     steps:
       - uses: actions/checkout@v4
