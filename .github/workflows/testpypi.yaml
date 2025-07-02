@@ -5,49 +5,75 @@ on:
     branches: ["develop"]
 
 jobs:
-  build:
-    name: Build distribution
-    runs-on: ubuntu-latest
+  build_wheels:
+    name: Build wheels for ${{ matrix.os }}
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      matrix:
+        include:
+          - os: linux-intel
+            runs-on: ubuntu-latest
+          - os: linux-arm
+            runs-on: ubuntu-24.04-arm
+          - os: windows-intel
+            runs-on: windows-latest
+          - os: windows-arm
+            runs-on: windows-11-arm
+          - os: macos-intel
+            # macos-13 was the last x86_64 runner
+            runs-on: macos-13
+          - os: macos-arm
+            # macos-14+ (including latest) are ARM64 runners
+            runs-on: macos-latest
+          - os: ios
+            runs-on: macos-latest
+            platform: ios
+          - os: pyodide
+            runs-on: ubuntu-latest
+            platform: pyodide
 
     steps:
       - uses: actions/checkout@v4
         with:
           persist-credentials: false
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - name: Build wheels
+        uses: pypa/cibuildwheel@v3.0.0
+        env:
+          CIBW_PLATFORM: ${{ matrix.platform || 'auto' }}
+      - uses: actions/upload-artifact@v4
         with:
-          python-version: ">=3.12"
-      - name: Install pypa/build
-        run: >-
-          python3 -m
-          pip install
-          build
-          --user
-      - name: Build a binary wheel and a source tarball
-        run: python3 -m build
-      - name: Store the distribution packages
-        uses: actions/upload-artifact@v4
+          name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
+          path: ./wheelhouse/*.whl
+
+  build_source_distribution:
+    name: Build source distribution
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v4
+      - name: Build sdist
+        run: pipx run build --sdist
+      - uses: actions/upload-artifact@v4
         with:
-          name: python-package-distributions
-          path: dist/
+          name: cibw-sdist
+          path: dist/*.tar.gz
 
   publish-to-testpypi:
     name: Publish to TestPyPI
-    needs:
-      - build
+    needs: [build_wheels, build_source_distribution]
     runs-on: ubuntu-latest
-    environment:
-      name: testpypi
-      url: https://test.pypi.org/p/tsyganenko
+    environment: testpypi
     permissions:
       id-token: write
+
     steps:
-      - name: Download all the distributions
-        uses: actions/download-artifact@v4
+      - uses: actions/download-artifact@v4
         with:
-          name: python-package-distributions
-          path: dist/
-      - name: Publish distribution to TestPyPI
-        uses: pypa/gh-action-pypi-publish@release/v1
+          # unpacks all CIBW artifacts into dist/
+          pattern: cibw-*
+          path: dist
+          merge-multiple: true
+
+      - uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
