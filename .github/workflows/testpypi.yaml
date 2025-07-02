@@ -23,19 +23,14 @@ jobs:
             # macos-13 was the last x86_64 runner
             runs-on: macos-13
           - os: macos-arm
-            # macos-14+ (including latest) are ARM64 runners
             runs-on: macos-latest
 
     steps:
       - name: Provide gfortran (macOS)
         if: runner.os == 'macOS'
         run: |
-          # https://github.com/actions/virtual-environments/issues/2524
-          # https://github.com/cbg-ethz/dce/blob/master/.github/workflows/pkgdown.yaml
-          sudo ln -s /usr/local/bin/gfortran-11 /usr/local/bin/gfortran
-          sudo mkdir /usr/local/gfortran
-          sudo ln -s /usr/local/Cellar/gcc@11/*/lib/gcc/11 /usr/local/gfortran/lib
-          gfortran --version
+          sudo ln -s $(which gfortran-${{ matrix.version }}) $(dirname $(which gfortran-${{ matrix.version }}))/gfortran                                                                                 
+          which gfortran && gfortran --version
       - name: Provide gfortran (Windows)
         if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
