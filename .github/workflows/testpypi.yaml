@@ -19,18 +19,18 @@ jobs:
             runs-on: windows-latest
           - os: windows-arm
             runs-on: windows-11-arm
-          - os: macos-intel
-            # macos-13 was the last x86_64 runner
-            runs-on: macos-13
-          - os: macos-arm
-            runs-on: macos-latest
+#          - os: macos-intel
+#            # macos-13 was the last x86_64 runner
+#            runs-on: macos-13
+#          - os: macos-arm
+#            runs-on: macos-latest
 
     steps:
-      - name: Provide gfortran (macOS)
-        if: runner.os == 'macOS'
-        run: |
-          sudo ln -s $(which gfortran-${{ matrix.version }}) $(dirname $(which gfortran-${{ matrix.version }}))/gfortran                                                                                 
-          which gfortran && gfortran --version
+#      - name: Provide gfortran (macOS)
+#        if: runner.os == 'macOS'
+#        run: |
+#          sudo ln -s $(which gfortran-${{ matrix.version }}) $(dirname $(which gfortran-${{ matrix.version }}))/gfortran
+#          which gfortran && gfortran --version
       - name: Provide gfortran (Windows)
         if: runner.os == 'Windows'
         uses: msys2/setup-msys2@v2
