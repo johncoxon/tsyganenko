@@ -31,13 +31,16 @@ ST/R000719/1 and ST/V000942/1, and Ernest Rutherford Fellowship ST/V004883/1.
     pip install tsyganenko
     pytest tests/test.py
 
+Please note that at this time, Windows is not well-supported by this package; if you would like to help resolve this,
+please check out [issue #15](https://github.com/johncoxon/tsyganenko/pull/14).
+
 Tests take around 1 hour to run, so don’t be alarmed if you see this behaviour on your machine.
 
 The tests are run against the `csv` files in the repository which were created on an Apple Silicon (M1) Mac. Compiling 
 the package on other machines leads to disparities which reflect the change in underlying architecture rather than
 reflecting changes in code. As such, by default, `tests.py` is extremely permissive; it will test to a relative accuracy
 of 0.5 or an absolute accuracy of 10.0. If you want to run tests with the `pytest` defaults, run
-`pytest tests/test_exact.py`, and expect a large number of tests to fail.
+`pytest tests/test_exact.py`, and expect a large number of tests to fail unless you are running on an M1 chip.
 
 ## Usage
 
