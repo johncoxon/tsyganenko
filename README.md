@@ -10,7 +10,7 @@ Models by N. A. Tsyganenko.](https://geo.phys.spbu.ru/~tsyganenko/empirical-mode
 
 ## Citation
 
-When using this software, please cite [the Zenodo record](https://doi.org/10.5281/zenodo.3937277) as well as citing the relevant papers.
+When using this software, please cite [the Zenodo record](https://zenodo.org/records/15763019) as well as citing the relevant papers.
 
 ## Copyright
 
