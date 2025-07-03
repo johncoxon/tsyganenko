@@ -7,36 +7,27 @@ on:
 jobs:
   build_wheels:
     name: Build wheels for ${{ matrix.os }}
-    runs-on: ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.os }}
     strategy:
+      fail-fast: false
       matrix:
-        include:
-          - os: linux-intel
-            runs-on: ubuntu-latest
-          - os: linux-arm
-            runs-on: ubuntu-24.04-arm
-          - os: windows-intel
-            runs-on: windows-latest
-          - os: windows-arm
-            runs-on: windows-11-arm
-#          - os: macos-intel
-#            # macos-13 was the last x86_64 runner
-#            runs-on: macos-13
-#          - os: macos-arm
-#            runs-on: macos-latest
-        exclude:
-#          - os: macos-latest
-#            toolchain: { compiler: intel, version: '2023.2' }
-#          - os: macos-latest
-#            toolchain: { compiler: nvidia-hpc, version: '23.11' }
-          - runs-on: windows-latest
-            toolchain: { compiler: nvidia-hpc, version: '23.11' }
+        os: [ubuntu-latest, macos-latest, windows-latest]
         toolchain:
-          - { compiler: gcc, version: 13 }
-          - { compiler: intel, version: '2025.0' }
-          - { compiler: intel-classic, version: '2021.10' }
-          - { compiler: nvidia-hpc, version: '25.1' }
-          - { compiler: lfortran, version: '0.45.0' }
+          - {compiler: gcc, version: 13}
+          - {compiler: intel, version: '2025.0'}
+          - {compiler: intel-classic, version: '2021.10'}
+          - {compiler: nvidia-hpc, version: '25.1'}
+          - {compiler: lfortran, version: '0.45.0'}
+        include:
+          - os: ubuntu-latest
+            toolchain: {compiler: gcc, version: 12}
+        exclude:
+          - os: macos-latest
+            toolchain: {compiler: intel, version: '2023.2'}
+          - os: macos-latest
+            toolchain: {compiler: nvidia-hpc, version: '23.11'}
+          - os: windows-latest
+            toolchain: {compiler: nvidia-hpc, version: '23.11'}
 
     steps:
       - uses: fortran-lang/setup-fortran@v1
