@@ -1,8 +1,8 @@
-name: Publish to TestPyPI
+name: Publish to PyPI
 
 on:
-  push:
-    branches: ["develop"]
+  release:
+    types: [created]
 
 env:
   MACOSX_DEPLOYMENT_TARGET: 14.0
