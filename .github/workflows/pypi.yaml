@@ -1,51 +1,74 @@
-name: Publish to PyPI
+name: Publish to TestPyPI
 
 on:
-  release:
-    types: [created]
+  push:
+    branches: ["develop"]
+
+env:
+  MACOSX_DEPLOYMENT_TARGET: 14.0
 
 jobs:
-  build:
-    name: Build distribution
+  build_wheels:
+    name: Build wheels for ${{ matrix.os }}
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest, macos-latest]
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false
+      - name: Setup Fortran
+        uses: fortran-lang/setup-fortran@v1
+        id: setup-fortran
+        with:
+          compiler: gcc
+          version: 13
+      - name: Build wheels for gcc 13
+        uses: pypa/cibuildwheel@v3.0.0
+        env:
+          CIBW_PLATFORM: ${{ matrix.platform || 'auto' }}
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: cibw-wheels-${{ matrix.os }}
+          path: ./wheelhouse/*.whl
+
+  build_source_distribution:
+    name: Build source distribution
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: ">=3.12"
-      - name: Install pypa/build
-        run: >-
-          python3 -m
-          pip install
-          build
-          --user
-      - name: Build a binary wheel and a source tarball
-        run: python3 -m build
-      - name: Store the distribution packages
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build source distribution
+        run: pipx run build --sdist
+      - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: python-package-distributions
-          path: dist/
+          name: cibw-sdist
+          path: dist/*.tar.gz
 
-  publish-to-pypi:
+  publish-to-testpypi:
     name: Publish to PyPI
-    needs:
-      - build
+    needs: [build_wheels, build_source_distribution]
     runs-on: ubuntu-latest
     environment:
       name: pypi
       url: https://pypi.org/p/tsyganenko
     permissions:
       id-token: write
+
     steps:
-      - name: Download all the distributions
+      - name: Download artifact
         uses: actions/download-artifact@v4
         with:
-          name: python-package-distributions
-          path: dist/
-      - name: Publish distribution to PyPI
+          # unpacks all CIBW artifacts into dist/
+          pattern: cibw-*
+          path: dist
+          merge-multiple: true
+      - name: Publish to PyPI
         uses: pypa/gh-action-pypi-publish@release/v1

@@ -2,7 +2,7 @@ name: Publish to TestPyPI
 
 on:
   push:
-    branches: ["pypi"]
+    branches: ["develop"]
 
 env:
   MACOSX_DEPLOYMENT_TARGET: 14.0
@@ -34,26 +34,7 @@ jobs:
       - name: Upload artifact
         uses: actions/upload-artifact@v4
         with:
-          name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
-          path: ./wheelhouse/*.whl
-
-  build_windows_wheel:
-    name: Build wheels for Windows
-    runs-on: windows-latest
-
-    steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-        with:
-          persist-credentials: false
-      - name: Setup Fortran
-        uses: modflowpy/install-intelfortran-action@v1
-      - name: Build wheels
-        uses: pypa/cibuildwheel@v3.0.0
-      - name: Upload artifact
-        uses: actions/upload-artifact@v4
-        with:
-          name: cibw-wheels-windows
+          name: cibw-wheels-${{ matrix.os }}
           path: ./wheelhouse/*.whl
 
   build_source_distribution:
