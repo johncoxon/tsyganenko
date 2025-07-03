@@ -25,10 +25,10 @@ jobs:
 #          - os: macos-arm
 #            runs-on: macos-latest
         exclude:
-          - os: macos-latest
-            toolchain: { compiler: intel, version: '2023.2' }
-          - os: macos-latest
-            toolchain: { compiler: nvidia-hpc, version: '23.11' }
+#          - os: macos-latest
+#            toolchain: { compiler: intel, version: '2023.2' }
+#          - os: macos-latest
+#            toolchain: { compiler: nvidia-hpc, version: '23.11' }
           - os: windows-latest
             toolchain: { compiler: nvidia-hpc, version: '23.11' }
         toolchain:
