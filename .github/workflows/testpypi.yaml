@@ -4,6 +4,9 @@ on:
   push:
     branches: ["pypi"]
 
+env:
+  MACOSX_DEPLOYMENT_TARGET: 14.0
+
 jobs:
   build_wheels:
     name: Build wheels for ${{ matrix.os }}
@@ -25,22 +28,23 @@ jobs:
             toolchain: {compiler: intel, version: '2025.0'}
 
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout
+        uses: actions/checkout@v4
         with:
           persist-credentials:
             false
-      - uses: fortran-lang/setup-fortran@v1
+      - name: Setup Fortran
+        uses: fortran-lang/setup-fortran@v1
         id: setup-fortran
         with:
           compiler: ${{ matrix.toolchain.compiler }}
           version: ${{ matrix.toolchain.version }}
-      - name: Set environment
-        run: echo "MACOSX_DEPLOYMENT_TARGET=14.0" >> $MACOSX_DEPLOYMENT_TARGET
       - name: Build wheels for ${{ matrix.toolchain.compiler }} ${{ matrix.toolchain.version }}
         uses: pypa/cibuildwheel@v3.0.0
         env:
           CIBW_PLATFORM: ${{ matrix.platform || 'auto' }}
-      - uses: actions/upload-artifact@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: cibw-wheels-${{ matrix.os }}-${{ strategy.job-index }}
           path: ./wheelhouse/*.whl
@@ -50,10 +54,12 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - uses: actions/checkout@v4
-      - name: Build sdist
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Build source distribution
         run: pipx run build --sdist
-      - uses: actions/upload-artifact@v4
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
         with:
           name: cibw-sdist
           path: dist/*.tar.gz
@@ -67,13 +73,14 @@ jobs:
       id-token: write
 
     steps:
-      - uses: actions/download-artifact@v4
+      - name: Download artifact
+        uses: actions/download-artifact@v4
         with:
           # unpacks all CIBW artifacts into dist/
           pattern: cibw-*
           path: dist
           merge-multiple: true
-
-      - uses: pypa/gh-action-pypi-publish@release/v1
+      - name: Publish to TestPyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
         with:
           repository-url: https://test.pypi.org/legacy/
