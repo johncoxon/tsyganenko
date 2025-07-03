@@ -32,7 +32,7 @@ ST/R000719/1 and ST/V000942/1, and Ernest Rutherford Fellowship ST/V004883/1.
     pytest tests/test.py
 
 Please note that at this time, Windows is not well-supported by this package; if you would like to help resolve this,
-please check out issue #15.
+please check out [issue #15](https://github.com/johncoxon/tsyganenko/pull/14).
 
 Tests take around 1 hour to run, so don’t be alarmed if you see this behaviour on your machine.
 
