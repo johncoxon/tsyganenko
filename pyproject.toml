@@ -4,7 +4,7 @@ build-backend = "scikit_build_core.build"
 
 [project]
 name = "tsyganenko"
-version = "2020.2.1"
+version = "2020.2.2"
 dependencies = [
     "matplotlib",
     "numpy",
