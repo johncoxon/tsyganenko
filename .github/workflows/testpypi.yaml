@@ -25,14 +25,17 @@ jobs:
             toolchain: {compiler: intel, version: '2025.0'}
 
     steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials:
+            false
       - uses: fortran-lang/setup-fortran@v1
         id: setup-fortran
         with:
           compiler: ${{ matrix.toolchain.compiler }}
           version: ${{ matrix.toolchain.version }}
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: false
+      - name: Set environment
+        run: echo "14.0" >> $MACOSX_DEPLOYMENT_TARGET
       - name: Build wheels
         uses: pypa/cibuildwheel@v3.0.0
         env:
