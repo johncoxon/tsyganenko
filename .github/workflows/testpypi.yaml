@@ -2,7 +2,8 @@ name: Publish to TestPyPI
 
 on:
   pull_request:
-    branches: ["develop"]
+    branches: [main]
+    types: [opened]
 
 env:
   MACOSX_DEPLOYMENT_TARGET: 14.0
