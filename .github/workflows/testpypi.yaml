@@ -35,8 +35,8 @@ jobs:
           compiler: ${{ matrix.toolchain.compiler }}
           version: ${{ matrix.toolchain.version }}
       - name: Set environment
-        run: echo "14.0" >> $MACOSX_DEPLOYMENT_TARGET
-      - name: Build wheels
+        run: echo "MACOSX_DEPLOYMENT_TARGET=14.0" >> $MACOSX_DEPLOYMENT_TARGET
+      - name: Build wheels for ${{ matrix.toolchain.compiler }} ${{ matrix.toolchain.version }}
         uses: pypa/cibuildwheel@v3.0.0
         env:
           CIBW_PLATFORM: ${{ matrix.platform || 'auto' }}
